@@ -1,0 +1,2740 @@
+{
+    "search_metadata": {
+        "id": "6554ddeb2ff421c8915391e4",
+        "status": "Success",
+        "json_endpoint": "https://serpapi.com/searches/e3d2f0a86c64eab9/6554ddeb2ff421c8915391e4.json",
+        "created_at": "2023-11-15 15:04:11 UTC",
+        "processed_at": "2023-11-15 15:04:11 UTC",
+        "google_patents_url": "https://patents.google.com/xhr/query?url=q%3D%2528Coffee%2529",
+        "raw_html_file": "https://serpapi.com/searches/e3d2f0a86c64eab9/6554ddeb2ff421c8915391e4.html",
+        "prettify_html_file": "https://serpapi.com/searches/e3d2f0a86c64eab9/6554ddeb2ff421c8915391e4.prettify",
+        "total_time_taken": 1.44
+    },
+    "search_parameters": {
+        "engine": "google_patents",
+        "q": "(Coffee)"
+    },
+    "search_information": {
+        "total_results": 126704,
+        "total_pages": 100,
+        "page_number": 1
+    },
+    "organic_results": [
+        {
+            "position": 1,
+            "rank": 0,
+            "patent_id": "patent/US11266160B2/en",
+            "title": "Nitrogen infused soluble cold brew instant coffee and process for preparation",
+            "snippet": "The present invention relates to a liquid coffee beverage comprising liquid coffee infused with nitrogen thus producing a refreshing cold foamy and creamy beverage.",
+            "priority_date": "2016-06-10",
+            "filing_date": "2017-06-08",
+            "grant_date": "2022-03-08",
+            "publication_date": "2022-03-08",
+            "inventor": "Deepak Sahai",
+            "assignee": "Societe Des Produits Nestle S.A.",
+            "publication_number": "US11266160B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/85/98/6c/cfde9e917fc7eb/US11266160-20220308-D00001.png",
+            "pdf": "https://patentimages.storage.googleapis.com/dd/c2/d6/c416a24825f9c5/US11266160.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b7/6c/d4/bffa1eb8e8951b/US11266160-20220308-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/fe/91/c9/500efb671276e4/US11266160-20220308-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c6/ff/96/01b96bca4d91b9/US11266160-20220308-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/db/f1/28/3bba416f2c6087/US11266160-20220308-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ad/5c/74/0ae222439e0bd0/US11266160-20220308-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/b7/5b/a2/502f981810a6b2/US11266160-20220308-D00003.png"
+                }
+            ],
+            "country_status": {
+                "WO": "UNKNOWN",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "ACTIVE"
+            }
+        },
+        {
+            "position": 2,
+            "rank": 1,
+            "patent_id": "patent/US8110241B2/en",
+            "title": "Foaming soluble coffee powder containing pressurized gas",
+            "snippet": "An instant coffee powder has dried soluble coffee in the form of particles or granules having internal voids filled with entrapped pressurized gas. Advantageously, when the coffee powder is dissolved in a beverage, the instant coffee powder produces a foam on the top surface of the beverage.",
+            "priority_date": "2004-08-17",
+            "filing_date": "2010-04-27",
+            "grant_date": "2012-02-07",
+            "publication_date": "2012-02-07",
+            "inventor": "Bary Lyn Zeller",
+            "assignee": "Kraft Foods Global Brands Llc",
+            "publication_number": "US8110241B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/25/a4/3c/08a69758ca974c/US08110241-20120207-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/86/1c/bd/89a41d9faca215/US8110241.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/bc/43/8a/befe307de64c7c/US08110241-20120207-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/e0/9e/10/d0a025032833eb/US08110241-20120207-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c1/91/68/a0fc2ab8594671/US08110241-20120207-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/5d/b3/37/ccdcbe58cbac2e/US08110241-20120207-D00001.png"
+                }
+            ],
+            "country_status": {
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "AR": "UNKNOWN",
+                "AT": "NOT_ACTIVE",
+                "BR": "ACTIVE",
+                "CA": "ACTIVE",
+                "ES": "ACTIVE",
+                "MX": "NOT_ACTIVE",
+                "PL": "UNKNOWN",
+                "RU": "ACTIVE",
+                "UA": "UNKNOWN"
+            }
+        },
+        {
+            "position": 3,
+            "rank": 2,
+            "patent_id": "patent/RU2766609C2/en",
+            "title": "Roasted and ground powdered coffee and methods for its production",
+            "snippet": "1. Dried roasted and ground coffee product containing particles of roasted and ground coffee, which are infused and/or coated with soluble coffee solids in an amount of 20-50 wt.%, and while these soluble coffee solids were subjected to extraction at a temperature below 60 °C 2. The dried roasted …",
+            "priority_date": "2016-12-23",
+            "filing_date": "2017-12-22",
+            "grant_date": "2022-03-15",
+            "publication_date": "2022-03-15",
+            "inventor": "Федерико МОРА",
+            "assignee": "Сосьете Де Продюи Нестле С.А.",
+            "publication_number": "RU2766609C2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/23/fc/61/43bb57210f8b7f/00000001.png",
+            "pdf": "https://patentimages.storage.googleapis.com/ab/3c/bb/d5d4b21616f08c/RU2766609C2.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e1/a2/76/38d9b190f71e04/00000001.png",
+                    "full": "https://patentimages.storage.googleapis.com/d1/86/b8/556e6f1e4d609b/00000001.png"
+                }
+            ],
+            "country_status": {
+                "WO": "UNKNOWN",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "ACTIVE",
+                "KR": "NOT_ACTIVE",
+                "AU": "ACTIVE",
+                "BR": "NOT_ACTIVE",
+                "CA": "ACTIVE",
+                "CL": "UNKNOWN",
+                "MX": "UNKNOWN",
+                "PH": "UNKNOWN",
+                "RU": "ACTIVE"
+            }
+        },
+        {
+            "position": 4,
+            "rank": 3,
+            "patent_id": "patent/CA3104644C/en",
+            "title": "Automatic coffee maker and process for preparing a cold brewed beverage",
+            "snippet": "Although the disclosure is described herein with reference to preparing a brewed coffee or tea beverage, preparation of other brewed beverages is within the scope of the disclosure. As the term is used herein, 'coffee' refers to a beverage including solids extracted from coffee beans and dissolved …",
+            "priority_date": "2018-06-21",
+            "filing_date": "2019-06-20",
+            "grant_date": "2023-08-29",
+            "publication_date": "2023-08-29",
+            "inventor": "Joshua D. Anthony",
+            "assignee": "Sharkninja Operating Llc",
+            "publication_number": "CA3104644C",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/",
+            "pdf": "https://patentimages.storage.googleapis.com/84/9c/1e/c02783fbdf39e5/CA3104644C.pdf",
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "ACTIVE",
+                "KR": "NOT_ACTIVE",
+                "AU": "NOT_ACTIVE",
+                "CA": "ACTIVE"
+            }
+        },
+        {
+            "position": 5,
+            "rank": 4,
+            "patent_id": "patent/US8495950B2/en",
+            "title": "Method and apparatus for brewing coffee via universal coffee brewing chart …",
+            "snippet": "wherein the brew formula ratio is a constant for different size batches of coffee brewed in accordance with the brew formula ratio. 11. The method of claim 4 , further comprising determining a projected target total dissolved solids (TDS) value for a coffee brew sample brewed as specified by the …",
+            "priority_date": "2008-10-08",
+            "filing_date": "2008-10-08",
+            "grant_date": "2013-07-30",
+            "publication_date": "2013-07-30",
+            "inventor": "Vincent Fedele",
+            "assignee": "Voice Systems Technology, Inc.",
+            "publication_number": "US8495950B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/f9/c6/73/311cd476a738f9/US08495950-20130730-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/9b/13/3b/04ede26a15302b/US8495950.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/48/2a/2c/66f95a4e79938c/US08495950-20130730-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/68/0e/7b/399c0396b895eb/US08495950-20130730-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f8/75/c2/66c2c1a7fce878/US08495950-20130730-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/97/31/80/9115dc57135085/US08495950-20130730-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/38/05/98/b4b5eb0dfbeefb/US08495950-20130730-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/69/f8/87/e7c19a808be041/US08495950-20130730-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b3/6f/94/4d390e892fbbd5/US08495950-20130730-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/29/f2/78/6c53e16648e5ff/US08495950-20130730-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/85/38/74/c67ec7b2947b6c/US08495950-20130730-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/c6/06/32/51c1401e8ba615/US08495950-20130730-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a3/8c/b4/3e84a4db50b2c4/US08495950-20130730-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/4f/f9/cb/91a83b5312433f/US08495950-20130730-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/89/7a/0b/af9717a795a3dd/US08495950-20130730-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/92/29/34/084bc6d265ed75/US08495950-20130730-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c4/65/8c/cce64320bdd3cb/US08495950-20130730-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/ca/c1/96/e69072c2dce5d0/US08495950-20130730-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6a/27/de/7108478e6f8778/US08495950-20130730-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/a2/97/bd/6b16c46e97dac4/US08495950-20130730-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c0/df/6b/0d1fe724071bb3/US08495950-20130730-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/e9/2e/30/58deff84b26aab/US08495950-20130730-D00009.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/04/99/95/b624e4283512e4/US08495950-20130730-D00010.png",
+                    "full": "https://patentimages.storage.googleapis.com/48/79/05/c5564b3f72ad55/US08495950-20130730-D00010.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/20/b2/33/7c3905623964a1/US08495950-20130730-D00011.png",
+                    "full": "https://patentimages.storage.googleapis.com/32/43/05/8cfffdc7894916/US08495950-20130730-D00011.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/02/cf/f9/5c419f9c30603a/US08495950-20130730-D00012.png",
+                    "full": "https://patentimages.storage.googleapis.com/40/84/3d/d411e72ab45a49/US08495950-20130730-D00012.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/25/ac/31/4e5913838a06ad/US08495950-20130730-D00013.png",
+                    "full": "https://patentimages.storage.googleapis.com/8d/36/04/972dd9bbccf51b/US08495950-20130730-D00013.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d9/58/4b/eec2216ad80097/US08495950-20130730-D00014.png",
+                    "full": "https://patentimages.storage.googleapis.com/60/e3/68/6672ab4b612b72/US08495950-20130730-D00014.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1e/41/2f/1ad42f13acd387/US08495950-20130730-D00015.png",
+                    "full": "https://patentimages.storage.googleapis.com/a0/e2/26/977c08c1cf9dfc/US08495950-20130730-D00015.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/18/b7/8d/30949f1b1e737e/US08495950-20130730-D00016.png",
+                    "full": "https://patentimages.storage.googleapis.com/6f/e0/7e/3b1c33d3f95ac1/US08495950-20130730-D00016.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d7/7a/06/4455737b7bd8de/US08495950-20130730-D00017.png",
+                    "full": "https://patentimages.storage.googleapis.com/4c/8a/90/89d1f34b88210d/US08495950-20130730-D00017.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b9/3c/88/48385de2b7cd5a/US08495950-20130730-D00018.png",
+                    "full": "https://patentimages.storage.googleapis.com/26/d1/9d/97116730a5e832/US08495950-20130730-D00018.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/73/87/6a/14f62442869c5b/US08495950-20130730-D00019.png",
+                    "full": "https://patentimages.storage.googleapis.com/fb/45/2d/ce44d1f4ded15d/US08495950-20130730-D00019.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/0e/36/34/31e343d7ad667e/US08495950-20130730-D00020.png",
+                    "full": "https://patentimages.storage.googleapis.com/c3/28/7f/fd78a8e662860c/US08495950-20130730-D00020.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/33/47/01/f4ac04b260cf14/US08495950-20130730-D00021.png",
+                    "full": "https://patentimages.storage.googleapis.com/6e/ec/5b/2fc86a0538860b/US08495950-20130730-D00021.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/33/13/64/3caaf5d4105449/US08495950-20130730-D00022.png",
+                    "full": "https://patentimages.storage.googleapis.com/3d/05/a2/f958c9390de2ee/US08495950-20130730-D00022.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/af/19/6c/88c322c17b64a9/US08495950-20130730-D00023.png",
+                    "full": "https://patentimages.storage.googleapis.com/98/5d/a3/077c4ad06f9475/US08495950-20130730-D00023.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ba/ec/20/52ca96566253d3/US08495950-20130730-D00024.png",
+                    "full": "https://patentimages.storage.googleapis.com/10/9a/c9/5e8d9c3fefe19d/US08495950-20130730-D00024.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/48/15/25/48a186f93e86a5/US08495950-20130730-D00025.png",
+                    "full": "https://patentimages.storage.googleapis.com/56/c6/b2/5f508b23fc93f2/US08495950-20130730-D00025.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b9/7b/2b/61d9a33af00a85/US08495950-20130730-D00026.png",
+                    "full": "https://patentimages.storage.googleapis.com/84/ee/27/9696ecd1ced879/US08495950-20130730-D00026.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a9/b5/61/b69d1bf648b507/US08495950-20130730-D00027.png",
+                    "full": "https://patentimages.storage.googleapis.com/60/bf/c2/86a92ffd524ed7/US08495950-20130730-D00027.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/85/62/3f/c14a46891c6770/US08495950-20130730-D00028.png",
+                    "full": "https://patentimages.storage.googleapis.com/24/2b/b4/dd95b74bd7f891/US08495950-20130730-D00028.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/74/35/65/44cb9eed543dc2/US08495950-20130730-D00029.png",
+                    "full": "https://patentimages.storage.googleapis.com/6e/c0/70/3df13eb189cafd/US08495950-20130730-D00029.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/60/81/78/810af17605c46b/US08495950-20130730-D00030.png",
+                    "full": "https://patentimages.storage.googleapis.com/fa/b8/fc/e034e8cb96badb/US08495950-20130730-D00030.png"
+                }
+            ],
+            "country_status": {
+                "US": "ACTIVE"
+            }
+        },
+        {
+            "position": 6,
+            "rank": 5,
+            "patent_id": "patent/AU2018267547B2/en",
+            "title": "Method and apparatus for replicating coffee flavor",
+            "snippet": "grinding the coffee beans with the grinder set to the first setting to produce first ground coffee beans; obtaining, with the processor, an image of a calibration mark and a portion of the first ground coffee beans, and determining, with the processor, a ground size of the first ground coffee beans …",
+            "priority_date": "2013-03-11",
+            "filing_date": "2018-11-19",
+            "grant_date": "2020-06-25",
+            "publication_date": "2020-06-25",
+            "inventor": "Neil M. DAY",
+            "assignee": "Société des Produits Nestlé S.A.",
+            "publication_number": "AU2018267547B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/",
+            "pdf": "https://patentimages.storage.googleapis.com/3b/55/e6/f683f7014e7dad/AU2018267547B2.pdf",
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "ACTIVE",
+                "KR": "ACTIVE",
+                "AU": "ACTIVE",
+                "BR": "ACTIVE",
+                "CA": "ACTIVE",
+                "HK": "UNKNOWN",
+                "NZ": "UNKNOWN"
+            }
+        },
+        {
+            "position": 7,
+            "rank": 6,
+            "patent_id": "patent/CN100581423C/en",
+            "title": "Coffee infusion press filter for stackable cups",
+            "snippet": "Summary of the invention The present invention relates to be suitable for to be shaped as the pressure filter assembly of for example traditional stackable disposable coffee cup of the container of the circular cone frustum bodily form.According to preferred embodiment, this pressure filter …",
+            "priority_date": "2003-12-30",
+            "filing_date": "2004-12-17",
+            "grant_date": "2010-01-20",
+            "publication_date": "2010-01-20",
+            "inventor": "托马斯·B·哈弗斯托克",
+            "assignee": "托马斯·B·哈弗斯托克",
+            "publication_number": "CN100581423C",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/d4/94/92/5be3132264b2dc/C2004800421050019H1.png",
+            "pdf": "https://patentimages.storage.googleapis.com/a9/2c/b7/2fd7ef2b2c2ee3/CN100581423C.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c8/c1/8e/8e51edd16f745b/C2004800421050019H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/38/00/86/49c19632a4ea69/C2004800421050019H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/28/6d/cd/3ec060beab7d14/C2004800421050020H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/04/3b/19/831382f8a1258b/C2004800421050020H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/2c/aa/d5/642613394cc026/C2004800421050021H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/35/04/a0/2a910a03d557e2/C2004800421050021H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/81/95/ce/2cf0df7a74cc14/C2004800421050022H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/95/dc/69/25c486b7fc00c4/C2004800421050022H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/eb/36/01/f8282a853a44e0/C2004800421050022H2.png",
+                    "full": "https://patentimages.storage.googleapis.com/3d/0c/0b/d7c1ca55f23afa/C2004800421050022H2.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/5a/aa/f2/7d6314b0aa1915/C2004800421050022H4.png",
+                    "full": "https://patentimages.storage.googleapis.com/7a/b7/e7/346bfe6110dd8f/C2004800421050022H4.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/59/a2/65/5c360640cc5fa1/C2004800421050023H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/30/a3/ac/8d768895723ba3/C2004800421050023H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6f/28/d9/dd93cf264caca2/C2004800421050023H2.png",
+                    "full": "https://patentimages.storage.googleapis.com/bc/2f/14/32dc6460429aee/C2004800421050023H2.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/89/ea/fb/9b193e9c762cac/C2004800421050024H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/49/19/28/dd9f35e9943c4a/C2004800421050024H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ce/77/db/0c00001e9a41d1/C2004800421050025H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/6f/8e/82/f5dba20c95a794/C2004800421050025H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/5e/2a/69/eca1496e545475/C2004800421050026H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/4e/e7/21/7aa83e3b983493/C2004800421050026H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d6/16/c3/6d77025ee4a95d/C2004800421050027H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/35/83/6a/6b81531ec78be8/C2004800421050027H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/54/f3/37/3e738448130223/C2004800421050028H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/4a/90/9b/6ab8423b780ba6/C2004800421050028H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/9a/d1/3b/46aff4b6f635f7/C2004800421050029H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/da/cb/b3/2ae8bba80c46e4/C2004800421050029H1.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/76/79/95/bda6dde1c22e55/C2004800421050029H2.png",
+                    "full": "https://patentimages.storage.googleapis.com/b0/b7/da/c1868a04c18c4c/C2004800421050029H2.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/0c/68/07/55620df7f614a9/C2004800421050030H1.png",
+                    "full": "https://patentimages.storage.googleapis.com/9c/b2/6a/422e925426636b/C2004800421050030H1.png"
+                }
+            ],
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "ACTIVE",
+                "KR": "ACTIVE",
+                "AT": "NOT_ACTIVE",
+                "BR": "NOT_ACTIVE",
+                "DE": "ACTIVE"
+            }
+        },
+        {
+            "position": 8,
+            "rank": 7,
+            "patent_id": "patent/CN101232829B/en",
+            "title": "Coffee making apparatus",
+            "snippet": "Ii) slag cup, described slag cup has the bottom of cylindrical side wall and perforation, and the bottom of described perforation is used for the coffee of modulation is transferred to described slag cup retainer distribution openings, and described active sealing device forms the upper limit of …",
+            "priority_date": "2005-05-14",
+            "filing_date": "2006-05-11",
+            "grant_date": "2010-12-22",
+            "publication_date": "2010-12-22",
+            "inventor": "多夫·Z·格吕克斯曼",
+            "assignee": "设备开发公司",
+            "publication_number": "CN101232829B",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/19/f7/61/f5e65c81b65ddc/S200680025316XE00011.png",
+            "pdf": "https://patentimages.storage.googleapis.com/21/46/60/f6f98a1dc95fe5/CN101232829B.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a6/ce/76/2a8259b352b70a/S200680025316XE00011.png",
+                    "full": "https://patentimages.storage.googleapis.com/90/ae/c3/a77dfb97270ae2/S200680025316XE00011.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/cf/bf/de/c641fbe9e52dbf/S200680025316XE00021.png",
+                    "full": "https://patentimages.storage.googleapis.com/6d/86/c2/b553e58e75d186/S200680025316XE00021.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/60/8e/13/a238a11e162008/S200680025316XE00031.png",
+                    "full": "https://patentimages.storage.googleapis.com/64/77/5e/a2099388a12591/S200680025316XE00031.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/4f/a9/e8/d021db5cd8ba18/S200680025316XE00041.png",
+                    "full": "https://patentimages.storage.googleapis.com/27/fb/6c/b737bad025f9fb/S200680025316XE00041.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/88/77/e0/dd84ca0827527a/S200680025316XE00051.png",
+                    "full": "https://patentimages.storage.googleapis.com/50/84/0d/1692d493c9b989/S200680025316XE00051.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ad/1e/e1/87e75c203678a6/S200680025316XE00061.png",
+                    "full": "https://patentimages.storage.googleapis.com/90/2e/0a/0127d366de59e4/S200680025316XE00061.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6f/7d/65/2b9312fca31bcf/S200680025316XE00081.png",
+                    "full": "https://patentimages.storage.googleapis.com/4c/dd/72/8a0fcea875aae2/S200680025316XE00081.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7c/b6/24/4e00f50a31d7c3/S200680025316XE00091.png",
+                    "full": "https://patentimages.storage.googleapis.com/93/ff/20/0ba14e4e5677fd/S200680025316XE00091.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/28/7c/95/132e7b047f17de/S200680025316XE00101.png",
+                    "full": "https://patentimages.storage.googleapis.com/d1/82/44/375c53db01721e/S200680025316XE00101.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/70/84/2a/8f8a0a1758d77c/S200680025316XE00111.png",
+                    "full": "https://patentimages.storage.googleapis.com/40/9a/43/c502ec312b6199/S200680025316XE00111.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d8/7a/98/7ac7532070307f/S200680025316XE00121.png",
+                    "full": "https://patentimages.storage.googleapis.com/48/8f/12/2ab2dc0a27e01c/S200680025316XE00121.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/75/e9/cb/95e3ae302b6e88/S200680025316XE00131.png",
+                    "full": "https://patentimages.storage.googleapis.com/97/8c/a7/f6289086e14d66/S200680025316XE00131.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/26/ed/38/f915f169b9ea2b/S200680025316XE00141.png",
+                    "full": "https://patentimages.storage.googleapis.com/07/0b/63/2b97c7030f7e6e/S200680025316XE00141.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c7/b0/a7/ed98b1e0743432/S200680025316XE00151.png",
+                    "full": "https://patentimages.storage.googleapis.com/4c/48/dc/4205185a365421/S200680025316XE00151.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/9b/63/da/0efbed2e30b44d/S200680025316XE00161.png",
+                    "full": "https://patentimages.storage.googleapis.com/c0/e4/eb/888dad6e83ba36/S200680025316XE00161.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/19/81/fc/c945c21c1ede28/S200680025316XE00171.png",
+                    "full": "https://patentimages.storage.googleapis.com/14/6c/e6/af136cfbda35b3/S200680025316XE00171.png"
+                }
+            ],
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "CA": "ACTIVE",
+                "RU": "NOT_ACTIVE"
+            }
+        },
+        {
+            "position": 9,
+            "rank": 8,
+            "patent_id": "patent/CN1830369B/en",
+            "title": "Coffee machine",
+            "snippet": "2. coffee machine comprises the coffee bean container of whole coffee beans that at least two receptions will grind; At least two coffee grind assembly respectively with at least two coffee bean containers in one corresponding and be used for grinding described whole coffee beans in the described …",
+            "priority_date": "2005-03-08",
+            "filing_date": "2006-03-08",
+            "grant_date": "2010-05-12",
+            "publication_date": "2010-05-12",
+            "inventor": "H·韦特利",
+            "assignee": "萨科Ipr有限公司",
+            "publication_number": "CN1830369B",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/",
+            "pdf": "https://patentimages.storage.googleapis.com/54/55/93/7912dd0c1d192e/CN1830369B.pdf",
+            "country_status": {
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "KR": "NOT_ACTIVE",
+                "AT": "ACTIVE",
+                "AU": "ACTIVE",
+                "BR": "NOT_ACTIVE",
+                "DE": "ACTIVE",
+                "ES": "ACTIVE",
+                "HK": "NOT_ACTIVE",
+                "MX": "ACTIVE",
+                "RU": "ACTIVE",
+                "TW": "UNKNOWN"
+            }
+        },
+        {
+            "position": 10,
+            "rank": 9,
+            "patent_id": "patent/ES2539398T3/en",
+            "title": "Automatic aroma dispenser for espresso coffee machine",
+            "snippet": "a coffee infusion assembly (22) having a dispensing outlet, the dispensing outlet of said coffee maker being located adjacent to the dispensing outlet of the mixing chamber (98). fifteen. The apparatus of claim 10, wherein the coffee infusion assembly (22) includes a coffee hopper, a coffee grinder …",
+            "priority_date": "2005-06-10",
+            "filing_date": "2006-06-12",
+            "grant_date": "2015-06-30",
+            "publication_date": "2015-06-30",
+            "inventor": "Wayne R. Stearns",
+            "assignee": "Concordia Coffee Company Inc.",
+            "publication_number": "ES2539398T3",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/",
+            "pdf": "https://patentimages.storage.googleapis.com/f6/c9/68/75a71f6a1a922c/ES2539398T3.pdf",
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "ACTIVE",
+                "AU": "ACTIVE",
+                "CA": "ACTIVE",
+                "ES": "ACTIVE",
+                "HK": "UNKNOWN"
+            }
+        }
+    ],
+    "summary": {
+        "assignee": [
+            {
+                "key": "Total",
+                "percentage": 100,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 9
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 10.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 9.5
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 8.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 12.6
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 7.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 5.7
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 6
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 4.7
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 5.9
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 3.8
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 2.6
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 2.4
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 1.5
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 1.4
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 1.3
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 1.6
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 1.1
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "1959-1962",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "1956-1959",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "1953-1956",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1947-1950",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1944-1947",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1941-1944",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1938-1941",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1935-1938",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1932-1935",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1929-1932",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1926-1929",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Nestec S.A.",
+                "percentage": 1.5,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "The Procter & Gamble Company",
+                "percentage": 1.1,
+                "frequency": [
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Societe Des Produits Nestle S.A.",
+                "percentage": 1.1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Koninklijke Douwe Egberts B.V.",
+                "percentage": 0.9,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Jura Elektroapparate Ag",
+                "percentage": 0.9,
+                "frequency": [
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Société des Produits Nestlé S.A.",
+                "percentage": 0.8,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Seb S.A.",
+                "percentage": 0.7,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.3
+                    }
+                ]
+            },
+            {
+                "key": "Eugster/Frismag Ag",
+                "percentage": 0.7,
+                "frequency": [
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Bunn-O-Matic Corporation",
+                "percentage": 0.7,
+                "frequency": [
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Breville Pty Limited",
+                "percentage": 0.6,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Koninklijke Philips Electronics N.V.",
+                "percentage": 0.6,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Kraft Foods Global Brands Llc",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Koninklijke Philips N.V.",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "The Folgers Coffee Company",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Bunn O Matic Corp",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "The Folger Coffee Company",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "皇家飞利浦电子股份有限公司",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Kraft General Foods, Inc.",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.3
+                    }
+                ]
+            },
+            {
+                "key": "Sara Lee/De N.V.",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.2
+                    }
+                ]
+            }
+        ],
+        "inventor": [
+            {
+                "key": "Total",
+                "percentage": 100,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 9
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 10.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 9.5
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 8.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 12.6
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 7.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 5.7
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 6
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 4.7
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 5.9
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 3.8
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 2.6
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 2.4
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 1.5
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 1.4
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 1.3
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 1.6
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 1.1
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "1959-1962",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "1956-1959",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "1953-1956",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1947-1950",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1944-1947",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1941-1944",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1938-1941",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1935-1938",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1932-1935",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1929-1932",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1926-1929",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Daniel Fischer",
+                "percentage": 0.7,
+                "frequency": [
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Olivier Fond",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Virginio Cortese",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Arnaud Gerbaulet",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    }
+                ]
+            },
+            {
+                "key": "Ernesto Illy",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Gerbrand Kristiaan De Graaff",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Bruce D. Burrows",
+                "percentage": 0.5,
+                "frequency": [
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.5
+                    }
+                ]
+            },
+            {
+                "key": "Ivo Van Os",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Lucio Grossi",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Deepak Boggavarapu",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Edward Z. Cai",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "Arthur Eugster",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Brett C. Richardson",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Alfred Yoakim",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "Shin-Shuoh Lin",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.3
+                    }
+                ]
+            },
+            {
+                "key": "John C Martin",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Alexandre Kollep",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Roger William Gutwein",
+                "percentage": 0.4,
+                "frequency": [
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Gerard Andrew White",
+                "percentage": 0.3,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    }
+                ]
+            }
+        ],
+        "cpc": [
+            {
+                "key": "Total",
+                "percentage": 100,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 9
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 10.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 9.5
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 8.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 12.6
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 7.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 5.7
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 6
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 4.7
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 5.9
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 3.8
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 2.6
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 2.4
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 1.5
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 1.4
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 1.3
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 1.6
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 1.1
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "1959-1962",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "1956-1959",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "1953-1956",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1947-1950",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1944-1947",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1941-1944",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1938-1941",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1935-1938",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1932-1935",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1929-1932",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1926-1929",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A47J",
+                "percentage": 70.4,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 1.4
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 6.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 5.5
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 6.3
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 6
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 9.6
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 5.3
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 3.8
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 4.4
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 3.5
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 4.5
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 2.9
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 2
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 1.6
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 1.4
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 1.2
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 1
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.8
+                    },
+                    {
+                        "year_range": "1959-1962",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "1956-1959",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1953-1956",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1947-1950",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1938-1941",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1932-1935",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A23F",
+                "percentage": 21,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 3.6
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 2.4
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 1.8
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 2.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 2
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 1.5
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.7
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1959-1962",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1956-1959",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1941-1944",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "B65D",
+                "percentage": 13.8,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.8
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 1.7
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 1.9
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 1.5
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 1.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.8
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1959-1962",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1956-1959",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1938-1941",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1935-1938",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A23N",
+                "percentage": 4.1,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A23L",
+                "percentage": 3.2,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1926-1929",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Y10S",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1962-1965",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1938-1941",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1935-1938",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "B65B",
+                "percentage": 2.1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1968-1971",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1944-1947",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1935-1938",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G07F",
+                "percentage": 1.9,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1947-1950",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A23C",
+                "percentage": 1.7,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "A47G",
+                "percentage": 1.6,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1977-1980",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1974-1977",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1959-1962",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1935-1938",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1929-1932",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Y10T",
+                "percentage": 1.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1983-1986",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1965-1968",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "B01D",
+                "percentage": 1.1,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1971-1974",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "A23V",
+                "percentage": 1.1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "1995-1998",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "G06Q",
+                "percentage": 1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A61K",
+                "percentage": 1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.4
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G01F",
+                "percentage": 1,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1986-1989",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1947-1950",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A23G",
+                "percentage": 0.9,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2001-2004",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1992-1995",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "H05B",
+                "percentage": 0.9,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "1998-2001",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1989-1992",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "1980-1983",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A61P",
+                "percentage": 0.9,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2007-2010",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.3
+                    }
+                ]
+            }
+        ]
+    },
+    "pagination": {
+        "current": 1,
+        "next": "https://patents.google.com/xhr/query?url=q%3D%2528Coffee%2529%26page%3D2"
+    },
+    "serpapi_pagination": {
+        "current": 1,
+        "next": "https://serpapi.com/search.json?engine=google_patents&page=2&q=%28Coffee%29"
+    }
+}
