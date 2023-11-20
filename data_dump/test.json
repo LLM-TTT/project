@@ -1,0 +1,2125 @@
+{
+    "search_metadata": {
+        "id": "655b662a14b245fd5e3c11e8",
+        "status": "Success",
+        "json_endpoint": "https://serpapi.com/searches/d49cf9a82abe8e14/655b662a14b245fd5e3c11e8.json",
+        "created_at": "2023-11-20 13:59:06 UTC",
+        "processed_at": "2023-11-20 13:59:06 UTC",
+        "google_patents_url": "https://patents.google.com/xhr/query?url=q%3D%2528Biometric%2BVehicle%2BAccess%2BSystem%2Btechnology%2529%2B%2528G06K9%252F00%2529",
+        "raw_html_file": "https://serpapi.com/searches/d49cf9a82abe8e14/655b662a14b245fd5e3c11e8.html",
+        "prettify_html_file": "https://serpapi.com/searches/d49cf9a82abe8e14/655b662a14b245fd5e3c11e8.prettify",
+        "total_time_taken": 1.41
+    },
+    "search_parameters": {
+        "engine": "google_patents",
+        "q": "(Biometric Vehicle Access System technology) (G06K9/00)"
+    },
+    "search_information": {
+        "total_results": 77,
+        "total_pages": 8,
+        "page_number": 1
+    },
+    "organic_results": [
+        {
+            "position": 1,
+            "rank": 0,
+            "patent_id": "patent/US9275273B2/en",
+            "title": "Method and system for localizing parts of an object in an image for computer …",
+            "snippet": "A system is provided for localizing parts of an object in an image by training local detectors using labeled image exemplars with fiducial points corresponding to parts within the image. Each local detector generates a detector score corresponding to the likelihood that a desired part is located …",
+            "priority_date": "2011-06-02",
+            "filing_date": "2014-07-07",
+            "grant_date": "2016-03-01",
+            "publication_date": "2016-03-01",
+            "inventor": "Peter N. Belhumeur",
+            "assignee": "Kriegman-Belhumeur Vision Technologies, Llc",
+            "publication_number": "US9275273B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/ab/68/a3/33b953248694da/US09275273-20160301-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/a2/95/38/bcc3b288e56669/US9275273.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/94/e2/56/8c735d773b55cc/US09275273-20160301-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/f5/1c/96/2bfa6688c64a01/US09275273-20160301-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/50/c2/91/96701e467a1ca4/US09275273-20160301-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/40/16/aa/cedfeed4fe422e/US09275273-20160301-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b5/5e/d3/106b545cc906c2/US09275273-20160301-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/fa/af/c0/2b63f928342b75/US09275273-20160301-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c9/17/d0/64be89e73e7e0f/US09275273-20160301-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/d5/bb/c1/9d1483400880c9/US09275273-20160301-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/4a/5f/84/8e10b63ea255d2/US09275273-20160301-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/19/b1/04/03436a84f4264e/US09275273-20160301-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/95/b6/c9/d67339cbdc85bf/US09275273-20160301-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/9c/7b/37/26162de89d16a1/US09275273-20160301-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6c/50/6b/5bddabcf87ff1c/US09275273-20160301-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/81/cb/80/3dd4e7436dda9f/US09275273-20160301-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/53/76/51/a7e2b22c27172a/US09275273-20160301-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/f1/c5/95/36b019efede99d/US09275273-20160301-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a1/8a/55/892298b2fe52aa/US09275273-20160301-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/92/d8/02/d32cf0608a8791/US09275273-20160301-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/30/10/69/1878dfc42bd227/US09275273-20160301-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/5f/e1/63/5e790e11e06030/US09275273-20160301-D00009.png"
+                }
+            ],
+            "country_status": {
+                "US": "ACTIVE"
+            }
+        },
+        {
+            "position": 2,
+            "rank": 1,
+            "patent_id": "patent/US9432632B2/en",
+            "title": "Adaptive multi-modal integrated biometric identification and surveillance …",
+            "snippet": "A surveillance system is provided that includes at least one sensor disposed in a security area of a surveillance region to sense an occurrence of a potential security breach event; a plurality of cameras is disposed in the surveillance region; at least one camera thereof has a view of the …",
+            "priority_date": "2004-09-17",
+            "filing_date": "2015-01-28",
+            "grant_date": "2016-08-30",
+            "publication_date": "2016-08-30",
+            "inventor": "Ken P. Cheng",
+            "assignee": "Proximex Corporation",
+            "publication_number": "US9432632B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/b9/d4/a3/1e800ef913f706/US09432632-20160830-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/98/f0/22/ae169ef67be168/US9432632.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/82/d4/62/4cf3c8d697bab3/US09432632-20160830-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/09/b1/71/5b31b458d55ba4/US09432632-20160830-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/bd/e7/b4/332d4e773d8782/US09432632-20160830-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/88/7f/0d/fa210c9b5ecc48/US09432632-20160830-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/59/17/ad/6753e0e4df0d80/US09432632-20160830-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/77/38/36/fbad4a54ab3602/US09432632-20160830-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c3/52/64/bd7eb05d7f7f38/US09432632-20160830-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/ba/44/13/164c8bc2e911ab/US09432632-20160830-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7a/f1/ea/e38b32076d9528/US09432632-20160830-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/d8/7d/02/ffa09424ef5e21/US09432632-20160830-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/91/dc/78/fb0650d9cdb8f9/US09432632-20160830-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/71/fe/9f/5f5bf6da618ca1/US09432632-20160830-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/21/6b/65/6c274648394e4d/US09432632-20160830-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/c3/be/8f/86e53f527c7de8/US09432632-20160830-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c2/ab/c1/03e6630a9e28fe/US09432632-20160830-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/f4/4a/5e/35d861f22bfbd6/US09432632-20160830-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/12/53/c9/78c4fe9c5b4abe/US09432632-20160830-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/5c/fd/24/fdc66fd3351195/US09432632-20160830-D00008.png"
+                }
+            ],
+            "country_status": {
+                "WO": "ACTIVE",
+                "US": "ACTIVE"
+            }
+        },
+        {
+            "position": 3,
+            "rank": 2,
+            "patent_id": "patent/US9971920B2/en",
+            "title": "Spoof detection for biometric authentication",
+            "snippet": "This specification describes technologies relating to biometric authentication based on images of the eye. In general, one aspect of the subject matter described in this specification can be embodied in methods that include obtaining images of a subject including a view of an eye. The methods may …",
+            "priority_date": "2012-08-10",
+            "filing_date": "2015-07-02",
+            "grant_date": "2018-05-15",
+            "publication_date": "2018-05-15",
+            "inventor": "Reza R. Derakhshani",
+            "assignee": "EyeVerify LLC",
+            "publication_number": "US9971920B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/3d/1e/a1/837cbba3e4a9c2/US09971920-20180515-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/84/29/92/5fe2a153298d2d/US9971920.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c1/cc/58/2214615c39085e/US09971920-20180515-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/83/eb/8f/35007a19400055/US09971920-20180515-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e3/3d/a3/3daa7ee1263646/US09971920-20180515-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/65/82/5c/40260e71a2b105/US09971920-20180515-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b7/f9/a8/e3e6b2602723cb/US09971920-20180515-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/2a/47/9a/637c18b7c12d9e/US09971920-20180515-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/02/70/75/2bd5134c17ba6e/US09971920-20180515-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/32/86/de/87f88f368254f3/US09971920-20180515-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/4b/b2/98/1af1aecae62cfb/US09971920-20180515-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/36/cf/36/c09dc3d526d6f8/US09971920-20180515-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f4/f2/1f/995646882de283/US09971920-20180515-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/3d/3f/54/5aab0c94cb474a/US09971920-20180515-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d4/18/c9/6416261f62e9c7/US09971920-20180515-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/81/8a/c8/f2752d7bcf988f/US09971920-20180515-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f3/83/27/8d34bf54fae316/US09971920-20180515-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/93/a1/0d/a44fd240db7ab7/US09971920-20180515-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b0/43/88/22fcb89b7e1ec0/US09971920-20180515-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/41/cc/01/3746207a41dca5/US09971920-20180515-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/df/b0/9a/3aff02a58585bd/US09971920-20180515-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/db/b2/05/255db40cb65e39/US09971920-20180515-D00009.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/31/94/d3/0829f64e3a47d9/US09971920-20180515-D00010.png",
+                    "full": "https://patentimages.storage.googleapis.com/93/19/41/274412113f147e/US09971920-20180515-D00010.png"
+                }
+            ],
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "KR": "ACTIVE",
+                "ES": "ACTIVE",
+                "HK": "UNKNOWN",
+                "PL": "UNKNOWN"
+            }
+        },
+        {
+            "position": 4,
+            "rank": 3,
+            "patent_id": "patent/US11151397B2/en",
+            "title": "Liveness testing methods and apparatuses and image processing methods and …",
+            "snippet": "A user recognition method and apparatus, the user recognition method including performing a liveness test by extracting a first feature of a first image acquired by capturing a user, and recognizing the user by extracting a second feature of the first image based on a result of the liveness test, …",
+            "priority_date": "2014-05-09",
+            "filing_date": "2016-05-17",
+            "grant_date": "2021-10-19",
+            "publication_date": "2021-10-19",
+            "inventor": "Wonjun KIM",
+            "assignee": "Samsung Electronics Co., Ltd.",
+            "publication_number": "US11151397B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/60/6e/f0/45620ce0b8e100/US11151397-20211019-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/b1/98/34/94c48fd1f99eeb/US11151397.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ca/cb/c4/4a05eef487e06f/US11151397-20211019-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/32/37/39/ea7b7cd265d2bb/US11151397-20211019-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/8f/ea/0f/6f3774e8d62a9a/US11151397-20211019-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/2a/cd/a0/25d424dbb47a60/US11151397-20211019-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/27/cc/d2/834e5fb48c3c89/US11151397-20211019-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/2c/b7/51/1dc285b17f0902/US11151397-20211019-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/54/3a/69/45730f503873b7/US11151397-20211019-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/49/04/29/82e0bc78bc83fb/US11151397-20211019-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/4b/1b/4d/9875508fed8cd9/US11151397-20211019-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/8e/bc/63/56c1458d226890/US11151397-20211019-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7a/94/20/6c3638ffa2c418/US11151397-20211019-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/e6/44/b2/7066b876806218/US11151397-20211019-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7e/06/4b/db2a0b6b9c5bfa/US11151397-20211019-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/43/1f/1f/b7f5b91e6694bc/US11151397-20211019-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d9/8f/bb/77f8376f9718b2/US11151397-20211019-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/89/e0/d1/68b0bed530cae7/US11151397-20211019-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/97/f4/24/7105911045c437/US11151397-20211019-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/a3/fe/62/3c20edafe445c2/US11151397-20211019-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/65/f7/fe/643f8b2a12e674/US11151397-20211019-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/3d/e1/62/b2b464de51d08a/US11151397-20211019-D00009.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/38/c7/7e/97096dba6004cd/US11151397-20211019-D00010.png",
+                    "full": "https://patentimages.storage.googleapis.com/b2/42/04/86b7b447f3a428/US11151397-20211019-D00010.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/71/64/e1/893e49e24eddb7/US11151397-20211019-D00011.png",
+                    "full": "https://patentimages.storage.googleapis.com/ab/67/23/06831e774ccf49/US11151397-20211019-D00011.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ae/50/84/71fb2f1de02028/US11151397-20211019-D00012.png",
+                    "full": "https://patentimages.storage.googleapis.com/a8/ce/f4/a08cec9d4e548c/US11151397-20211019-D00012.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f2/3d/9c/c0633d4e12bfad/US11151397-20211019-D00013.png",
+                    "full": "https://patentimages.storage.googleapis.com/be/3c/2e/5a8bfe5c2c34ed/US11151397-20211019-D00013.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/3e/78/18/0b1767450ab3e8/US11151397-20211019-D00014.png",
+                    "full": "https://patentimages.storage.googleapis.com/e1/f4/a6/474a2522718a48/US11151397-20211019-D00014.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/75/9b/82/48530c37c53f44/US11151397-20211019-D00015.png",
+                    "full": "https://patentimages.storage.googleapis.com/49/38/ad/267f871ac6f9d0/US11151397-20211019-D00015.png"
+                }
+            ],
+            "country_status": {
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "ACTIVE"
+            }
+        },
+        {
+            "position": 5,
+            "rank": 4,
+            "patent_id": "patent/US9060688B2/en",
+            "title": "Biometrics based on locally consistent features",
+            "snippet": "Systems, devices, methods, and software are described for biometric sensors that permit a reduction in the size of the sensing area without significant reduction in biometric functionality of the sensor. A skin site of an individual is illuminated, and light scattered from the skin site is …",
+            "priority_date": "2007-03-21",
+            "filing_date": "2012-09-21",
+            "grant_date": "2015-06-23",
+            "publication_date": "2015-06-23",
+            "inventor": "Robert K. Rowe",
+            "assignee": "Hid Global Corporation",
+            "publication_number": "US9060688B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/9f/e2/98/a329e4c1ea410d/US09060688-20150623-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/a6/11/c7/5583de7c8fb29d/US9060688.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e7/83/75/b453d9a5f3d6ac/US09060688-20150623-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/5c/d7/0e/c9d375d6b0b8dd/US09060688-20150623-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e5/3a/96/75aec20ee012cf/US09060688-20150623-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/65/ab/fe/eb1550b3bbf4f1/US09060688-20150623-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/81/3c/94/e06af3919c4536/US09060688-20150623-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/af/cc/00/d40c1d2c273f88/US09060688-20150623-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ca/d2/58/c2c1dc158c73bc/US09060688-20150623-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/36/64/87/79f703bbac82d2/US09060688-20150623-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a1/cd/10/21d9ee059b6066/US09060688-20150623-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/26/fd/29/34cb368d09f846/US09060688-20150623-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/16/e6/fb/d74487b8a35062/US09060688-20150623-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/a8/d9/42/55b1d34a8e4305/US09060688-20150623-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d9/90/63/06555e739e56bd/US09060688-20150623-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/96/d5/e8/ca79def593ac4e/US09060688-20150623-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7e/b0/59/5ed438b0f06035/US09060688-20150623-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/20/66/e6/4bb0e99a3ac300/US09060688-20150623-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/98/04/5d/5c8ece0fc51a34/US09060688-20150623-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/a6/86/1f/4c8f9471702a73/US09060688-20150623-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/96/22/e3/a42eadf92e2bc4/US09060688-20150623-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/49/2f/f3/f2e09f48b97b98/US09060688-20150623-D00009.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/80/e9/98/e98c2620f71fef/US09060688-20150623-D00010.png",
+                    "full": "https://patentimages.storage.googleapis.com/99/87/8b/53598c308cf726/US09060688-20150623-D00010.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/3d/b8/c2/ec38baa920567b/US09060688-20150623-D00011.png",
+                    "full": "https://patentimages.storage.googleapis.com/88/b0/9e/42768f779f9bc4/US09060688-20150623-D00011.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6e/10/07/fd4110017a862f/US09060688-20150623-D00012.png",
+                    "full": "https://patentimages.storage.googleapis.com/ad/a1/b7/89a58b9c284f68/US09060688-20150623-D00012.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b9/34/44/183b97b9cc52db/US09060688-20150623-D00013.png",
+                    "full": "https://patentimages.storage.googleapis.com/c4/b5/80/b60c2219426bdd/US09060688-20150623-D00013.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/30/9d/a1/34f4ddf3e5279a/US09060688-20150623-D00014.png",
+                    "full": "https://patentimages.storage.googleapis.com/2e/f2/ae/760c6d7a5d901c/US09060688-20150623-D00014.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/11/d0/5e/73c55825b590d2/US09060688-20150623-D00015.png",
+                    "full": "https://patentimages.storage.googleapis.com/be/e5/de/35072291dc5780/US09060688-20150623-D00015.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1f/87/b8/5f1c2a67d4122a/US09060688-20150623-D00016.png",
+                    "full": "https://patentimages.storage.googleapis.com/8a/af/54/875065b71922a9/US09060688-20150623-D00016.png"
+                }
+            ],
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "NOT_ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "JP": "NOT_ACTIVE",
+                "KR": "NOT_ACTIVE",
+                "IL": "NOT_ACTIVE"
+            }
+        },
+        {
+            "position": 6,
+            "rank": 5,
+            "patent_id": "patent/US10956732B2/en",
+            "title": "System and method for detecting the authenticity of products",
+            "snippet": "System and method for detecting the authenticity of products by detecting a unique chaotic signature. Photos of the products are taken at the plant and stored in a database/server. The server processes the images to detect for each authentic product a unique authentic signature which is the result …",
+            "priority_date": "2014-11-21",
+            "filing_date": "2015-11-23",
+            "grant_date": "2021-03-23",
+            "publication_date": "2021-03-23",
+            "inventor": "Guy Le Henaff",
+            "assignee": "Guy Le Henaff",
+            "publication_number": "US10956732B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/52/ee/dd/c589fd44b1eb9c/US10956732-20210323-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/9c/e5/fc/eb90d460e518de/US10956732.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1f/80/ea/fd88508326a441/US10956732-20210323-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/d2/6e/d5/39822e1c63e313/US10956732-20210323-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d4/6f/17/2add8d187fce41/US10956732-20210323-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/89/26/bc/c7439ea39d3cb9/US10956732-20210323-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/78/f9/b9/413afacfdf36b8/US10956732-20210323-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/a0/1e/d1/5a4a50dc3e7689/US10956732-20210323-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c9/ef/ff/37f2560bfc5704/US10956732-20210323-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/5a/f8/aa/3dee4bec02efa8/US10956732-20210323-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/09/10/4e/7c918431e64dc3/US10956732-20210323-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/2f/26/bb/d8337eb25caf34/US10956732-20210323-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/10/23/1a/c824af42a512f9/US10956732-20210323-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/00/dd/00/6085fbf6905208/US10956732-20210323-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f9/d4/84/8a9f64581a8948/US10956732-20210323-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/a2/06/16/0b7155de05644d/US10956732-20210323-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/87/d2/c9/de7fa1241f11f0/US10956732-20210323-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/3f/25/d2/30605c0a3ee222/US10956732-20210323-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/33/5e/8e/7672a49d50a143/US10956732-20210323-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/77/be/7f/231630454c1cd4/US10956732-20210323-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/01/d9/71/0c33bc4741acd9/US10956732-20210323-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/01/66/76/471c7654e860b7/US10956732-20210323-D00009.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d7/35/67/40bea097faf381/US10956732-20210323-D00010.png",
+                    "full": "https://patentimages.storage.googleapis.com/98/0b/2f/0ce17bb34db3c2/US10956732-20210323-D00010.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/62/2a/a5/17ac47a1482e77/US10956732-20210323-D00011.png",
+                    "full": "https://patentimages.storage.googleapis.com/c2/4f/2c/4ec8f4ee080809/US10956732-20210323-D00011.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/84/92/b9/917061c2437fb0/US10956732-20210323-D00012.png",
+                    "full": "https://patentimages.storage.googleapis.com/36/e6/fd/9ec9c12ad37db8/US10956732-20210323-D00012.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c9/2d/df/ed3040600abe6d/US10956732-20210323-D00013.png",
+                    "full": "https://patentimages.storage.googleapis.com/87/12/a1/833de52a31d654/US10956732-20210323-D00013.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/63/06/ae/11c0042386ccba/US10956732-20210323-D00014.png",
+                    "full": "https://patentimages.storage.googleapis.com/99/e4/79/afd81c1e179e43/US10956732-20210323-D00014.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ab/b9/91/bfa2eb69e7f195/US10956732-20210323-D00015.png",
+                    "full": "https://patentimages.storage.googleapis.com/40/bc/f6/2e4eb57bf98bed/US10956732-20210323-D00015.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/cc/94/2a/9473d65d7b9fa6/US10956732-20210323-D00016.png",
+                    "full": "https://patentimages.storage.googleapis.com/d1/c2/8f/a31fb3755b8b58/US10956732-20210323-D00016.png"
+                }
+            ],
+            "country_status": {
+                "WO": "ACTIVE",
+                "EP": "ACTIVE",
+                "US": "ACTIVE",
+                "CN": "ACTIVE",
+                "HK": "UNKNOWN"
+            }
+        },
+        {
+            "position": 7,
+            "rank": 6,
+            "patent_id": "patent/US10504073B2/en",
+            "title": "System and process for automatically analyzing currency objects",
+            "snippet": "A method, system, and computer program product for analyzing images of visual objects, such as currency and/or payment cards, captured on a mobile device. The analysis allows determining the authenticity and/or total amount of value of the currency and/or payment cards. The system may be used to …",
+            "priority_date": "2011-01-19",
+            "filing_date": "2012-01-19",
+            "grant_date": "2019-12-10",
+            "publication_date": "2019-12-10",
+            "inventor": "Alon Atsmon",
+            "assignee": "Alon Atsmon",
+            "publication_number": "US10504073B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/af/9a/e6/bd2ce0096d111e/US10504073-20191210-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/da/c5/41/ea81c81c813087/US10504073.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1a/1f/fa/4bc49c442cf534/US10504073-20191210-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/68/2a/a0/1e562388590018/US10504073-20191210-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/03/7e/4b/c9832778822575/US10504073-20191210-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/b6/2b/fa/5a0392f7d5349d/US10504073-20191210-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e1/61/bd/730b26e6c6c3cb/US10504073-20191210-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/ff/7e/1f/bee51d01e98e53/US10504073-20191210-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/8a/65/15/26749eefcf9ec6/US10504073-20191210-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/4d/51/24/e05efcbd07f04e/US10504073-20191210-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/84/0f/62/c0cb3d00a6d5e5/US10504073-20191210-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/90/76/b1/498f61b96d52e9/US10504073-20191210-D00004.png"
+                }
+            ],
+            "country_status": {
+                "US": "ACTIVE"
+            }
+        },
+        {
+            "position": 8,
+            "rank": 7,
+            "patent_id": "patent/US8873813B2/en",
+            "title": "Application of Z-webs and Z-factors to analytics, search engine, learning, …",
+            "snippet": "Here, we introduce Z-webs, including Z-factors and Z-nodes, for the understanding of relationships between objects, subjects, abstract ideas, concepts, or the like, including face, car, images, people, emotions, mood, text, natural language, voice, music, video, locations, formulas, facts, …",
+            "priority_date": "2012-09-17",
+            "filing_date": "2013-02-28",
+            "grant_date": "2014-10-28",
+            "publication_date": "2014-10-28",
+            "inventor": "Saied Tadayon",
+            "assignee": "Z Advanced Computing, Inc.",
+            "publication_number": "US8873813B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/57/7b/34/6675b2acc86351/US08873813-20141028-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/7a/fb/91/5ff09b40c62ec6/US8873813.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/dd/02/df/778a5763c9ec0e/US08873813-20141028-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/37/58/05/17c7d4222ee416/US08873813-20141028-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d7/13/40/84ffed9a968aa5/US08873813-20141028-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/c0/d8/56/61780b62cb52f2/US08873813-20141028-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/92/b7/8c/9d57de94355860/US08873813-20141028-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/8c/87/44/fdc58869b8c8bb/US08873813-20141028-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/90/3d/b0/f547df39e6abce/US08873813-20141028-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/4a/20/af/67654dc2c965dd/US08873813-20141028-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ce/32/df/a6811379c5a0c4/US08873813-20141028-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/e7/31/5f/1cc244fa6a4520/US08873813-20141028-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ea/d4/03/296239f6d3eee9/US08873813-20141028-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/7d/bf/e5/c04a2eae6d2271/US08873813-20141028-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/38/8f/81/ac56ca6471ed95/US08873813-20141028-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/c8/77/56/eea258c65058f7/US08873813-20141028-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6b/b7/d3/0c37518f0eedaa/US08873813-20141028-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/3c/d5/2d/c05ce457367df8/US08873813-20141028-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/71/93/b3/261ce499d76602/US08873813-20141028-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/bc/d6/9d/fbb7c5a36db685/US08873813-20141028-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/81/a7/dd/37d3e5d0d9e6fb/US08873813-20141028-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/f8/b6/0f/2da54b0d577e37/US08873813-20141028-D00009.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/58/9e/00/fd9a1458228acd/US08873813-20141028-D00010.png",
+                    "full": "https://patentimages.storage.googleapis.com/2c/8e/5e/1097d9c70521ae/US08873813-20141028-D00010.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c7/a5/a0/647f3d0e6cb5a6/US08873813-20141028-D00011.png",
+                    "full": "https://patentimages.storage.googleapis.com/89/db/1f/2ab5442ac37478/US08873813-20141028-D00011.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/39/ee/1f/22824915272212/US08873813-20141028-D00012.png",
+                    "full": "https://patentimages.storage.googleapis.com/98/43/e7/d81f4e5ac1302b/US08873813-20141028-D00012.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ce/64/1b/900c5cda396ea4/US08873813-20141028-D00013.png",
+                    "full": "https://patentimages.storage.googleapis.com/04/ea/f9/f537020c4683b6/US08873813-20141028-D00013.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/34/70/5c/eeec0294263283/US08873813-20141028-D00014.png",
+                    "full": "https://patentimages.storage.googleapis.com/33/82/03/bf48fcc24c92ce/US08873813-20141028-D00014.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b6/38/fd/5f9d86d60726d5/US08873813-20141028-D00015.png",
+                    "full": "https://patentimages.storage.googleapis.com/86/90/d1/cbc46d5f296001/US08873813-20141028-D00015.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d7/b0/76/6544d0ab9b9073/US08873813-20141028-D00016.png",
+                    "full": "https://patentimages.storage.googleapis.com/dd/8c/fc/5585e856ca93c2/US08873813-20141028-D00016.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/17/04/8d/c493472eccc477/US08873813-20141028-D00017.png",
+                    "full": "https://patentimages.storage.googleapis.com/b9/c6/f9/94c8de13be1636/US08873813-20141028-D00017.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a1/59/c6/a7580b56c55df8/US08873813-20141028-D00018.png",
+                    "full": "https://patentimages.storage.googleapis.com/db/88/94/d698a218f7d835/US08873813-20141028-D00018.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f5/12/1a/7195eff69f80a8/US08873813-20141028-D00019.png",
+                    "full": "https://patentimages.storage.googleapis.com/07/fd/12/3d82d46789dca0/US08873813-20141028-D00019.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/73/c9/91/8e4365914df846/US08873813-20141028-D00020.png",
+                    "full": "https://patentimages.storage.googleapis.com/e1/8d/cb/bda3a6ddcee7fa/US08873813-20141028-D00020.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/64/37/13/73ebb4abb2091a/US08873813-20141028-D00021.png",
+                    "full": "https://patentimages.storage.googleapis.com/d1/16/1f/98852fda9a4450/US08873813-20141028-D00021.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f8/df/9a/9a9abbc69e93e8/US08873813-20141028-D00022.png",
+                    "full": "https://patentimages.storage.googleapis.com/d1/25/03/acadfb85777570/US08873813-20141028-D00022.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/fa/5d/cf/855f46ba09916b/US08873813-20141028-D00023.png",
+                    "full": "https://patentimages.storage.googleapis.com/87/c8/a0/39a4fde72bb2e4/US08873813-20141028-D00023.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/01/a8/9e/ffba289df723f9/US08873813-20141028-D00024.png",
+                    "full": "https://patentimages.storage.googleapis.com/41/9d/5b/8da02d64770660/US08873813-20141028-D00024.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/dd/17/e0/c979e8929b0ac3/US08873813-20141028-D00025.png",
+                    "full": "https://patentimages.storage.googleapis.com/ff/fc/10/b95fca16398f3e/US08873813-20141028-D00025.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/cb/11/c9/e59fbc6efe0208/US08873813-20141028-D00026.png",
+                    "full": "https://patentimages.storage.googleapis.com/39/c3/f6/2552f5133ddb10/US08873813-20141028-D00026.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ff/db/0b/145579739401e7/US08873813-20141028-D00027.png",
+                    "full": "https://patentimages.storage.googleapis.com/cc/80/06/9792a42bfd2278/US08873813-20141028-D00027.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/bd/d9/fe/93ca9419998f8c/US08873813-20141028-D00028.png",
+                    "full": "https://patentimages.storage.googleapis.com/aa/c2/71/d0ee68166fdf48/US08873813-20141028-D00028.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c0/d4/3f/a0a50de164f16e/US08873813-20141028-D00029.png",
+                    "full": "https://patentimages.storage.googleapis.com/64/55/07/a3cb7322bcd33e/US08873813-20141028-D00029.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f1/5d/1e/31aa9e61dd3cfe/US08873813-20141028-D00030.png",
+                    "full": "https://patentimages.storage.googleapis.com/f4/1b/12/31c4d4d75e1cbb/US08873813-20141028-D00030.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/2a/18/e6/b68214e3974c69/US08873813-20141028-D00031.png",
+                    "full": "https://patentimages.storage.googleapis.com/47/9b/2a/c727d8ed05fdfc/US08873813-20141028-D00031.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/da/57/5f/86041dbd504ab7/US08873813-20141028-D00032.png",
+                    "full": "https://patentimages.storage.googleapis.com/14/fa/5e/51fad3a59fa503/US08873813-20141028-D00032.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6e/b3/4e/4e7bf79cb08052/US08873813-20141028-D00033.png",
+                    "full": "https://patentimages.storage.googleapis.com/2d/06/f2/595f280e5a6b70/US08873813-20141028-D00033.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/3d/9b/45/a2f92d370ea4d4/US08873813-20141028-D00034.png",
+                    "full": "https://patentimages.storage.googleapis.com/4f/0c/bc/d1c6ac63b43024/US08873813-20141028-D00034.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7b/e3/51/7e814187f7ac07/US08873813-20141028-D00035.png",
+                    "full": "https://patentimages.storage.googleapis.com/ff/9d/57/efbb119887dd4a/US08873813-20141028-D00035.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a5/69/66/93ea0033f3c420/US08873813-20141028-D00036.png",
+                    "full": "https://patentimages.storage.googleapis.com/c6/84/f6/6c8f05aae71990/US08873813-20141028-D00036.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/75/31/f9/5790ff028763af/US08873813-20141028-D00037.png",
+                    "full": "https://patentimages.storage.googleapis.com/c7/ef/85/c2208d83756588/US08873813-20141028-D00037.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6e/b6/bb/cc84d6466232c5/US08873813-20141028-D00038.png",
+                    "full": "https://patentimages.storage.googleapis.com/a6/67/76/41d46a68b5c04d/US08873813-20141028-D00038.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ac/ee/fc/8b395ca40e23f1/US08873813-20141028-D00039.png",
+                    "full": "https://patentimages.storage.googleapis.com/4e/bd/62/e12533d6f15bde/US08873813-20141028-D00039.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/8d/08/26/5099cf1f41d2ab/US08873813-20141028-D00040.png",
+                    "full": "https://patentimages.storage.googleapis.com/78/59/6c/308626403de781/US08873813-20141028-D00040.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ff/83/05/8a8fb816da9b40/US08873813-20141028-D00041.png",
+                    "full": "https://patentimages.storage.googleapis.com/00/6c/c1/3b20acf5ce674f/US08873813-20141028-D00041.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/56/a9/f7/f7e999a5565d28/US08873813-20141028-D00042.png",
+                    "full": "https://patentimages.storage.googleapis.com/9e/44/91/6b4578f6581bfb/US08873813-20141028-D00042.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d9/a8/97/6b181cc28d6008/US08873813-20141028-D00043.png",
+                    "full": "https://patentimages.storage.googleapis.com/5c/45/ec/6375ef15d322ea/US08873813-20141028-D00043.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d7/85/6d/70edeb608c9141/US08873813-20141028-D00044.png",
+                    "full": "https://patentimages.storage.googleapis.com/2c/7d/21/008f9748bedd9e/US08873813-20141028-D00044.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/35/b9/d9/8c3915cc6c19ac/US08873813-20141028-D00045.png",
+                    "full": "https://patentimages.storage.googleapis.com/af/0f/61/a19fef69a850f8/US08873813-20141028-D00045.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/78/34/9c/c41f626ac0a384/US08873813-20141028-D00046.png",
+                    "full": "https://patentimages.storage.googleapis.com/a3/c3/ca/69da9b64ff93c5/US08873813-20141028-D00046.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d4/cb/71/04dd6f696beee8/US08873813-20141028-D00047.png",
+                    "full": "https://patentimages.storage.googleapis.com/d1/ad/e5/21ecb906d80061/US08873813-20141028-D00047.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ee/97/f8/a4c439ab5bc033/US08873813-20141028-D00048.png",
+                    "full": "https://patentimages.storage.googleapis.com/70/64/cb/cfa9aeefffc4d2/US08873813-20141028-D00048.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/95/f1/ba/9a10000cada38f/US08873813-20141028-D00049.png",
+                    "full": "https://patentimages.storage.googleapis.com/f8/ea/7c/e95fe06e7a9f33/US08873813-20141028-D00049.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7a/de/6d/79f2af3337f261/US08873813-20141028-D00050.png",
+                    "full": "https://patentimages.storage.googleapis.com/31/27/fa/f29b900eaa6a84/US08873813-20141028-D00050.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/97/46/86/1d43d31cfaca93/US08873813-20141028-D00051.png",
+                    "full": "https://patentimages.storage.googleapis.com/17/c1/98/e940d67a5ee725/US08873813-20141028-D00051.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/fe/c8/3b/a074ecebba5f4c/US08873813-20141028-D00052.png",
+                    "full": "https://patentimages.storage.googleapis.com/d4/cd/9e/f7246a10291ef0/US08873813-20141028-D00052.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a4/1a/76/2c98494bc4a00d/US08873813-20141028-D00053.png",
+                    "full": "https://patentimages.storage.googleapis.com/16/5c/6a/26885e7bf64a99/US08873813-20141028-D00053.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/bd/b9/7f/b064d74fcc7d28/US08873813-20141028-D00054.png",
+                    "full": "https://patentimages.storage.googleapis.com/87/85/bd/acf40054d4df8c/US08873813-20141028-D00054.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b5/7c/d3/59b5bea9f61a1b/US08873813-20141028-D00055.png",
+                    "full": "https://patentimages.storage.googleapis.com/5c/c8/f1/01f63f50cfeeba/US08873813-20141028-D00055.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ed/0a/6b/3e212e80342d77/US08873813-20141028-D00056.png",
+                    "full": "https://patentimages.storage.googleapis.com/d9/9e/1b/d8d4a74a2e14de/US08873813-20141028-D00056.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e1/c3/5d/02067668295735/US08873813-20141028-D00057.png",
+                    "full": "https://patentimages.storage.googleapis.com/3e/b3/c5/2bfb13e169c242/US08873813-20141028-D00057.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/cd/a4/61/42a92f1f22e3c8/US08873813-20141028-D00058.png",
+                    "full": "https://patentimages.storage.googleapis.com/ca/5d/5d/4e5bd3f00cfe47/US08873813-20141028-D00058.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b9/b7/53/c32b05d744b99d/US08873813-20141028-D00059.png",
+                    "full": "https://patentimages.storage.googleapis.com/9f/16/5a/c23840ce814678/US08873813-20141028-D00059.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ca/7e/a2/af58ac8ab7486e/US08873813-20141028-D00060.png",
+                    "full": "https://patentimages.storage.googleapis.com/5e/38/0c/cdbeb8577ff25a/US08873813-20141028-D00060.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/9c/69/dc/59d9e8b0311c44/US08873813-20141028-D00061.png",
+                    "full": "https://patentimages.storage.googleapis.com/af/0d/be/bf9f4ec3dad6b4/US08873813-20141028-D00061.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e6/82/c3/840ffed7fad506/US08873813-20141028-D00062.png",
+                    "full": "https://patentimages.storage.googleapis.com/c5/1e/a6/aac3b5b3c387f0/US08873813-20141028-D00062.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/bd/47/68/99b2547bdeb2d1/US08873813-20141028-D00063.png",
+                    "full": "https://patentimages.storage.googleapis.com/f3/25/c6/afae916bfb74cd/US08873813-20141028-D00063.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c5/d1/2e/5b3db751a4b26c/US08873813-20141028-D00064.png",
+                    "full": "https://patentimages.storage.googleapis.com/fd/08/41/b617588c8151a8/US08873813-20141028-D00064.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c2/14/02/00c7db9db8e866/US08873813-20141028-D00065.png",
+                    "full": "https://patentimages.storage.googleapis.com/d0/62/e9/2dd720b5fa65a2/US08873813-20141028-D00065.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/12/16/af/b278dd13fe288d/US08873813-20141028-D00066.png",
+                    "full": "https://patentimages.storage.googleapis.com/a9/af/8a/3a467166bb1464/US08873813-20141028-D00066.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/35/11/f7/48869333ea91a6/US08873813-20141028-D00067.png",
+                    "full": "https://patentimages.storage.googleapis.com/5d/79/96/a0222a18246b91/US08873813-20141028-D00067.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/2e/05/22/e9378a4027df7d/US08873813-20141028-D00068.png",
+                    "full": "https://patentimages.storage.googleapis.com/6d/1a/0c/deee7be3ee4ca3/US08873813-20141028-D00068.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e4/00/fb/166569d4431488/US08873813-20141028-D00069.png",
+                    "full": "https://patentimages.storage.googleapis.com/15/f8/66/fffe90aeedaee7/US08873813-20141028-D00069.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/41/44/83/f7a8b75b7599a7/US08873813-20141028-D00070.png",
+                    "full": "https://patentimages.storage.googleapis.com/8b/e2/c0/c0522f549e2b89/US08873813-20141028-D00070.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c6/e8/4d/47266a589870ae/US08873813-20141028-D00071.png",
+                    "full": "https://patentimages.storage.googleapis.com/da/5f/7b/00fa3e4594d9bc/US08873813-20141028-D00071.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/73/76/5c/7525f05630a945/US08873813-20141028-D00072.png",
+                    "full": "https://patentimages.storage.googleapis.com/f7/86/02/b4b8950aa9bf53/US08873813-20141028-D00072.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/17/72/6d/da280b9756ee77/US08873813-20141028-D00073.png",
+                    "full": "https://patentimages.storage.googleapis.com/d4/b4/bf/858eeae319087d/US08873813-20141028-D00073.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/54/ab/af/c87b0a32c6bf59/US08873813-20141028-D00074.png",
+                    "full": "https://patentimages.storage.googleapis.com/11/fb/b6/bb71e26f46106e/US08873813-20141028-D00074.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ce/70/ef/aec308441bdc82/US08873813-20141028-D00075.png",
+                    "full": "https://patentimages.storage.googleapis.com/56/e9/03/8e8ab081b840a4/US08873813-20141028-D00075.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/8e/e0/b5/996b093740fa4b/US08873813-20141028-D00076.png",
+                    "full": "https://patentimages.storage.googleapis.com/86/45/57/bd608e9e2ad995/US08873813-20141028-D00076.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/73/97/72/7dec359a7e70b1/US08873813-20141028-D00077.png",
+                    "full": "https://patentimages.storage.googleapis.com/8d/46/7d/a7715adbbd3a16/US08873813-20141028-D00077.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1b/22/8c/6d37aaf22ae6d8/US08873813-20141028-D00078.png",
+                    "full": "https://patentimages.storage.googleapis.com/3a/48/1d/4998d8d639df7c/US08873813-20141028-D00078.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/2d/cd/42/02188b7af1f21d/US08873813-20141028-D00079.png",
+                    "full": "https://patentimages.storage.googleapis.com/63/19/4a/9f27721134b816/US08873813-20141028-D00079.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/5f/59/15/f18cf934da5dd3/US08873813-20141028-D00080.png",
+                    "full": "https://patentimages.storage.googleapis.com/42/ee/59/a261dc51a8975d/US08873813-20141028-D00080.png"
+                }
+            ],
+            "country_status": {
+                "US": "ACTIVE"
+            }
+        },
+        {
+            "position": 9,
+            "rank": 8,
+            "patent_id": "patent/US9095285B2/en",
+            "title": "Portable biometric identification device using a dorsal hand vein pattern",
+            "snippet": "A portable device for personal identification using a dorsal hand vein-pattern in preferable configuration is disclosed. The mobile device utilizes an on-board camera operating in both visible and near infrared range, a memory unit, a processor and Speeded-Up Robust Features algorithm for image …",
+            "priority_date": "2013-04-11",
+            "filing_date": "2013-04-11",
+            "grant_date": "2015-08-04",
+            "publication_date": "2015-08-04",
+            "inventor": "Yaroslav Ryabov",
+            "assignee": "Yaroslav Ryabov",
+            "publication_number": "US9095285B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/2e/de/ba/b86c2ba1ff6117/US09095285-20150804-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/7c/30/05/2dc2f874122207/US9095285.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b8/d8/1c/a8f4ce01335ebc/US09095285-20150804-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/ed/de/b7/873fa6c803a926/US09095285-20150804-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/34/a3/a0/6806fd7aebc673/US09095285-20150804-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/b7/72/8e/733c09f484c3d3/US09095285-20150804-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/12/0d/29/25481e63ca14ac/US09095285-20150804-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/d3/6d/53/adc35a03c88cf4/US09095285-20150804-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/f6/91/c1/4cdaaa9b04f427/US09095285-20150804-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/21/6b/7c/9a55a7915a9032/US09095285-20150804-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/bb/cd/31/5a10ad011a3e81/US09095285-20150804-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/75/d6/4c/e1ac744a20fc43/US09095285-20150804-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/66/c4/f6/5f7f99bc3508f4/US09095285-20150804-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/a0/91/11/3df2ed69cae1a0/US09095285-20150804-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7b/50/f3/56286a8430c88b/US09095285-20150804-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/76/d6/46/bd81a8b744f087/US09095285-20150804-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ca/aa/ad/c1211dc68e262e/US09095285-20150804-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/82/47/5a/0c7a3c4579a188/US09095285-20150804-D00007.png"
+                }
+            ],
+            "country_status": {
+                "US": "ACTIVE"
+            }
+        },
+        {
+            "position": 10,
+            "rank": 9,
+            "patent_id": "patent/US10922957B2/en",
+            "title": "Methods and systems for content processing",
+            "snippet": "Mobile phones and other portable devices are equipped with a variety of technologies by which existing functionality can be improved, and new functionality can be provided. Some aspects relate to visual search capabilities, and determining appropriate actions responsive to different image inputs.",
+            "priority_date": "2008-08-19",
+            "filing_date": "2018-02-05",
+            "grant_date": "2021-02-16",
+            "publication_date": "2021-02-16",
+            "inventor": "Geoffrey B. Rhoads",
+            "assignee": "Digimarc Corporation",
+            "publication_number": "US10922957B2",
+            "language": "en",
+            "thumbnail": "https://patentimages.storage.googleapis.com/5a/7d/71/f99a5681727693/US10922957-20210216-D00000.png",
+            "pdf": "https://patentimages.storage.googleapis.com/85/75/62/8ef916adcc3d18/US10922957.pdf",
+            "figures": [
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/28/34/27/cb17ca49ebf20c/US10922957-20210216-D00000.png",
+                    "full": "https://patentimages.storage.googleapis.com/70/e7/e6/1ffa5b2e5015c6/US10922957-20210216-D00000.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/43/67/35/883ef2cfd262ce/US10922957-20210216-D00001.png",
+                    "full": "https://patentimages.storage.googleapis.com/4d/51/d4/a9fa9bc274d7d8/US10922957-20210216-D00001.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a2/38/95/9f4db67b318309/US10922957-20210216-D00002.png",
+                    "full": "https://patentimages.storage.googleapis.com/34/3a/c0/2f122451e3cdcc/US10922957-20210216-D00002.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/4b/00/88/2e52ad0af14c9f/US10922957-20210216-D00003.png",
+                    "full": "https://patentimages.storage.googleapis.com/72/60/37/8963851fd696f6/US10922957-20210216-D00003.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/58/56/1f/902b699f238b11/US10922957-20210216-D00004.png",
+                    "full": "https://patentimages.storage.googleapis.com/df/49/22/dbeaa80ba9ae83/US10922957-20210216-D00004.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a2/15/41/9c25ab5eb9742b/US10922957-20210216-D00005.png",
+                    "full": "https://patentimages.storage.googleapis.com/b7/26/e3/20b0a8d97c71d1/US10922957-20210216-D00005.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d1/c4/2b/405b534755de53/US10922957-20210216-D00006.png",
+                    "full": "https://patentimages.storage.googleapis.com/88/27/3d/4dc5ae8f794008/US10922957-20210216-D00006.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/8c/57/5a/fa222acbf683e4/US10922957-20210216-D00007.png",
+                    "full": "https://patentimages.storage.googleapis.com/2c/6a/38/cdeb09ad9cef8a/US10922957-20210216-D00007.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c9/8b/e5/bbca13b0dda97d/US10922957-20210216-D00008.png",
+                    "full": "https://patentimages.storage.googleapis.com/2b/67/49/b3a659705a353c/US10922957-20210216-D00008.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/68/f1/a8/000fdfb581fc6f/US10922957-20210216-D00009.png",
+                    "full": "https://patentimages.storage.googleapis.com/51/60/38/7bff4d9cac6b1b/US10922957-20210216-D00009.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/8a/93/2d/1cf4e58a6f7266/US10922957-20210216-D00010.png",
+                    "full": "https://patentimages.storage.googleapis.com/c9/e9/b7/5ff2ee56dc3e45/US10922957-20210216-D00010.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/60/f6/c3/490744a35e5f09/US10922957-20210216-D00011.png",
+                    "full": "https://patentimages.storage.googleapis.com/58/8e/b6/1e3096f2435fbf/US10922957-20210216-D00011.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/dd/51/d4/df73d9c46a4577/US10922957-20210216-D00012.png",
+                    "full": "https://patentimages.storage.googleapis.com/15/2b/d7/3f3530787fd88c/US10922957-20210216-D00012.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/71/a2/e6/977d9da819c1da/US10922957-20210216-D00013.png",
+                    "full": "https://patentimages.storage.googleapis.com/2b/09/d4/c564804e560767/US10922957-20210216-D00013.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/71/2a/b5/08a4be817e48bf/US10922957-20210216-D00014.png",
+                    "full": "https://patentimages.storage.googleapis.com/f6/fe/7f/ee9d5188cb408f/US10922957-20210216-D00014.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6c/68/1d/fdb06c838171b0/US10922957-20210216-D00015.png",
+                    "full": "https://patentimages.storage.googleapis.com/66/39/c2/e9579c8d235daa/US10922957-20210216-D00015.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e6/5a/fd/8a398f8def0105/US10922957-20210216-D00016.png",
+                    "full": "https://patentimages.storage.googleapis.com/08/f5/49/06a8f007c9c21b/US10922957-20210216-D00016.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b9/9a/21/6eb7c3009f0953/US10922957-20210216-D00017.png",
+                    "full": "https://patentimages.storage.googleapis.com/87/88/3f/0468f11ca3f9f9/US10922957-20210216-D00017.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/69/96/59/c8ee57d2f81ee2/US10922957-20210216-D00018.png",
+                    "full": "https://patentimages.storage.googleapis.com/f9/50/9c/999c122447eac6/US10922957-20210216-D00018.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1e/d3/4a/d9bdb9d96633f7/US10922957-20210216-D00019.png",
+                    "full": "https://patentimages.storage.googleapis.com/da/ce/1d/cd59356dd8b7e9/US10922957-20210216-D00019.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/fa/ec/ef/4a9bc190238bf8/US10922957-20210216-D00020.png",
+                    "full": "https://patentimages.storage.googleapis.com/c1/76/2a/196b140e9458dd/US10922957-20210216-D00020.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/8c/0d/bd/94e6743a1bd32b/US10922957-20210216-D00021.png",
+                    "full": "https://patentimages.storage.googleapis.com/82/28/e7/fb0d1db02d9f7d/US10922957-20210216-D00021.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/2e/1f/b9/7b2b00c0ba63a6/US10922957-20210216-D00022.png",
+                    "full": "https://patentimages.storage.googleapis.com/f0/74/ec/73ae66e53ed492/US10922957-20210216-D00022.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/9c/f6/07/468fd5ac5f49d0/US10922957-20210216-D00023.png",
+                    "full": "https://patentimages.storage.googleapis.com/24/35/bb/ca42b8e6672d6c/US10922957-20210216-D00023.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/c2/59/f8/8a92831d33f3db/US10922957-20210216-D00024.png",
+                    "full": "https://patentimages.storage.googleapis.com/cc/9a/71/28170ea34feac1/US10922957-20210216-D00024.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/5a/05/51/73cf2ad3973886/US10922957-20210216-D00025.png",
+                    "full": "https://patentimages.storage.googleapis.com/f1/b1/44/63a6d4875fa495/US10922957-20210216-D00025.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/6d/db/28/944252fc7a726c/US10922957-20210216-D00026.png",
+                    "full": "https://patentimages.storage.googleapis.com/41/29/42/f7e3dc4954f03e/US10922957-20210216-D00026.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/aa/53/7e/64e19bf30fb282/US10922957-20210216-D00027.png",
+                    "full": "https://patentimages.storage.googleapis.com/e3/f2/10/d97a71764a6f59/US10922957-20210216-D00027.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/5f/5e/17/e7104e963d4094/US10922957-20210216-D00028.png",
+                    "full": "https://patentimages.storage.googleapis.com/fc/ff/f8/00c382728bcd17/US10922957-20210216-D00028.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d1/f1/cc/020b0d59fe4260/US10922957-20210216-D00029.png",
+                    "full": "https://patentimages.storage.googleapis.com/bf/d9/d6/fadd464f86e1ef/US10922957-20210216-D00029.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ab/08/9c/0a9c358d92dff3/US10922957-20210216-D00030.png",
+                    "full": "https://patentimages.storage.googleapis.com/43/0a/6b/a39588f9b96505/US10922957-20210216-D00030.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/82/d9/21/961916fd5a05a7/US10922957-20210216-D00031.png",
+                    "full": "https://patentimages.storage.googleapis.com/5b/ba/94/bf06b943e14482/US10922957-20210216-D00031.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/2b/dd/e5/18ed1227388212/US10922957-20210216-D00032.png",
+                    "full": "https://patentimages.storage.googleapis.com/64/77/fb/756cd660a10b68/US10922957-20210216-D00032.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1d/cc/39/2eafd4ad1ecfb9/US10922957-20210216-D00033.png",
+                    "full": "https://patentimages.storage.googleapis.com/32/c1/b2/b69c8c64d29da4/US10922957-20210216-D00033.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/56/30/01/f5e82988efbf0e/US10922957-20210216-D00034.png",
+                    "full": "https://patentimages.storage.googleapis.com/cd/e2/d5/a5bbde6130fbf7/US10922957-20210216-D00034.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/db/f6/5b/686b470945f193/US10922957-20210216-D00035.png",
+                    "full": "https://patentimages.storage.googleapis.com/10/b0/e1/ee8854e3811677/US10922957-20210216-D00035.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/4e/77/e4/fdd3fe759b43af/US10922957-20210216-D00036.png",
+                    "full": "https://patentimages.storage.googleapis.com/9a/75/11/0b12a7a3393c28/US10922957-20210216-D00036.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b2/d7/9a/7a647018c0d4fa/US10922957-20210216-D00037.png",
+                    "full": "https://patentimages.storage.googleapis.com/d7/bc/97/adcdb10e19b2fb/US10922957-20210216-D00037.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a2/dd/0c/a181a31e0786c7/US10922957-20210216-D00038.png",
+                    "full": "https://patentimages.storage.googleapis.com/77/36/ba/073ef7204b83ca/US10922957-20210216-D00038.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d6/06/d5/69aee1db8aad1d/US10922957-20210216-D00039.png",
+                    "full": "https://patentimages.storage.googleapis.com/ad/89/ad/c15f5eda28f9b9/US10922957-20210216-D00039.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/70/b5/e1/3b69030ca2bb39/US10922957-20210216-D00040.png",
+                    "full": "https://patentimages.storage.googleapis.com/69/e3/a4/c1613691f24451/US10922957-20210216-D00040.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/45/57/34/b461484b817d3f/US10922957-20210216-D00041.png",
+                    "full": "https://patentimages.storage.googleapis.com/e5/dd/a6/6e2209a2006c55/US10922957-20210216-D00041.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/de/e2/52/8eb68be04e84b5/US10922957-20210216-D00042.png",
+                    "full": "https://patentimages.storage.googleapis.com/86/07/70/ba61b0dd6e2935/US10922957-20210216-D00042.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/eb/8a/dd/3d2b259cecf383/US10922957-20210216-D00043.png",
+                    "full": "https://patentimages.storage.googleapis.com/bf/c8/6d/55bebd953abe2e/US10922957-20210216-D00043.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/7a/a4/77/88de6da2fd39a1/US10922957-20210216-D00044.png",
+                    "full": "https://patentimages.storage.googleapis.com/bf/3e/51/5bc40ae39032b6/US10922957-20210216-D00044.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/0a/71/f6/d1c44bb7babf07/US10922957-20210216-D00045.png",
+                    "full": "https://patentimages.storage.googleapis.com/09/da/99/87b38e3f357690/US10922957-20210216-D00045.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/1a/fb/a4/5283cb35eabfe3/US10922957-20210216-D00046.png",
+                    "full": "https://patentimages.storage.googleapis.com/7a/a1/9d/de06c6f1574cf2/US10922957-20210216-D00046.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/e9/30/48/b6d4b23ec62763/US10922957-20210216-D00047.png",
+                    "full": "https://patentimages.storage.googleapis.com/84/ec/40/e7792dc9e1d61c/US10922957-20210216-D00047.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d5/45/8e/93c74d82825d33/US10922957-20210216-D00048.png",
+                    "full": "https://patentimages.storage.googleapis.com/84/26/38/39d2eb46c2684d/US10922957-20210216-D00048.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/01/37/26/adf107b6194cce/US10922957-20210216-D00049.png",
+                    "full": "https://patentimages.storage.googleapis.com/e4/95/75/ef2d1207e06045/US10922957-20210216-D00049.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/ee/8b/f6/f98f56f6bce82b/US10922957-20210216-D00050.png",
+                    "full": "https://patentimages.storage.googleapis.com/46/49/d6/6a9f260b906403/US10922957-20210216-D00050.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/57/51/5d/87224a2b8cdba8/US10922957-20210216-D00051.png",
+                    "full": "https://patentimages.storage.googleapis.com/32/9e/34/13b461bf59ac8b/US10922957-20210216-D00051.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/84/db/2c/e1dd8ef024475e/US10922957-20210216-D00052.png",
+                    "full": "https://patentimages.storage.googleapis.com/81/39/30/604cb0154be574/US10922957-20210216-D00052.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b4/79/21/87942da3d84162/US10922957-20210216-D00053.png",
+                    "full": "https://patentimages.storage.googleapis.com/de/96/01/b92fb5322c8e71/US10922957-20210216-D00053.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/a1/a0/57/2e78d6df29c924/US10922957-20210216-D00054.png",
+                    "full": "https://patentimages.storage.googleapis.com/29/7a/83/7b65ea223e2b67/US10922957-20210216-D00054.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/04/67/65/8499705e7500f6/US10922957-20210216-D00055.png",
+                    "full": "https://patentimages.storage.googleapis.com/08/91/4f/20c7ddcaba28f5/US10922957-20210216-D00055.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/42/ef/61/99001d660c27e9/US10922957-20210216-D00056.png",
+                    "full": "https://patentimages.storage.googleapis.com/a8/05/1d/158f0dec11b138/US10922957-20210216-D00056.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/b8/44/97/293cb1115f6179/US10922957-20210216-D00057.png",
+                    "full": "https://patentimages.storage.googleapis.com/6a/92/ee/715266c73c4c51/US10922957-20210216-D00057.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/89/bd/c0/f98f70d4bc3fa8/US10922957-20210216-D00058.png",
+                    "full": "https://patentimages.storage.googleapis.com/0c/3a/af/178afe05160207/US10922957-20210216-D00058.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/43/18/c0/b66b67953bbf06/US10922957-20210216-D00059.png",
+                    "full": "https://patentimages.storage.googleapis.com/25/8e/b4/cc5600f243c92d/US10922957-20210216-D00059.png"
+                },
+                {
+                    "thumbnail": "https://patentimages.storage.googleapis.com/d8/6d/1c/2599560f5dff6f/US10922957-20210216-D00060.png",
+                    "full": "https://patentimages.storage.googleapis.com/bd/61/43/b3744cb1dcd2f4/US10922957-20210216-D00060.png"
+                }
+            ],
+            "country_status": {
+                "US": "ACTIVE"
+            }
+        }
+    ],
+    "summary": {
+        "assignee": [
+            {
+                "key": "Total",
+                "percentage": 100,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 1.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 3.8
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 2.2
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Samsung Electronics Co., Ltd.",
+                "percentage": 14.2,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.3
+                    }
+                ]
+            },
+            {
+                "key": "Digimarc Corporation",
+                "percentage": 3.8,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Google Llc",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Magic Leap, Inc.",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Wipro Limited",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Honda Motor Co., Ltd.",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Elwha Llc",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Fotonation Limited",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Microsoft Technology Licensing, Llc",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Amazon Technologies, Inc.",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Jeffrey A. Matos",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Hid Global Corporation",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Adobe Inc.",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Z Advanced Computing, Inc.",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "GM Global Technology Operations LLC",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Alon Atsmon",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Walmart Apollo, Llc",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Fujian Landi Commercial Equipment Co., Ltd.",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Sony Corporation",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            }
+        ],
+        "inventor": [
+            {
+                "key": "Total",
+                "percentage": 100,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 1.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 3.8
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 2.2
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Ki-Huk Lee",
+                "percentage": 5.1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Dale L. Grover",
+                "percentage": 3.8,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Moon-Soo Kim",
+                "percentage": 3.8,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Clifford A. Kushler",
+                "percentage": 3.8,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Martin T. King",
+                "percentage": 3.8,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "James Q. Stafford-Fraser",
+                "percentage": 3.8,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Geoffrey B. Rhoads",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Peter Corcoran",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Elizabeth A. Sweeney",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Robert C. Petroski",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Melanie K. Kitzan",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Kwang-Sub SON",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Roderick A. Hyde",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Jordin T. Kare",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Seon Sook LEE",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Bo-Seul Jeon",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Young-Eun HAN",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "Gary L. McKnight",
+                "percentage": 2.5,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "Flavio Protasio Ribeiro",
+                "percentage": 1.2,
+                "frequency": [
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            }
+        ],
+        "cpc": [
+            {
+                "key": "Total",
+                "percentage": 100,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 1.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 3.8
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 2.2
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G06F",
+                "percentage": 97.4,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 1.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 3.7
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 2.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G06V",
+                "percentage": 77.9,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 1.7
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "G06T",
+                "percentage": 29.8,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 1.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "H04N",
+                "percentage": 24.6,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G06Q",
+                "percentage": 23.3,
+                "frequency": [
+                    {
+                        "year_range": "2022-2025",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.6
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.2
+                    }
+                ]
+            },
+            {
+                "key": "H04L",
+                "percentage": 16.8,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.7
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "H04W",
+                "percentage": 14.2,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.9
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "A61B",
+                "percentage": 11.6,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.7
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G07C",
+                "percentage": 9,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2004-2007",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G08B",
+                "percentage": 7.7,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G08G",
+                "percentage": 7.7,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G01S",
+                "percentage": 7.7,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.5
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G05D",
+                "percentage": 6.4,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "G01C",
+                "percentage": 5.1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.2
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G08C",
+                "percentage": 5.1,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "H04R",
+                "percentage": 5.1,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.4
+                    }
+                ]
+            },
+            {
+                "key": "G06N",
+                "percentage": 5.1,
+                "frequency": [
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    }
+                ]
+            },
+            {
+                "key": "G09B",
+                "percentage": 5.1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.3
+                    }
+                ]
+            },
+            {
+                "key": "G06K",
+                "percentage": 5.1,
+                "frequency": [
+                    {
+                        "year_range": "2019-2022",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2016-2019",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2013-2016",
+                        "percentage": 0.1
+                    },
+                    {
+                        "year_range": "2010-2013",
+                        "percentage": 0.1
+                    }
+                ]
+            }
+        ]
+    },
+    "pagination": {
+        "current": 1,
+        "next": "https://patents.google.com/xhr/query?url=q%3D%2528Biometric%2BVehicle%2BAccess%2BSystem%2Btechnology%2529%2B%2528G06K9%252F00%2529%26page%3D2"
+    },
+    "serpapi_pagination": {
+        "current": 1,
+        "next": "https://serpapi.com/search.json?engine=google_patents&page=2&q=%28Biometric+Vehicle+Access+System+technology%29+%28G06K9%2F00%29"
+    }
+}
