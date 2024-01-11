@@ -188,7 +188,7 @@ if uploaded_file is not None:
         index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
     )
     # Perform a similarity search with Score between the embedding of the query and the embeddings of the documents
-    query = str(example_abstract)
+    query = str(content)
 
     results = vector_search.similarity_search_with_score(
         query=query,
