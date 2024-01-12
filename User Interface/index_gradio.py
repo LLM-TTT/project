@@ -187,20 +187,26 @@ def patent_analysis(file, progress=gr.Progress()):
         for result in results:
             return f"Übereinstimmung:",round(result[1]*100,2),"%; Quelle:", result[0].metadata['source']
 
-# with gr.Blocks() as demo:
-#     file_output = gr.File()
-#     upload_button = gr.UploadButton("Click to Upload a File", file_types=["file"], file_count="multiple")
-#     upload_button.upload(uploaded_file, upload_button, file_output)
+
+image_path = 'C:/Users/ruhmt/Documents/GitHub/project/User Interface/pictures/ui_background.jpg'
+# Replace with your image file path
+
+absolute_path = os.path.abspath(image_path)   
+
 demo = gr.Interface(
     patent_analysis,
     gr.File(file_types=['.pdf']),
     outputs="textbox",
     title="Patent Pete",
-    description="Hi, my name is Pete. I help you to detect other patents. Just upload your file and lets go!"
+    description="Hi, my name is Pete. I help you to detect other patents. Just upload your file and lets go!",
+    theme=gr.themes.Soft(),
+    css="div {background-image: url('file=C:/Users/ruhmt/Documents/GitHub/project/User Interface/pictures/ui_background.jpg')}"
+    
 )
     #info_screen = st.empty()
     #info_screen.info('Wait a minute. Your patent will be analyzed!', icon="👨‍💻")
     # 
     # # Display the content
-demo.launch()
+demo.launch(allowed_paths=[absolute_path])
 
+# <a href="https://de.freepik.com/fotos-kostenlos/geschaeftsmann-haelt-gelbe-gluehbirne-mit-kopierraum-fuer-geschaeftsloesung-und-kreatives-denken-ideenkonzept-durch-3d-darstellung_26791662.htm#query=patente&position=5&from_view=search&track=sph&uuid=7931811d-4408-4f21-a68a-3450f7e46c8d">Bild von DilokaStudio</a> auf Freepik
