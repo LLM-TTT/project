@@ -89,8 +89,8 @@ def patent_analysis(file, progress=gr.Progress()):
         count = 0
         patent_base_url = "https://patentimages.storage.googleapis.com/" #just to complete the url
 
-        short_keywords_list = keywords_list[3:]
-        short_class_list = class_list[3:]
+        short_keywords_list = keywords_list[4:]
+        short_class_list = class_list[4:]
 
         #Loop for multiple Google Patents API calls with Key Words
         for i in short_keywords_list:
@@ -199,8 +199,9 @@ demo = gr.Interface(
     outputs="textbox",
     title="Patent Pete",
     description="Hi, my name is Pete. I help you to detect other patents. Just upload your file and lets go!",
-    theme=gr.themes.Soft(),
-    css="div {background-image: url('file=C:/Users/ruhmt/Documents/GitHub/project/User Interface/pictures/ui_background.jpg')}"
+    theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray),
+    css="div {background-image: url('file=C:/Users/ruhmt/Documents/GitHub/project/User Interface/pictures/ui_background.jpg')}",
+    live=True,
     
 )
     #info_screen = st.empty()
