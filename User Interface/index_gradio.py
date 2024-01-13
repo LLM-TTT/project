@@ -218,35 +218,59 @@ def create_pdf(file_path, results):
 # image_path = 'https://drive.google.com/file/d/1wqrLEadHAt7xl4djVx4lHu7ts_8KOxme/view?usp=sharing'
 # absolute_path = os.path.abspath(image_path)
 
-with gr.Blocks(theme=gr.themes.Default(primary_hue="neutral", secondary_hue="gray", neutral_hue="neutral", radius_size=gr.themes.sizes.radius_none, spacing_size="sm")) as demo:
+with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)) as demo:
+    gr.Markdown("# Patent Pete")
+    gr.Markdown("<p style='font-size:16px;'>Hi, I'm Pete your assistance for patent researchs. I help you with finding out, if your patent already exists. Let's start with uploading your idea!</p>")
 #Alternative Mercedes Benz Theme: gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)
     with gr.Row():
-        with gr.Column(visible=False) as sidebar_left:
-            gr.Markdown("SideBar Left")
-        with gr.Column() as main:
-            with gr.Row():
-                nav_bar = gr.Markdown(
-            """
-            # Patent Pete
 
-            <p style="font-size:16px;">Hi, I'm Pete your assistance for patent researchs. I help you with finding out, if your patent already exists.
-            Let's start with uploading your idea!</p> 
-            """)
-            with gr.Row():
-                with gr.Column():
-                    gr.Markdown("Hello world!")
-        with gr.Column(visible=True) as sidebar_right:
+        with gr.Column() as main:
+            
+            gr.Markdown("<p><h1>Input</h1></p>")
+
+            gr.Markdown("<u>Configuration Options</u>")
+
+            gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
+
+            num1 = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
+            num2 = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+            #output = gr.Number(label="Sum")
+            @gr.on(inputs=[num1, num2])
+            def sum(a, b, c):
+                return a + b + c
+
+            gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
             
             files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
-            result = gr.Textbox(label="Results")
+            result = gr.Textbox(label="Results") #Noch aktuelle Ausgabe, soll aber später ganz nach unten rutschen als letzte Ausgabe
+            button = gr.Button("Submit")
+            button.click(patent_analysis, inputs=[files], outputs=[result]) 
+
+
+        with gr.Column(visible=True) as sidebar_right:
+               
+            gr.Markdown("<p><h1>Output</h1></p>")
+
+            gr.Markdown("<u>Detailed Steps</u>")
+
+            gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
+            gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
+            gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
+            gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
+            gr.Textbox(label="API Call #1", value="Disconnected") #% Schritte in Anzahl PDFs; New Value "Added n PDFs to the list"
+            gr.Textbox(label="API Call #n", value="Disconnected")
+            gr.Textbox(label="PDF List", value="No PDFs added yet") #New Value "xx PDFs added to the list."
+            gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
+            gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
+            gr.Textbox(label="Compare Input with PDFs in Collection", value="...") #New Value "Top 5 PDFs ...."
+
             if result is not None:
                 with gr.Row(visible=False):
                     #pdf_file = gr.Button("Create PDF")
                     file_output = gr.File(label=".pdf File")
                     gr.Button.click(create_pdf, inputs=[result], outputs=[file_output])
-            with gr.Row():
-                button = gr.Button("Submit")
-                button.click(patent_analysis, inputs=[files], outputs=[result])
+      
+                
             
 demo.launch()
 
