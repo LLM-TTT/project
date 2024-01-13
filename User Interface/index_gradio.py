@@ -196,7 +196,7 @@ def patent_analysis(file, progress=gr.Progress()):
         # Append the formatted result to the list
             formatted_results.append(formatted_result)
         
-        result.live(formatted_result)
+        #result.live(formatted_result)
 
 
 file_path = "../data_dump"
