@@ -195,7 +195,8 @@ def patent_analysis(file, progress=gr.Progress()):
         )
         # Append the formatted result to the list
             formatted_results.append(formatted_result)
-        return formatted_results
+        
+        result.live(formatted_result)
 
 
 file_path = "../data_dump"
@@ -244,7 +245,6 @@ with gr.Blocks(theme=gr.themes.Default(primary_hue="neutral", secondary_hue="gra
                     gr.Button.click(create_pdf, inputs=[result], outputs=[file_output])
             with gr.Row():
                 button = gr.Button("Submit")
-                clear = gr.Button("Clear")
                 button.click(patent_analysis, inputs=[files], outputs=[result])
             
 demo.launch()
