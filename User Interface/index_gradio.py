@@ -219,6 +219,7 @@ def create_pdf(file_path, results):
 # absolute_path = os.path.abspath(image_path)
 
 with gr.Blocks(theme=gr.themes.Default(primary_hue="neutral", secondary_hue="gray", neutral_hue="neutral", radius_size=gr.themes.sizes.radius_none, spacing_size="sm")) as demo:
+#Alternative Mercedes Benz Theme: gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)
     with gr.Row():
         with gr.Column(visible=False) as sidebar_left:
             gr.Markdown("SideBar Left")
