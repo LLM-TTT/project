@@ -16,6 +16,7 @@ from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
+from reportlab.pdfgen import canvas
 
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv())
@@ -184,30 +185,68 @@ def patent_analysis(file, progress=gr.Progress()):
         for result in results:
             print(result)
 
+        formatted_results = []
         for result in results:
-            return f"Übereinstimmung:",round(result[1]*100,2),"%; Quelle:", result[0].metadata['source']
+            formatted_result = (
+            "Übereinstimmung: {}%; Quelle: {}".format(
+                round(result[1] * 100, 2),
+                result[0].metadata['source']
+            )
+        )
+        # Append the formatted result to the list
+            formatted_results.append(formatted_result)
+        return formatted_results
 
 
-image_path = 'C:/Users/ruhmt/Documents/GitHub/project/User Interface/pictures/ui_background.jpg'
-# Replace with your image file path
+file_path = "../data_dump"
+def create_pdf(file_path, results):
+    pdf = canvas.Canvas(file_path)
 
-absolute_path = os.path.abspath(image_path)   
+    # Set font and size
+    pdf.setFont("Helvetica", 12)
 
-demo = gr.Interface(
-    patent_analysis,
-    gr.File(file_types=['.pdf']),
-    outputs="textbox",
-    title="Patent Pete",
-    description="Hi, my name is Pete. I help you to detect other patents. Just upload your file and lets go!",
-    theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray),
-    css="div {background-image: url('file=C:/Users/ruhmt/Documents/GitHub/project/User Interface/pictures/ui_background.jpg')}",
-    live=True,
-    
-)
-    #info_screen = st.empty()
-    #info_screen.info('Wait a minute. Your patent will be analyzed!', icon="👨‍💻")
-    # 
-    # # Display the content
-demo.launch(allowed_paths=[absolute_path])
+    for result in results:
+        pdf.drawString(100, 700, result[0].metadata['title'])
+        pdf.drawString(100, 700, result[0].metadata['source'])
+
+    # Save the PDF
+    pdf.save()
+
+    return pdf
+
+# image_path = 'https://drive.google.com/file/d/1wqrLEadHAt7xl4djVx4lHu7ts_8KOxme/view?usp=sharing'
+# absolute_path = os.path.abspath(image_path)
+
+with gr.Blocks(theme=gr.themes.Default(primary_hue="neutral", secondary_hue="gray", neutral_hue="neutral", radius_size=gr.themes.sizes.radius_none, spacing_size="sm")) as demo:
+    with gr.Row():
+        with gr.Column(visible=False) as sidebar_left:
+            gr.Markdown("SideBar Left")
+        with gr.Column() as main:
+            with gr.Row():
+                nav_bar = gr.Markdown(
+            """
+            # Patent Pete
+
+            <p style="font-size:16px;">Hi, I'm Pete your assistance for patent researchs. I help you with finding out, if your patent already exists.
+            Let's start with uploading your idea!</p> 
+            """)
+            with gr.Row():
+                with gr.Column():
+                    gr.Markdown("Hello world!")
+        with gr.Column(visible=True) as sidebar_right:
+            
+            files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+            result = gr.Textbox(label="Results")
+            if result is not None:
+                with gr.Row(visible=False):
+                    #pdf_file = gr.Button("Create PDF")
+                    file_output = gr.File(label=".pdf File")
+                    gr.Button.click(create_pdf, inputs=[result], outputs=[file_output])
+            with gr.Row():
+                button = gr.Button("Submit")
+                clear = gr.Button("Clear")
+                button.click(patent_analysis, inputs=[files], outputs=[result])
+            
+demo.launch()
 
 # <a href="https://de.freepik.com/fotos-kostenlos/geschaeftsmann-haelt-gelbe-gluehbirne-mit-kopierraum-fuer-geschaeftsloesung-und-kreatives-denken-ideenkonzept-durch-3d-darstellung_26791662.htm#query=patente&position=5&from_view=search&track=sph&uuid=7931811d-4408-4f21-a68a-3450f7e46c8d">Bild von DilokaStudio</a> auf Freepik
