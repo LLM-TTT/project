@@ -230,6 +230,21 @@ def create_pdf(file_path, results):
 # image_path = 'https://drive.google.com/file/d/1wqrLEadHAt7xl4djVx4lHu7ts_8KOxme/view?usp=sharing'
 # absolute_path = os.path.abspath(image_path)
 
+def clear_db(): #clear the vector database
+    uri = "mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority"
+
+    # Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+
+    DB_NAME = "llm-ttt"
+    COLLECTION_NAME = "pdfresults"
+    ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index"
+
+    MONGODB_COLLECTION = client[DB_NAME][COLLECTION_NAME]
+    
+    x = MONGODB_COLLECTION.delete_many({})
+    delete = str(x.deleted_count) + " documents deleted."
+    return delete
 
 
 with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)) as demo:
@@ -275,16 +290,20 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             
             classes.change(patent_analysis_rest, [result, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
 
-            h1 = gr.HighlightedText([("Current State of API: ", None), ("Connected", "Active")], color_map={"Active": "green", "Inactive": "red"})
-
             with gr.Accordion(label= "Technical Details", open=False):   
 
+                if flag == 1:
+                    api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Successfull")], color_map={"Successfull": "green", "Failed": "red"})
+                else:
+                    api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Failed")], color_map={"Successfull": "green", "Failed": "red"})
                 gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
                 gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
                 gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
                 gr.Textbox(label="API Calls", value="Disconnected") #Anzahl API Calls live aktualisieren die duirchgeführt wurden 
                 gr.Textbox(label="PDF List", value="No PDFs added yet") #Anzahl PDFs die hinzugefügt wurden; New Value "xx PDFs added to the list."
-                gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
+                vector_db = gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
+                clear_button = gr.Button("Clear Vector Database")
+                clear_button.click(clear_db,outputs=[vector_db])
             visibility=False
             if create_pdf:
                 visibility = True
