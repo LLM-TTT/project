@@ -242,36 +242,58 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
             
             files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
-            result = gr.Textbox(label="Results") #Noch aktuelle Ausgabe, soll aber später ganz nach unten rutschen als letzte Ausgabe
+
             button = gr.Button("Submit")
+
+        with gr.Column() as sidebar_right:
+            gr.Markdown("<p><h1>Output</h1></p>")
+            result = gr.Textbox(label="Results") #Noch aktuelle Ausgabe, soll aber später ganz nach unten rutschen als letzte Ausgabe
+            
+            with gr.Accordion(label= "Detailed Steps", open=False):   
+
+                gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
+                gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
+                gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
+                gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
+                gr.Textbox(label="API Call #1", value="Disconnected") #% Schritte in Anzahl PDFs; New Value "Added n PDFs to the list"
+                gr.Textbox(label="API Call #n", value="Disconnected")
+                gr.Textbox(label="PDF List", value="No PDFs added yet") #New Value "xx PDFs added to the list."
+                gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
+                gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
+                gr.Textbox(label="Compare Input with PDFs in Collection", value="...") #New Value "Top 5 PDFs ...."
+            
+            with gr.Row():
+                if result is not None:
+                    pdf_file = gr.Button("Create PDF")
+                    outputs = "file"
+                    gr.Button.click(create_pdf, inputs=[result], outputs=[outputs])
+
             button.click(patent_analysis, inputs=[files], outputs=[result]) 
 
 
-        with gr.Column(visible=True) as sidebar_right:
-               
-            gr.Markdown("<p><h1>Output</h1></p>")
-
-            gr.Markdown("<u>Detailed Steps</u>")
-
-            gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
-            gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
-            gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
-            gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
-            gr.Textbox(label="API Call #1", value="Disconnected") #% Schritte in Anzahl PDFs; New Value "Added n PDFs to the list"
-            gr.Textbox(label="API Call #n", value="Disconnected")
-            gr.Textbox(label="PDF List", value="No PDFs added yet") #New Value "xx PDFs added to the list."
-            gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
-            gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
-            gr.Textbox(label="Compare Input with PDFs in Collection", value="...") #New Value "Top 5 PDFs ...."
-
-            if result is not None:
-                with gr.Row(visible=False):
-                    #pdf_file = gr.Button("Create PDF")
-                    file_output = gr.File(label=".pdf File")
-                    gr.Button.click(create_pdf, inputs=[result], outputs=[file_output])
-      
-                
+        #with gr.Column(visible=True) as sidebar_right:
+            # gr.Markdown("<p><h1>Output</h1></p>")
             
+            # with gr.Accordion(label= "Detailed Steps"):   
+
+            #     gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
+            #     gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
+            #     gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
+            #     gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
+            #     gr.Textbox(label="API Call #1", value="Disconnected") #% Schritte in Anzahl PDFs; New Value "Added n PDFs to the list"
+            #     gr.Textbox(label="API Call #n", value="Disconnected")
+            #     gr.Textbox(label="PDF List", value="No PDFs added yet") #New Value "xx PDFs added to the list."
+            #     gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
+            #     gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
+            #     gr.Textbox(label="Compare Input with PDFs in Collection", value="...") #New Value "Top 5 PDFs ...."
+            
+            # with gr.Row():
+            #     if result is not None:
+            #         #pdf_file = gr.Button("Create PDF")
+            #         file_output = gr.File(label=".pdf File")
+            #         gr.Button.click(create_pdf, inputs=[result], outputs=[file_output])
+      
+                   
 demo.launch()
 
 # <a href="https://de.freepik.com/fotos-kostenlos/geschaeftsmann-haelt-gelbe-gluehbirne-mit-kopierraum-fuer-geschaeftsloesung-und-kreatives-denken-ideenkonzept-durch-3d-darstellung_26791662.htm#query=patente&position=5&from_view=search&track=sph&uuid=7931811d-4408-4f21-a68a-3450f7e46c8d">Bild von DilokaStudio</a> auf Freepik
