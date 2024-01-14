@@ -261,10 +261,11 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
                 gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
                 gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
                 gr.Textbox(label="Compare Input with PDFs in Collection", value="...") #New Value "Top 5 PDFs ...."
-            
-            with gr.Row():
-                if result is not None:
-                    pdf_file = gr.Button("Create PDF")
+            visibility=False
+            if create_pdf:
+                visibility = True
+            pdf_file = gr.Button("Create PDF")    
+            with gr.Row(visible=visibility):
                     outputs = "file"
                     gr.Button.click(create_pdf, inputs=[result], outputs=[outputs])
 
