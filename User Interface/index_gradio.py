@@ -47,12 +47,12 @@ def patent_analysis(file, progress=gr.Progress()):
         progress(0.3, desc="Analyzing the file")
     return content
 
-def output_keywords(content, progress=gr.Progress()):
+def output_keywords(content, n, progress=gr.Progress()):
     progress(0, desc="Generating Key Words...")
     prompt1 = f"""
     The following abstract descripes a concept for a novel invention:\
     ```{content}```\
-    Name 5 key words based on this abstract, that I can use for the search in a patent database. \
+    Name {n} key words based on this abstract, that I can use for the search in a patent database. \
     Optimize the key words to get back more results. Result as python string.
     """
 
@@ -60,13 +60,13 @@ def output_keywords(content, progress=gr.Progress()):
 
     return response_keywords
 
-def output_classes(content, progress=gr.Progress()):
-    progress(0, desc="Generating Key Words...")
+def output_classes(content, n, progress=gr.Progress()):
+    progress(0, desc="Generating Classifications...")
     prompt2 = f"""
         The following abstract descripes a concept for a novel invention:\
         ```{content}```\
-        Name 5 CPC classifications based on this abstract, that I can use for the search in a patent database. \
-        Please give me a python string for the codes of the 5 most relevant \
+        Name {n} CPC classifications based on this abstract, that I can use for the search in a patent database. \
+        Please give me a python string for the codes of the {n} most relevant \
         CPC classifications to a possible patent. 
         """
     
@@ -230,9 +230,7 @@ def create_pdf(file_path, results):
 # image_path = 'https://drive.google.com/file/d/1wqrLEadHAt7xl4djVx4lHu7ts_8KOxme/view?usp=sharing'
 # absolute_path = os.path.abspath(image_path)
 
-def test(data, data2, data3):
-    new = "TEST: " + data + " UND " + data2 + " UUUUUUNNNNNNDDDD " + data3
-    return new
+
 
 with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)) as demo:
     gr.Markdown("# Patent Pete")
@@ -248,8 +246,9 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
 
             gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
 
-            num1 = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
-            num2 = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+            slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
+            slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+
             #output = gr.Number(label="Sum")
             @gr.on(inputs=[num1, num2])
             def sum(a, b, c):
@@ -265,27 +264,27 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
         with gr.Column() as sidebar_right:
             gr.Markdown("<p><h1>Output</h1></p>")
             result = gr.Textbox(label="Input")      
-
+            
             keywords = gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
             classes = gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
 
-            result.change(output_keywords, result, keywords) 
-            result.change(output_classes, result, classes) 
+            result.change(output_keywords, [result, slide_keywords], keywords) 
+            result.change(output_classes, [result, slide_classes], classes) 
 
-            endresult = gr.Textbox(label="End Result", value="None")
+            endresult = gr.Textbox(label="End Result", value="None") #New Value "Top 5 PDFs ...."
             
-            classes.change(patent_analysis_rest, [result, keywords, classes], endresult) #Does not matter if classes or results           
+            classes.change(patent_analysis_rest, [result, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
 
-            with gr.Accordion(label= "Detailed Steps", open=False):   
+            h1 = gr.HighlightedText([("Current State of API: ", None), ("Connected", "Active")], color_map={"Active": "green", "Inactive": "red"})
+
+            with gr.Accordion(label= "Technical Details", open=False):   
 
                 gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
                 gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
-                gr.Textbox(label="API Call #1", value="Disconnected") #% Schritte in Anzahl PDFs; New Value "Added n PDFs to the list"
-                gr.Textbox(label="API Call #n", value="Disconnected")
-                gr.Textbox(label="PDF List", value="No PDFs added yet") #New Value "xx PDFs added to the list."
                 gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
+                gr.Textbox(label="API Calls", value="Disconnected") #Anzahl API Calls live aktualisieren die duirchgeführt wurden 
+                gr.Textbox(label="PDF List", value="No PDFs added yet") #Anzahl PDFs die hinzugefügt wurden; New Value "xx PDFs added to the list."
                 gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
-                gr.Textbox(label="Compare Input with PDFs in Collection", value="...") #New Value "Top 5 PDFs ...."
             visibility=False
             if create_pdf:
                 visibility = True
