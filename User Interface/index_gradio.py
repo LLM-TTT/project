@@ -25,7 +25,6 @@ patent_api_key = os.environ['GOOGLE_PATENT_API_KEY']
 
 llm_model = "gpt-4"
 
-
 def get_completion(prompt, model=llm_model):
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
@@ -35,9 +34,6 @@ def get_completion(prompt, model=llm_model):
     )
     return response.choices[0].message["content"]
 
-# def uploaded_file(files):
-#     file_paths = [file.name for file in files]
-#     return file_paths
 def patent_analysis(file, progress=gr.Progress()):
     if file is not None:
         #Read the PDF file
@@ -49,23 +45,38 @@ def patent_analysis(file, progress=gr.Progress()):
             content += pdf_reader.pages[page].extract_text()
         # Analyzing the File  
         progress(0.3, desc="Analyzing the file")
-        prompt1 = f"""
-        The following abstract descripes a concept for a novel invention:\
-        ```{content}```\
-        Name 5 key words based on this abstract, that I can use for the search in a patent database. \
-        Optimize the key words to get back more results. Result as python string.
-        """
+    return content
 
-        prompt2 = f"""
+def output_keywords(content, progress=gr.Progress()):
+    progress(0, desc="Generating Key Words...")
+    prompt1 = f"""
+    The following abstract descripes a concept for a novel invention:\
+    ```{content}```\
+    Name 5 key words based on this abstract, that I can use for the search in a patent database. \
+    Optimize the key words to get back more results. Result as python string.
+    """
+
+    response_keywords = get_completion(prompt1)
+
+    return response_keywords
+
+def output_classes(content, progress=gr.Progress()):
+    progress(0, desc="Generating Key Words...")
+    prompt2 = f"""
         The following abstract descripes a concept for a novel invention:\
         ```{content}```\
         Name 5 CPC classifications based on this abstract, that I can use for the search in a patent database. \
         Please give me a python string for the codes of the 5 most relevant \
         CPC classifications to a possible patent. 
         """
-        response_keywords = get_completion(prompt1)
-        response_classes = get_completion(prompt2)
+    
+    response_classes = get_completion(prompt2)
+    
+    return response_classes
 
+
+
+def patent_analysis_rest(content, response_keywords, response_classes, progress=gr.Progress()):
         #cast the results (key words) from string to list
         keywords_list = []
 
@@ -197,6 +208,7 @@ def patent_analysis(file, progress=gr.Progress()):
             formatted_results.append(formatted_result)
         
         #result.live(formatted_result)
+        return formatted_result
 
 
 file_path = "../data_dump"
@@ -217,6 +229,10 @@ def create_pdf(file_path, results):
 
 # image_path = 'https://drive.google.com/file/d/1wqrLEadHAt7xl4djVx4lHu7ts_8KOxme/view?usp=sharing'
 # absolute_path = os.path.abspath(image_path)
+
+def test(data, data2, data3):
+    new = "TEST: " + data + " UND " + data2 + " UUUUUUNNNNNNDDDD " + data3
+    return new
 
 with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)) as demo:
     gr.Markdown("# Patent Pete")
@@ -244,13 +260,21 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
 
             button = gr.Button("Submit")
+            
 
         with gr.Column() as sidebar_right:
             gr.Markdown("<p><h1>Output</h1></p>")
-            result = gr.Textbox(label="Results") #Noch aktuelle Ausgabe, soll aber später ganz nach unten rutschen als letzte Ausgabe
+            result = gr.Textbox(label="Input")      
+
+            keywords = gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
+            classes = gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
+
+            result.change(output_keywords, result, keywords) 
+            result.change(output_classes, result, classes) 
+
+            endresult = gr.Textbox(label="End Result", value="None")
             
-            gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
-            gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
+            classes.change(patent_analysis_rest, [result, keywords, classes], endresult) #Does not matter if classes or results           
 
             with gr.Accordion(label= "Detailed Steps", open=False):   
 
@@ -269,32 +293,9 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             with gr.Row(visible=visibility):
                     outputs = "file"
                     gr.Button.click(create_pdf, inputs=[result], outputs=[outputs])
-
-            button.click(patent_analysis, inputs=[files], outputs=[result]) 
-
-
-        #with gr.Column(visible=True) as sidebar_right:
-            # gr.Markdown("<p><h1>Output</h1></p>")
             
-            # with gr.Accordion(label= "Detailed Steps"):   
+            button.click(patent_analysis, inputs=[files], outputs=[result])
 
-            #     gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
-            #     gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
-            #     gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
-            #     gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
-            #     gr.Textbox(label="API Call #1", value="Disconnected") #% Schritte in Anzahl PDFs; New Value "Added n PDFs to the list"
-            #     gr.Textbox(label="API Call #n", value="Disconnected")
-            #     gr.Textbox(label="PDF List", value="No PDFs added yet") #New Value "xx PDFs added to the list."
-            #     gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
-            #     gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
-            #     gr.Textbox(label="Compare Input with PDFs in Collection", value="...") #New Value "Top 5 PDFs ...."
-            
-            # with gr.Row():
-            #     if result is not None:
-            #         #pdf_file = gr.Button("Create PDF")
-            #         file_output = gr.File(label=".pdf File")
-            #         gr.Button.click(create_pdf, inputs=[result], outputs=[file_output])
-      
                    
 demo.launch()
 
