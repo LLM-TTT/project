@@ -249,11 +249,12 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             gr.Markdown("<p><h1>Output</h1></p>")
             result = gr.Textbox(label="Results") #Noch aktuelle Ausgabe, soll aber später ganz nach unten rutschen als letzte Ausgabe
             
+            gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
+            gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
+
             with gr.Accordion(label= "Detailed Steps", open=False):   
 
                 gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
-                gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
-                gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
                 gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
                 gr.Textbox(label="API Call #1", value="Disconnected") #% Schritte in Anzahl PDFs; New Value "Added n PDFs to the list"
                 gr.Textbox(label="API Call #n", value="Disconnected")
