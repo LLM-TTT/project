@@ -101,11 +101,8 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
         count = 0
         patent_base_url = "https://patentimages.storage.googleapis.com/" #just to complete the url
 
-        short_keywords_list = keywords_list[4:]
-        short_class_list = class_list[4:]
-
         #Loop for multiple Google Patents API calls with Key Words
-        for i in short_keywords_list:
+        for i in keywords_list:
             openai_response = i #Search String for Google Patents
             url_base = "https://serpapi.com/search.html?engine=google_patents"
             query = openai_response.replace(" ", "+")
@@ -134,7 +131,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
                     pdf_list.append(pdf[0])
                     print("PDF #",count,"erfolgreich zur Liste hinzugefügt.")
         #Loop for multiple Google Patents API calls with Classifications
-        for i in short_class_list:
+        for i in class_list:
             openai_response = i #Search String for Google Patents
             url_base = "https://serpapi.com/search.html?engine=google_patents"
             query = openai_response.replace(" ", "+")
@@ -197,18 +194,14 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
             print(result)
 
         formatted_results = []
+        formatted_result = ""
         for result in results:
-            formatted_result = (
-            "Übereinstimmung: {}%; Quelle: {}".format(
-                round(result[1] * 100, 2),
-                result[0].metadata['source']
-            )
-        )
+            formatted_result = ("Übereinstimmung: {}%; Quelle: {}".format(round(result[1] * 100, 2), result[0].metadata['source']))
         # Append the formatted result to the list
             formatted_results.append(formatted_result)
         
         #result.live(formatted_result)
-        return formatted_result
+        return formatted_results
 
 
 file_path = "../data_dump"
@@ -264,11 +257,6 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
             slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
 
-            #output = gr.Number(label="Sum")
-            @gr.on(inputs=[num1, num2])
-            def sum(a, b, c):
-                return a + b + c
-
             gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
             
             files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
@@ -292,7 +280,7 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
 
             with gr.Accordion(label= "Technical Details", open=False):   
 
-                if flag == 1:
+                if output_classes == 1:
                     api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Successfull")], color_map={"Successfull": "green", "Failed": "red"})
                 else:
                     api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Failed")], color_map={"Successfull": "green", "Failed": "red"})
