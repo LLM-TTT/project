@@ -18,6 +18,9 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from reportlab.pdfgen import canvas
 
+# close all open ports
+gr.close_all()
+
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv())
 openai.api_key = os.environ['OPENAI_API_KEY']
