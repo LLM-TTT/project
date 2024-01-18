@@ -21,22 +21,26 @@ from reportlab.pdfgen import canvas
 # close all open ports
 gr.close_all()
 
+#Load OpenAI API Key and Google Patent API Key
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv())
 openai.api_key = os.environ['OPENAI_API_KEY']
 patent_api_key = os.environ['GOOGLE_PATENT_API_KEY']
 
+#Define LLM Model
 llm_model = "gpt-4"
 
+#Initialize LLM Model Attributes
 def get_completion(prompt, model=llm_model):
-    messages = [{"role": "user", "content": prompt}]
+    messages = [{"role": "user", "content": prompt}] #role: define the role of the llm; conent: how the llm should act
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
-        temperature=0,
+        temperature=0, #creativity range 0..1
     )
     return response.choices[0].message["content"]
 
+#Load PDF File from User Input and extract first Page
 def patent_analysis(file, progress=gr.Progress()):
     if file is not None:
         #Read the PDF file
@@ -50,6 +54,7 @@ def patent_analysis(file, progress=gr.Progress()):
         progress(0.3, desc="Analyzing the file")
     return content
 
+#LLM Prompt generating Key Words on base of the PDF Input from User
 def output_keywords(content, n, progress=gr.Progress()):
     progress(0, desc="Generating Key Words...")
     prompt1 = f"""
@@ -63,6 +68,7 @@ def output_keywords(content, n, progress=gr.Progress()):
 
     return response_keywords
 
+#LLM Prompt generating Classifications on base of the PDF Input from User
 def output_classes(content, n, progress=gr.Progress()):
     progress(0, desc="Generating Classifications...")
     prompt2 = f"""
@@ -78,7 +84,7 @@ def output_classes(content, n, progress=gr.Progress()):
     return response_classes
 
 
-
+#Continue with API Calls, vectorizing and vector database handling
 def patent_analysis_rest(content, response_keywords, response_classes, progress=gr.Progress()):
         #cast the results (key words) from string to list
         keywords_list = []
@@ -189,7 +195,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
         results = vector_search.similarity_search_with_score(
             query=query,
-            k=5,
+            k=5, #Output for the top n results
         )
 
         # Display results
