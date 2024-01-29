@@ -32,14 +32,17 @@ patent_api_key = os.environ['GOOGLE_PATENT_API_KEY']
 llm_model = "gpt-4"
 
 #Initialize LLM Model Attributes
+from openai import OpenAI
+
+client = OpenAI()
 def get_completion(prompt, model=llm_model):
     messages = [{"role": "user", "content": prompt}] #role: define the role of the llm; conent: how the llm should act
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model=model,
         messages=messages,
         temperature=0, #creativity range 0..1
     )
-    return response.choices[0].message["content"]
+    return response.choices[0].message.content
 
 #Load PDF File from User Input and extract first Page
 def patent_analysis(file, progress=gr.Progress()):
