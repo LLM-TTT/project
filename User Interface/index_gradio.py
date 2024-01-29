@@ -17,6 +17,7 @@ from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from reportlab.pdfgen import canvas
+from langchain_openai import OpenAIEmbeddings
 
 # close all open ports
 gr.close_all()
@@ -215,19 +216,21 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
 file_path = "../data_dump"
 def create_pdf(file_path, results):
-    pdf = canvas.Canvas(file_path)
+    # for result in results:
+    #     print(result)
+    pdf_file = canvas.Canvas(file_path)
 
     # Set font and size
-    pdf.setFont("Helvetica", 12)
+    pdf_file.setFont("Helvetica", 12)
 
     for result in results:
-        pdf.drawString(100, 700, result[0].metadata['title'])
-        pdf.drawString(100, 700, result[0].metadata['source'])
+        pdf_file.drawString(100, 700, result[0].metadata['title'])
+        pdf_file.drawString(100, 700, result[0].metadata['source'])
 
     # Save the PDF
-    pdf.save()
+    pdf_file.save()
 
-    return pdf
+    return pdf_file
 
 # image_path = 'https://drive.google.com/file/d/1wqrLEadHAt7xl4djVx4lHu7ts_8KOxme/view?usp=sharing'
 # absolute_path = os.path.abspath(image_path)
@@ -275,10 +278,10 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
 
         with gr.Column() as sidebar_right:
             gr.Markdown("<p><h1>Output</h1></p>")
-            result = gr.Textbox(label="Input")      
+            result = gr.Textbox(label="Your Abstract", interactive=False)      
             
-            keywords = gr.Textbox(label="Key Words", value="None") #New Value "<List of Key Words>"
-            classes = gr.Textbox(label="Classifications", value="None") #New Value "<List of Classifications>"
+            keywords = gr.Textbox(label="Key Words", value="None", interactive=False) #New Value "<List of Key Words>"
+            classes = gr.Textbox(label="Classifications", value="None", interactive=False) #New Value "<List of Classifications>"
 
             result.change(output_keywords, [result, slide_keywords], keywords) 
             result.change(output_classes, [result, slide_classes], classes) 
@@ -301,13 +304,10 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
                 vector_db = gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
                 clear_button = gr.Button("Clear Vector Database")
                 clear_button.click(clear_db,outputs=[vector_db])
-            visibility=False
-            if create_pdf:
-                visibility = True
             pdf_file = gr.Button("Create PDF")    
-            with gr.Row(visible=visibility):
+            with gr.Row():
                     outputs = "file"
-                    gr.Button.click(create_pdf, inputs=[result], outputs=[outputs])
+                    pdf_file.click(create_pdf, inputs=[endresult], outputs=[pdf_file])
             
             button.click(patent_analysis, inputs=[files], outputs=[result])
 
