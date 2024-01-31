@@ -3,8 +3,8 @@ import PyPDF2
 from langchain.output_parsers import StructuredOutputParser
 from langchain.output_parsers import ResponseSchema
 from langchain.prompts import ChatPromptTemplate
-from langchain.chat_models import ChatOpenAI
-from langchain.document_loaders import PyPDFLoader
+from langchain_community.chat_models import ChatOpenAI
+from langchain_community.document_loaders import PyPDFLoader
 from Levenshtein import distance
 import datetime
 import time
@@ -438,9 +438,9 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             #     gr.Textbox(label="API Calls", value="Disconnected") #Anzahl API Calls live aktualisieren die duirchgeführt wurden 
             #     gr.Textbox(label="PDF List", value="No PDFs added yet") #Anzahl PDFs die hinzugefügt wurden; New Value "xx PDFs added to the list."
             #     vector_db = gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
-            #     clear_button = gr.Button("Clear Vector Database")
-            #     clear_button.click(clear_db,outputs=[vector_db])
-            pdf_file = gr.Button("Create PDF")    
+            pdf_file = gr.Button("Create PDF")
+            clear_button = gr.Button("New Research")
+            clear_button.click(clear_db,outputs=[endresult])    
             with gr.Row():
                     outputs = "file"
                     pdf_file.click(create_pdf, inputs=[endresult], outputs=[pdf_file])
