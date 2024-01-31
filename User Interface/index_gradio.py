@@ -209,7 +209,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
         formatted_results = []
         formatted_result = ""
         for result in results:
-            formatted_result = ("Übereinstimmung: {}%; Quelle: {}".format(round(result[1] * 100, 2), result[0].metadata['source']))
+            formatted_result = ("Titel: {}; Übereinstimmung: {}%; Quelle: {}".format(result[0].metadata['title'] ,round(result[1] * 100, 2), result[0].metadata['source']))
         # Append the formatted result to the list
             formatted_results.append(formatted_result)
         
@@ -218,17 +218,20 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
 
 file_path = "../data_dump"
-def create_pdf(file_path, results):
-    # for result in results:
-    #     print(result)
+def create_pdf(file_path, formatted_results):
+
     pdf_file = canvas.Canvas(file_path)
 
     # Set font and size
     pdf_file.setFont("Helvetica", 12)
 
-    for result in results:
-        pdf_file.drawString(100, 700, result[0].metadata['title'])
-        pdf_file.drawString(100, 700, result[0].metadata['source'])
+    y_coordinate = 700
+
+    
+    # Draw each line of formatted result
+    pdf_file.drawString(100, y_coordinate, formatted_results)
+    # Move down the y-coordinate for the next line
+    y_coordinate -= 20  
 
     # Save the PDF
     pdf_file.save()
@@ -265,6 +268,8 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             
             gr.Markdown("<p><h1>Input</h1></p>")
 
+            files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+
             gr.Markdown("<u>Configuration Options</u>")
 
             gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
@@ -274,7 +279,7 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
 
             gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
             
-            files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+            
 
             button = gr.Button("Submit")
             
@@ -293,20 +298,20 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             
             classes.change(patent_analysis_rest, [result, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
 
-            with gr.Accordion(label= "Technical Details", open=False):   
+            # with gr.Accordion(label= "Technical Details", open=False):   
 
-                if output_classes == 1:
-                    api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Successfull")], color_map={"Successfull": "green", "Failed": "red"})
-                else:
-                    api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Failed")], color_map={"Successfull": "green", "Failed": "red"})
-                gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
-                gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
-                gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
-                gr.Textbox(label="API Calls", value="Disconnected") #Anzahl API Calls live aktualisieren die duirchgeführt wurden 
-                gr.Textbox(label="PDF List", value="No PDFs added yet") #Anzahl PDFs die hinzugefügt wurden; New Value "xx PDFs added to the list."
-                vector_db = gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
-                clear_button = gr.Button("Clear Vector Database")
-                clear_button.click(clear_db,outputs=[vector_db])
+            #     if output_classes == 1:
+            #         api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Successfull")], color_map={"Successfull": "green", "Failed": "red"})
+            #     else:
+            #         api_openai = gr.HighlightedText([("Current State of API: ", None), ("Connection", "Failed")], color_map={"Successfull": "green", "Failed": "red"})
+            #     gr.Textbox(label="API OpenAI", value="Disconnected") #New Value "Connected"
+            #     gr.Textbox(label="API Patent Database #1", value="Disconnected") #New Value "Connected"
+            #     gr.Textbox(label="API Connection Vector Database", value="Disconnected") #New Value "Connected"
+            #     gr.Textbox(label="API Calls", value="Disconnected") #Anzahl API Calls live aktualisieren die duirchgeführt wurden 
+            #     gr.Textbox(label="PDF List", value="No PDFs added yet") #Anzahl PDFs die hinzugefügt wurden; New Value "xx PDFs added to the list."
+            #     vector_db = gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
+            #     clear_button = gr.Button("Clear Vector Database")
+            #     clear_button.click(clear_db,outputs=[vector_db])
             pdf_file = gr.Button("Create PDF")    
             with gr.Row():
                     outputs = "file"
