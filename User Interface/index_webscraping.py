@@ -286,14 +286,24 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
         #             print("PDF #",count,"erfolgreich zur Liste hinzugefügt.")
         progress(0.6, desc="Collecting patents")
 
-        # extracting patent ids + abstracts for further prompt usage
+        # Building LLM similarity scoring prompt
 
-        abstract_comparison_prompt_base = "" ### HIER LLM-SIMILARITY-PROMPT EINFÜGEN
+        comparison_prompt_base = f"""
+        The following texts are abstracts from patent specifications. Your task is to compare the "Testing Abstract" to all the others. 
+        It is important that you focus on comparing the concepts that the abstracts describe, not the way they are written. 
+        Rank the remaining abstracts on how well they match with the Testing Abstract by giving them a rating from 0 to 10 points. 
+        0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea.
+        Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value.
+        I want to convert your output string to an actual dictionary, so make sure the formatting is right.
+
+        Testing Abstract: {content}
+
+        """
 
         for patent_id, patent_info in patent_data.items():
             # Check if there is an abstract for the patent
             if patent_info['abstract']:
-                abstract_prompt = abstract_comparison_prompt_base + f'{patent_id}: "{patent_info["abstract"]}"\n'
+                comparison_prompt = comparison_prompt_base + f'{patent_id}: "{patent_info["abstract"]}"\n'
 
         #for keyword in keywords_list:
         #    url_base = "https://serpapi.com/search.html?engine=google_patents"
@@ -316,7 +326,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
         # insert the documents in MongoDB Atlas with their embedding
         vector_search = MongoDBAtlasVectorSearch.from_documents( # !!--> AttributeError: 'str' object has no attribute 'page_content'!!
-            documents=patent_data, 
+            documents=patent_data,
             embedding=OpenAIEmbeddings(disallowed_special=()),
             collection=MONGODB_COLLECTION,
             index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
