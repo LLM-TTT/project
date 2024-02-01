@@ -138,7 +138,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
             else:
                 print(f"Error with API request: Status code {response.status_code}")
             
-        print(patent_data)
+        #print(patent_data)
 
         for cluster in data["results"]["cluster"]:
             for result in cluster["result"]:
@@ -288,12 +288,12 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
         # extracting patent ids + abstracts for further prompt usage
 
-        abstract_prompt = "" ### HIER LLM-SIMILARITY-PROMPT EINFÜGEN
+        abstract_comparison_prompt_base = "" ### HIER LLM-SIMILARITY-PROMPT EINFÜGEN
 
         for patent_id, patent_info in patent_data.items():
             # Check if there is an abstract for the patent
             if patent_info['abstract']:
-                abstract_prompt = abstract_prompt + f'{patent_id}: "{patent_info["abstract"]}"\n'
+                abstract_prompt = abstract_comparison_prompt_base + f'{patent_id}: "{patent_info["abstract"]}"\n'
 
         #for keyword in keywords_list:
         #    url_base = "https://serpapi.com/search.html?engine=google_patents"
