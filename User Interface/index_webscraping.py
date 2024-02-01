@@ -254,7 +254,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
                 "claims": claims
             })
         
-        print(patent_data)
+        #print(patent_data)
         # for i in class_list:
         #     openai_response = i #Search String for Google Patents
         #     url_base = "https://serpapi.com/search.html?engine=google_patents"
@@ -288,19 +288,19 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
         # extracting patent ids + abstracts for further prompt usage
 
-        abstract_prompt = ""
+        abstract_prompt = "" ### HIER LLM-SIMILARITY-PROMPT EINFÜGEN
 
         for patent_id, patent_info in patent_data.items():
             # Check if there is an abstract for the patent
             if patent_info['abstract']:
                 abstract_prompt = abstract_prompt + f'{patent_id}: "{patent_info["abstract"]}"\n'
 
-        for keyword in keywords_list:
-            url_base = "https://serpapi.com/search.html?engine=google_patents"
-            query = keyword.replace(" ", "+")
-            url = url_base + "&q=" + query + "&api_key=" + patent_api_key
+        #for keyword in keywords_list:
+        #    url_base = "https://serpapi.com/search.html?engine=google_patents"
+        #    query = keyword.replace(" ", "+")
+        #    url = url_base + "&q=" + query + "&api_key=" + patent_api_key
 
-            print(url)
+        #    print(url)
                 
         #Login MongoDB with User and specific database
         uri = "mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority"
