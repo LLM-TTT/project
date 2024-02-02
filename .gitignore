@@ -1,6 +1,6 @@
 # ignore environment files
 .env
-code/.env
+project/.env
 */.env
 
 # ignore macOS folder attribute files

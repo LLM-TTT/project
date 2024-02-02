@@ -19,6 +19,7 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from reportlab.pdfgen import canvas
 from langchain_openai import OpenAIEmbeddings
+from langchain.schema import Document
 
 # close all open ports
 gr.close_all()
@@ -254,6 +255,12 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
                 "claims": claims
             })
         
+            patent_list = []
+
+            for patent_id, data in patent_data.items():
+                page_content = f"{data['title']} {data['abstract']} {data['description']} {data['claim']}"
+                metadata = {"patent_id": patent_id}
+                patent_list.append(Document(page_content=page_content, metadata=metadata))
         #print(patent_data)
         # for i in class_list:
         #     openai_response = i #Search String for Google Patents
@@ -288,23 +295,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
         # Building LLM similarity scoring prompt
 
-        comparison_prompt_base = f"""
-        The following texts are abstracts from patent specifications. Your task is to compare the "Testing Abstract" to all the others. 
-        It is important that you focus on comparing the concepts that the abstracts describe, not the way they are written. 
-        Rank the remaining abstracts on how well they match with the Testing Abstract by giving them a rating from 0 to 10 points. 
-        0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea.
-        Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value.
-        I want to convert your output string to an actual dictionary, so make sure the formatting is right.
-
-        Testing Abstract: {content}
-
-        """
-
-        for patent_id, patent_info in patent_data.items():
-            # Check if there is an abstract for the patent
-            if patent_info['abstract']:
-                comparison_prompt = comparison_prompt_base + f'{patent_id}: "{patent_info["abstract"]}"\n'
-
+        
         #for keyword in keywords_list:
         #    url_base = "https://serpapi.com/search.html?engine=google_patents"
         #    query = keyword.replace(" ", "+")
@@ -326,7 +317,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
         # insert the documents in MongoDB Atlas with their embedding
         vector_search = MongoDBAtlasVectorSearch.from_documents( # !!--> AttributeError: 'str' object has no attribute 'page_content'!!
-            documents=patent_data,
+            documents=patent_list,
             embedding=OpenAIEmbeddings(disallowed_special=()),
             collection=MONGODB_COLLECTION,
             index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
@@ -347,34 +338,52 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
         formatted_results = []
         formatted_result = ""
         for result in results:
-            formatted_result = ("Titel: {}; Übereinstimmung: {}%; Quelle: {}".format(result[0].metadata['title'] ,round(result[1] * 100, 2), result[0].metadata['source']))
+            formatted_result = ("Titel: {}; Quelle: {}".format(result[0].metadata['patent_id']))
         # Append the formatted result to the list
             formatted_results.append(formatted_result)
         
         #result.live(formatted_result)
         return formatted_results
 
+        # comparison_prompt_base = f"""
+        # The following texts are abstracts from patent specifications. Your task is to compare the "Testing Abstract" to all the others. 
+        # It is important that you focus on comparing the concepts that the abstracts describe, not the way they are written. 
+        # Rank the remaining abstracts on how well they match with the Testing Abstract by giving them a rating from 0 to 10 points. 
+        # 0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea.
+        # Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value.
+        # I want to convert your output string to an actual dictionary, so make sure the formatting is right.
 
-file_path = "../data_dump"
-def create_pdf(file_path, formatted_results):
+        # Testing Abstract: {content}
 
-    pdf_file = canvas.Canvas(file_path)
+        # """
 
-    # Set font and size
-    pdf_file.setFont("Helvetica", 12)
+        # for patent_id, patent_info in patent_data.items():
+        #      # Check if there is an abstract for the patent
+        #      if patent_info['abstract']:
+        #          comparison_prompt = comparison_prompt_base + f'{patent_id}: "{patent_info["abstract"]}"\n'
 
-    y_coordinate = 700
+
+
+# file_path = "../data_dump"
+# def create_pdf(file_path, formatted_results):
+
+#     pdf_file = canvas.Canvas(file_path)
+
+#     # Set font and size
+#     pdf_file.setFont("Helvetica", 12)
+
+#     y_coordinate = 700
 
     
-    # Draw each line of formatted result
-    pdf_file.drawString(100, y_coordinate, formatted_results)
-    # Move down the y-coordinate for the next line
-    y_coordinate -= 20  
+#     # Draw each line of formatted result
+#     pdf_file.drawString(100, y_coordinate, formatted_results)
+#     # Move down the y-coordinate for the next line
+#     y_coordinate -= 20  
 
-    # Save the PDF
-    pdf_file.save()
+#     # Save the PDF
+#     pdf_file.save()
 
-    return pdf_file
+#     return pdf_file
 
 # image_path = 'https://drive.google.com/file/d/1wqrLEadHAt7xl4djVx4lHu7ts_8KOxme/view?usp=sharing'
 # absolute_path = os.path.abspath(image_path)
