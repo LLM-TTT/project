@@ -298,6 +298,10 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             
             classes.change(patent_analysis_rest, [result, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
 
+            vector_db = gr.Textbox(label="Collection Vector Database", value="No PDFs added yet") #New Value "xx PDFs added to the collection of vector database."
+            clear_button = gr.Button("Clear Vector Database")
+            clear_button.click(clear_db,outputs=[vector_db])
+
             # with gr.Accordion(label= "Technical Details", open=False):   
 
             #     if output_classes == 1:
