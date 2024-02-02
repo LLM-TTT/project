@@ -91,6 +91,8 @@ def output_classes(content, n, progress=gr.Progress()):
 
 #Clearing vector database
 def clear_db():
+
+
     uri = "mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority"
 
     # Create a new client and connect to the server
@@ -262,7 +264,7 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
         patent_list = []
 
         for patent_id, data in patent_data.items():
-            page_content = f"{data['title']} {data['abstract']} {data['description']} {data['claim']}"
+            page_content = f"{data['title']} {data['abstract']} {data['description']} {data['claims']}"
             metadata = {"patent_id": patent_id}
             patent_list.append(Document(page_content=page_content, metadata=metadata))
 
@@ -299,10 +301,10 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
             k=20, #Output for the top n results
         )
 
-        vector_result = {}
+        vector_scoring = {}
 
         for result in results:
-            vector_result[result[0].metadata['patent_id']] = result[1]
+            vector_scoring[result[0].metadata['patent_id']] = result[1]
         
         comparison_prompt = f"""The following texts are abstracts from patent specifications. Your task is to compare the "Testing Abstract" to all the others. 
         It is important that you focus on comparing the concepts that the abstracts describe, not the way they are written. 
@@ -314,14 +316,71 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
         Testing Abstract: "{content}"
         """
 
-        for patent_id in vector_result.keys():
+        for patent_id in vector_scoring.keys():
             # Check if there is an abstract for the patent
             if patent_id in patent_data.keys():
                 comparison_prompt = comparison_prompt + f'{patent_id}: "{patent_data[patent_id]["abstract"]}"\n'
 
-        final_result = get_completion(comparison_prompt)
+        response = get_completion(comparison_prompt)
 
-        return final_result
+        llm_scoring_raw = eval(response.replace("comparison = ",""))
+
+
+        def transform_ratings(ratings, new_min=0, new_max=10):
+            # Determine the smallest and largest value in the original dictionary
+            old_min, old_max = min(ratings.values()), max(ratings.values())
+            transformed_ratings = {}
+            for key, value in ratings.items():
+                # Apply the transformation with dynamic old and new ranges
+                transformed_value = ((value - old_min) / (old_max - old_min)) * (new_max - new_min) + new_min
+                transformed_ratings[key] = transformed_value
+            return transformed_ratings
+
+        def delete_entries_with_zero(ratings):
+            # Create a new dictionary without the entries with the value 0
+            cleaned_dict = {key: value for key, value in ratings.items() if value != 0}
+            return cleaned_dict
+
+        def calculate_average_and_unite(dict_a, dict_b):
+            combined_dict = {}
+            # Union of keys from both dictionaries
+            all_keys = set(dict_a.keys()) | set(dict_b.keys())
+            
+            for key in all_keys:
+                values = []
+                if key in dict_a:
+                    values.append(dict_a[key])
+                if key in dict_b:
+                    values.append(dict_b[key])
+                # Calculate the average if the key is present in both dictionaries
+                combined_dict[key] = sum(values) / len(values)
+            
+            # Sort the dictionary from high to low based on the values
+            sorted_combined_dict = dict(sorted(combined_dict.items(), key=lambda item: item[1], reverse=True))
+            
+            return sorted_combined_dict
+
+        def transform_and_calculate(dict_a, dict_b):
+            a = transform_ratings(dict_a)
+            b = transform_ratings(dict_b)
+            return calculate_average_and_unite(a, b)
+
+
+        llm_scoring = delete_entries_with_zero(llm_scoring_raw)
+        final_scoring = transform_and_calculate(llm_scoring, vector_scoring)
+
+        final_scoring_patent_ids = list(final_scoring.keys())
+
+        final_scoring_formatted = "Ergebnis:\n\n"
+
+        counter=1
+
+        for patent_id in final_scoring_patent_ids:
+            
+            final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + patent_data[patent_id]["pdf"] + "\n\n"
+            counter+=1
+
+        return final_scoring_formatted
 
 
 with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)) as demo:
@@ -356,16 +415,16 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             classes = gr.Textbox(label="Classifications", value="None", interactive=False) #New Value "<List of Classifications>"
 
             result_output.change(output_keywords, [result_output, slide_keywords], keywords) 
-            result_output.change(output_classes, [result_output, slide_classes], classes) 
+            result_output.change(output_classes, [result_output, slide_classes], classes)
 
             endresult = gr.Textbox(label="End Result", value="None") #New Value "Top 5 PDFs ...."
             
             classes.change(patent_analysis_rest, [result_output, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
 
             clear_button = gr.Button("New Research")
-            clear_button.click(clear_db,outputs=[endresult])    
+            clear_button.click(clear_db,outputs=[endresult])
             
             button.click(patent_analysis, inputs=[files], outputs=[result_output])
 
                    
-demo.launch()
+demo.launch(enable_queue=True)
