@@ -6,13 +6,11 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_community.chat_models import ChatOpenAI
 from langchain_community.document_loaders import PyPDFLoader
 from Levenshtein import distance
-import datetime
 import time
 import os
 from bs4 import BeautifulSoup as bs
 import openai
 import requests
-import json
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from pymongo import MongoClient
@@ -377,11 +375,11 @@ def patent_analysis_rest(content, response_keywords, response_classes, progress=
 
         for patent_id in final_scoring_patent_ids:
             
-            final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + patent_data[patent_id]["pdf"] + "\n\n"
+            final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + "https://patentimages.storage.googleapis.com/" + patent_data[patent_id]["pdf"] + "\n\n"
             counter+=1
 
+        clear_db()
         return final_scoring_formatted
-
 
 with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondary_hue=gr.themes.colors.gray, neutral_hue=gr.themes.colors.gray)) as demo:
     gr.Markdown("# Patent Pete")
@@ -425,6 +423,5 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             clear_button.click(clear_db,outputs=[endresult])
             
             button.click(patent_analysis, inputs=[files], outputs=[result_output])
-
                    
 demo.launch(enable_queue=True)
