@@ -8,6 +8,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from Levenshtein import distance
 import time
 import os
+import sys
 from bs4 import BeautifulSoup as bs
 import openai
 import requests
@@ -45,7 +46,7 @@ def get_completion(prompt, model=llm_model):
     return response.choices[0].message.content
 
 #Load PDF File from User Input and extract first Page
-def patent_analysis(file, progress=gr.Progress()):
+def input_analysis(file, progress=gr.Progress()):
     if file is not None:
         #Read the PDF file
         progress(0.2, desc="Reading the file")
@@ -54,28 +55,31 @@ def patent_analysis(file, progress=gr.Progress()):
         content = ""
         for page in range(len(pdf_reader.pages)):
             content += pdf_reader.pages[page].extract_text()
+            if content == "":
+                raise gr.Error("The file data seems to be invalid. Please check your file or try another Pdf!")
         # Analyzing the File  
         progress(0.3, desc="Analyzing the file")
+
     return content
 
 #LLM Prompt generating Key Words on base of the PDF Input from User
 def output_keywords(content, n, progress=gr.Progress()):
     progress(0, desc="Generating Key Words...")
-    prompt1 = f"""
+    keyword_prompt = f"""
     The following abstract descripes a concept for a novel invention:\
     ```{content}```\
     Name {n} key words based on this abstract, that I can use for the search in a patent database. \
     Optimize the key words to get back more results. Result as python string.
     """
 
-    response_keywords = get_completion(prompt1)
+    response_keywords = get_completion(keyword_prompt)
 
     return response_keywords
 
 #LLM Prompt generating Classifications on base of the PDF Input from User
 def output_classes(content, n, progress=gr.Progress()):
     progress(0, desc="Generating Classifications...")
-    prompt2 = f"""
+    classes_prompt = f"""
         The following abstract descripes a concept for a novel invention:\
         ```{content}```\
         Name {n} CPC classifications based on this abstract, that I can use for the search in a patent database. \
@@ -83,7 +87,7 @@ def output_classes(content, n, progress=gr.Progress()):
         CPC classifications to a possible patent. 
         """
     
-    response_classes = get_completion(prompt2)
+    response_classes = get_completion(classes_prompt)
     
     return response_classes
 
@@ -107,7 +111,7 @@ def clear_db():
     return delete
 
 #Continue with API Calls, vectorizing and vector database handling
-def patent_analysis_rest(content, response_keywords, response_classes, progress=gr.Progress()):
+def patent_analysis(content, response_keywords, response_classes, progress=gr.Progress()):
         #cast the results (key words) from string to list
         keywords_list = []
 
@@ -417,11 +421,11 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
 
             endresult = gr.Textbox(label="End Result", value="None") #New Value "Top 5 PDFs ...."
             
-            classes.change(patent_analysis_rest, [result_output, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
+            classes.change(patent_analysis, [result_output, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
 
             clear_button = gr.Button("New Research")
             clear_button.click(clear_db,outputs=[endresult])
             
-            button.click(patent_analysis, inputs=[files], outputs=[result_output])
+            button.click(input_analysis, inputs=[files], outputs=[result_output])
                    
-demo.launch(enable_queue=True)
+demo.launch()
