@@ -47,7 +47,6 @@ def input_analysis(file, progress=gr.Progress()):
         progress(0.3, desc="Analyzing file")
     return content
 
-
 #LLM Prompt generating Key Words on base of the PDF Input from User
 def output_keywords(content, n, progress=gr.Progress()):
     progress(0, desc="Generating Key Words...")
