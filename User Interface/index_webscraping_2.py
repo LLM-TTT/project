@@ -8,6 +8,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from Levenshtein import distance
 import time
 import os
+import sys
 from bs4 import BeautifulSoup as bs
 import openai
 import requests
@@ -54,8 +55,11 @@ def input_analysis(file, progress=gr.Progress()):
         content = ""
         for page in range(len(pdf_reader.pages)):
             content += pdf_reader.pages[page].extract_text()
+            if content == "":
+                raise gr.Error("The file data seems to be invalid. Please check your file or try another Pdf!")
         # Analyzing the File  
         progress(0.3, desc="Analyzing the file")
+
     return content
 
 #LLM Prompt generating Key Words on base of the PDF Input from User
