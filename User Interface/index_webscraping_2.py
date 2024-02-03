@@ -321,7 +321,8 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
         for patent_id in vector_scoring.keys():
             # Check if there is an abstract for the patent
             if patent_id in patent_data.keys():
-                comparison_prompt = comparison_prompt + f'{patent_id}: "{patent_data[patent_id]["abstract"]}"\n'
+                if patent_data[patent_id]["abstract"] is not False:
+                    comparison_prompt = comparison_prompt + f'{patent_id}: "{patent_data[patent_id]["abstract"]}"\n'
 
         response = get_completion(comparison_prompt)
 
