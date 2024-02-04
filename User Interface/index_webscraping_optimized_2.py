@@ -86,7 +86,7 @@ def get_database_connection():
     return MONGODB_COLLECTION
 
 # Clearing vector database
-def clear_db():
+def clear_db(MONGODB_COLLECTION):
     get_database_connection()
     x = MONGODB_COLLECTION.delete_many({})
     delete = str(x.deleted_count) + " documents deleted."
@@ -234,19 +234,20 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
         patent_list.append(Document(page_content=page_content, metadata=metadata))
 
     # Clearing db before adding new data, to avoid any distortion of results
-    clear_db()
+    
 
     # Login MongoDB with User and specific database
     uri = "mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority"
 
-    get_database_connection()
+    database = get_database_connection()
+    clear_db(database)
     ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index"      
 
     # insert the documents in MongoDB Atlas with their embedding
     vector_search = MongoDBAtlasVectorSearch.from_documents(
         documents=patent_list,
         embedding=OpenAIEmbeddings(disallowed_special=()),
-        collection=MONGODB_COLLECTION,
+        collection=database,
         index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
     )
 
@@ -382,4 +383,4 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             
             button.click(input_analysis, inputs=[files], outputs=[result_output])
                    
-demo.launch(enable_queue=True)
+demo.launch()
