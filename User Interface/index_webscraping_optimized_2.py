@@ -256,7 +256,7 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
 
     results = vector_search.similarity_search_with_score(
         query=query,
-        k=20, #Output for the top 20 results
+        k=10, #Output for the top 20 results
     )
 
     # Formatting vector search result for further usage
