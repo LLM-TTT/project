@@ -370,7 +370,7 @@ with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.zinc, secondar
             result_output.change(output_keywords, [result_output, slide_keywords], keywords) 
             result_output.change(output_classes, [result_output, slide_classes], classes)
 
-            endresult = gr.Textbox(label="End Result", value="None") #New Value "Top 5 PDFs ...."
+            endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
             
             classes.change(patent_analysis, [result_output, keywords, classes], endresult) #It does not matter if you choose classes or keywords from above
 
