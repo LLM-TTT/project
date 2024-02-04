@@ -233,13 +233,9 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
         metadata = {"patent_id": patent_id}
         patent_list.append(Document(page_content=page_content, metadata=metadata))
 
-    # Clearing db before adding new data, to avoid any distortion of results
     
-
-    # Login MongoDB with User and specific database
-    uri = "mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority"
-
     database = get_database_connection()
+    # Clearing db before adding new data, to avoid any distortion of results
     clear_db(database)
     ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index"      
 
