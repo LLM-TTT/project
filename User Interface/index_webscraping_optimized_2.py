@@ -115,7 +115,7 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
         openai_response = i #Search String for Google Patents
         url_base = "https://serpapi.com/search.html?engine=google_patents"
         query = openai_response.replace(" ", "+")
-        url = url_base + "&q=" + query + "&api_key=" + patent_api_key
+        url = url_base + "&q=" + query + "&language=ENGLISH&api_key=" + patent_api_key
 
         # API call Google Patents
         response = requests.get(url)
