@@ -384,11 +384,13 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
 
 
 with gr.Blocks(theme=seafoam) as demo:
-    gr.Markdown("# Patent Pete")
+    with gr.Row() as head:
+        #gr.Image(sources='./PatentPete_friendly_blue_minim.jpeg', label="Patent Pete Logo")
+        gr.Markdown("<h1 style='color:#2563EB;'>Patent Pete</h1><br> ")
     gr.Markdown("<p style='font-size:16px;'>Hi, I'm Pete your assistance for patent researchs. I help you with finding out, if your patent already exists. Let's start with uploading your idea!</p>")
     with gr.Row():
         with gr.Column() as main:
-            gr.Markdown("<p><h1>Input</h1></p>")
+            gr.Markdown("<p><h2 style='color:#2563EB'>Input</h2></p>")
 
             files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
 
@@ -404,7 +406,7 @@ with gr.Blocks(theme=seafoam) as demo:
             button = gr.Button("Submit")
             
         with gr.Column() as sidebar_right:
-            gr.Markdown("<p><h1>Output</h1></p>")
+            gr.Markdown("<p><h2 style='color:#2563EB'>Output</h2></p>")
             result_output = gr.Textbox(label="Your Abstract", interactive=False)      
             
             keywords = gr.Textbox(label="Key Words", value="None", interactive=False) #New Value "<List of Key Words>"
