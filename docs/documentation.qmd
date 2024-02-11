@@ -1,0 +1,22 @@
+---
+title: "LLM PatentPete Documentation Group 2" 
+format:
+  html:
+    code-fold: true
+jupiter: python3
+---
+
+## Documentation
+
+Just a demo, hello world, whatever etc.
+@demo
+
+```{python}
+n = 3
+m = 5
+
+s= n*m
+
+print(s)
+
+```
