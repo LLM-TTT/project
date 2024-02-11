@@ -68,7 +68,8 @@ patent_api_key = os.environ['GOOGLE_PATENT_API_KEY']
 llm_model = "gpt-4"
 client = openai
 def get_completion(prompt, model=llm_model):
-    messages = [{"role": "user", "content": prompt}] #role: define the role of the llm; conent: how the llm should act
+    #role: define the role of the llm; conent: how the llm should act; for our case like a computer system, without unnecessary additional informations
+    messages = [{"role": "system", "content": "Act as a computer system and only say the output without any explenations."}, {"role": "user", "content": prompt}] 
     response = client.chat.completions.create(
         model=model,
         messages=messages,
