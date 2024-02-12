@@ -2,8 +2,8 @@
 title: "LLM PatentPete Documentation Group 2" 
 format:
   html:
-    code-fold: true
-jupiter: python3
+    code-fold: false
+jupyter: python3
 ---
 
 # Documentation
@@ -11,15 +11,7 @@ jupiter: python3
 Just a demo, hello world, whatever etc.
 @demo
 
-```{python}
-n = 3
-m = 5
 
-s= n*m
-
-print(s)
-
-```
 
 ## 1. Concept
 ### 1.1 Introduction to Patent Pete
@@ -69,9 +61,41 @@ At the beginning, we decided to create our user interface with the streamlit fra
 
 The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.
 
-The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking. Temporary, we faced the problem, that the result was correctly formatted.
+The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking.
+
+```{html}
+  # Formatting final scoring results for user output
+  final_scoring_formatted = "Ergebnis:\n\n"
+  counter=1
+  for patent_id in final_scoring_patent_ids:
+      final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + "https://patentimages.storage.googleapis.com/" + patent_data[patent_id]["pdf"] + "\n\n"
+      counter+=1
+
+  return final_scoring_formatted
+```
+```{html}
+            endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
+
+```
 
 In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, these only serve as a mockup in our final application, as some of the parameters would have been technically feasible.
+```{html}
+with gr.Column() as main:
+            gr.Markdown("<p><h2 style='color:#2563EB'>Input</h2></p>")
+
+            files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+
+            gr.Markdown("<u>Configuration Options</u>")
+
+            gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
+
+            slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
+            slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+
+            gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
+
+            button = gr.Button("Submit")
+```
 
 During development, we have built in a detailed output to be able to call up the respective steps of the program. This was to indicate, for example, whether a retrieval with Google Patents or a connection to the vector database had taken place. However, this greatly disfigured the UI and we decided to put the details in a pop-up window. Ultimately, we came to the realization that this information was trivial for the user and removed it completely.
 
