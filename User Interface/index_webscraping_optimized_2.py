@@ -106,7 +106,7 @@ def output_keywords(content, n, progress=gr.Progress()):
 
 # LLM Prompt generating Classifications on base of the PDF Input from User
 def output_classes(content, n, progress=gr.Progress()):
-    progress(0, desc="Generating Classifications...")
+    progress(0, desc="Generating Classifications...") #Progress Bar from Gradio to visualize the current progress
     classes_prompt = f"""
         The following abstract descripes a concept for a novel invention:\
         ```{content}```\
@@ -119,12 +119,12 @@ def output_classes(content, n, progress=gr.Progress()):
     
     return response_classes
 
-# Connecting to database
+# Connecting to database and intialize DB and Collection
 def get_database_connection():
-    uri = os.environ['DATABASE_URI']
+    uri = os.environ['DATABASE_URI'] #load crendtials vom env-file
     client = MongoClient(uri, server_api=ServerApi('1'))
-    DB_NAME = "llm-ttt"
-    COLLECTION_NAME = "pdfresults"
+    DB_NAME = "llm-ttt" #database name
+    COLLECTION_NAME = "pdfresults" #collection name
     MONGODB_COLLECTION = client[DB_NAME][COLLECTION_NAME]
     return MONGODB_COLLECTION
 
@@ -148,7 +148,7 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
 
     # initializing base vars for the following loop
     progress(0.5, desc="Researching patents")
-    patent_api_key = os.environ['GOOGLE_PATENT_API_KEY']
+    patent_api_key = os.environ['GOOGLE_PATENT_API_KEY'] #load secret key for the google patent api
     count = 0
     patent_base_url = "https://patentimages.storage.googleapis.com/" #just to complete the url
     patent_data = {}
@@ -280,12 +280,12 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
     database = get_database_connection()
     # Clearing db before adding new data, to avoid any distortion of results
     clear_db(database)
-    ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index"      
+    ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index" #intitalize vector similarity search      
 
     # insert the documents in MongoDB Atlas with their embedding
     vector_search = MongoDBAtlasVectorSearch.from_documents(
         documents=patent_list,
-        embedding=OpenAIEmbeddings(disallowed_special=()),
+        embedding=OpenAIEmbeddings(disallowed_special=()), #use openAI embeddings method
         collection=database,
         index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
     )
@@ -299,7 +299,7 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
 
     results = vector_search.similarity_search_with_score(
         query=query,
-        k=10, #Output for the top 20 results
+        k=10, #Output for the top 10 results
     )
 
     # Formatting vector search result for further usage
