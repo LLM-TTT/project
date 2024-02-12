@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -97,20 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="documentation" class="level1">
 <h1>Documentation</h1>
 <p>Just a demo, hello world, whatever etc. <span class="citation" data-cites="demo">@demo</span></p>
-<div class="cell" data-execution_count="1">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> n<span class="op">*</span>m</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>15</code></pre>
-</div>
-</div>
 <section id="concept" class="level2">
 <h2 class="anchored" data-anchor-id="concept">1. Concept</h2>
 <section id="introduction-to-patent-pete" class="level3">
@@ -143,9 +95,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="x-google-patents" class="level3">
 <h3 class="anchored" data-anchor-id="x-google-patents">2.x Google Patents</h3>
+<p>After working for a while with the JSON file we received from the Google Patents API (SerpAPI), we realized during the implementation of the LLM-based similarity check that this JSON file unfortunately has character limit for the abstracts, while the claims and the description of the patents do not appear at all. This is probably due to the fact that SerpAPI outputs exactly this JSON file, which is the basis for the hit page of a Google Patents search query. Only the beginnings of the abstracts are stored in this file, which are also displayed in the preview.</p>
+<p>We have therefore decided to implement a web scraping function that uses the patent IDs available in the JSON of SerpAPI to call up the individual pages of the respective patents one after the other and scrape their content. This means that we have the complete abstract, description and claims of each patent.</p>
+<p>Another problem that could be solved with this is the long runtime in the step before we load the patents into the vector database. The original plan was to download and read in the patent PDFs so that the similarity search in the patent database would be based on as much information as possible. Thanks to the extensive web scraping of the patents, we were able to simply use this data for embedding in the vector database and thus avoid the time-consuming reading of the PDFs.</p>
 </section>
 <section id="x-user-interface" class="level3">
 <h3 class="anchored" data-anchor-id="x-user-interface">2.x User Interface</h3>
+<p>At the beginning, we decided to create our user interface with the streamlit framework. After some research and a recommendation from our lecturer, we switched to Gradio, as this framework is designed more for AI-based apps.</p>
+<p>The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.</p>
+<p>The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking.</p>
+<pre class="{html}"><code>  # Formatting final scoring results for user output
+  final_scoring_formatted = "Ergebnis:\n\n"
+  counter=1
+  for patent_id in final_scoring_patent_ids:
+      final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + "https://patentimages.storage.googleapis.com/" + patent_data[patent_id]["pdf"] + "\n\n"
+      counter+=1
+
+  return final_scoring_formatted</code></pre>
+<pre class="{html}"><code>            endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
+</code></pre>
+<p>In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, these only serve as a mockup in our final application, as some of the parameters would have been technically feasible.</p>
+<pre class="{html}"><code>with gr.Column() as main:
+            gr.Markdown("&lt;p&gt;&lt;h2 style='color:#2563EB'&gt;Input&lt;/h2&gt;&lt;/p&gt;")
+
+            files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+
+            gr.Markdown("&lt;u&gt;Configuration Options&lt;/u&gt;")
+
+            gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
+
+            slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
+            slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+
+            gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
+
+            button = gr.Button("Submit")</code></pre>
+<p>During development, we have built in a detailed output to be able to call up the respective steps of the program. This was to indicate, for example, whether a retrieval with Google Patents or a connection to the vector database had taken place. However, this greatly disfigured the UI and we decided to put the details in a pop-up window. Ultimately, we came to the realization that this information was trivial for the user and removed it completely.</p>
+<p>As a bonus, we wanted to integrate a button with which the results can be formatted and downloaded in a pdf. However, we were confronted with some technical problems, particularly the transfer of the results to the pdf, so that it did not make it into the final version due to time constraints. As an alternative, we have implemented a copy button in the output window so that the results can at least be copied.</p>
 </section>
 </section>
 <section id="evaluation" class="level2">
@@ -158,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When choosing between LlamaIndex and TruLens, we decided in favour of TruLens. This framework offers a wide range of methods that seemed optimal for our use case in order to evaluate and improve the performance of our application. The following methods were considered:</p>
 <p><strong>Model Selection:</strong> With this method, TruLens selects the most powerful and efficient model for our application. By comparing different models, we can identify those that deliver the best results and best fulfil our requirements.</p>
 <p><strong>Detect and Mitigate Hallucination:</strong> The RAG Triad is used to ensure that our LLM only reacts to the information that comes from the uploaded abstract. This is to ensure that the model does not tend to generate false or misleading information.</p>
-<p><strong>Improve Retrieval Quality:</strong> The aim of this method is to improve the quality of information retrieval for our RAG. Through measurement and analysis, we identify opportunities to improve information retrieval and ensure that our results are accurate and relevant.</p>
+<p><strong>Improve Retrieval Quality:</strong> The aim of this method is to improve the quality of information retrieval for our RAG. Through measurement and analysis, we identify opportunities to improve information retrieval and ensure that our results are accurate and relevant. The aim of this method is to see any hallucinations.</p>
 <p><strong>Verify the Summarisation Quality:</strong> This checks that the abstracts generated by the LLM contain the key points of the uploaded abstract. The idea behind this was to ensure the quality of the key words and, if applicable, the classifications.</p>
 <p><strong>Embeddings Distance:</strong> This method measures the similarity or dissimilarity of texts by representing them as points in a mathematical space. The most common measurement methods for this are: Cosine distance, Manhattan distance and Euclidean distance. The aim was to evaluate and assess the quality of the results of the similarity search that were output by the vector database at the end.</p>
 <p>Due to time constraints, only the retrieval quality method was used. Five sample patents were generated and run through the system with their respective abstracts in order to obtain meaningful results at the end.</p>
@@ -169,14 +155,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption class="figure-caption">Figure X.X</figcaption>
 </figure>
 </div>
+<p>Using the retrieval quality method, we evaluated three points in our app:</p>
+<div>
+<ol type="1">
+<li>Generation of classifications based on the abstract uploaded by the user</li>
+<li>Generation of key words based on the abstract uploaded by the user</li>
+<li>The LLM evaluation of five randomly generated abstracts based on the abstract uploaded by the user</li>
+</ol>
+</div>
+<p>The evluation showed different results. Regarding the generation of classifications, as can be seen in Figure X.X, there was a low score in terms of groundness, suggesting that the evaluation method assumes that the LLM had difficulties in providing sound classifications and may be hallucinating. However, as mentioned at the beginning of this documentation (see chapter Basics), the group had already checked the classifications manually in advance against the official register and found them to be correct. This indicates that the quality of the classifications is indeed acceptable despite the low rating.</p>
+<p>The results of the key word generation were satisfactory. In the detailed view in Figure X.X, it can be seen that the RAG does not consistently score 100% for Context Relevance. This could be due to the fact that the LLM has problems prioritising the most important key words in view of the abundance of abstracts. Overall, however, the result is satisfactory.</p>
+<p>In contrast, the patent comparison method produced unfavourable results. The low scores suggest that the LLM may not have adequately captured the context of the original abstract and therefore does not provide accurate answers. This suggests that although the LLM evaluation can be considered helpful, it should be used with caution as it may not have the desired reliability. However, it should also be noted, as can be seen in Figure X.X, that there was only one outlier that negatively affected the values.</p>
+<p>These results highlight the importance of carefully analysing and interpreting the evaluation results. Although the automated evaluation methods can provide insights, it is important to critically scrutinise them and perform manual checks where necessary to validate the quality of the results and ensure that the system meets the requirements and expectations.</p>
 </section>
 <section id="imrpovements" class="level3">
 <h3 class="anchored" data-anchor-id="imrpovements">3.3 Imrpovements</h3>
 </section>
 <section id="issues" class="level3">
 <h3 class="anchored" data-anchor-id="issues">3.4 Issues</h3>
-<section id="extraxt-abstracts-from-pdfs" class="level4">
-<h4 class="anchored" data-anchor-id="extraxt-abstracts-from-pdfs">Extraxt Abstracts from PDFs</h4>
+<section id="extract-abstracts-from-pdfs" class="level4">
+<h4 class="anchored" data-anchor-id="extract-abstracts-from-pdfs">Extract Abstracts from PDFs</h4>
 <p>When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in <strong>Figure X.1</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
