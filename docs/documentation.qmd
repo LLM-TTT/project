@@ -6,7 +6,7 @@ format:
 jupiter: python3
 ---
 
-## Documentation
+# Documentation
 
 Just a demo, hello world, whatever etc.
 @demo
@@ -20,3 +20,90 @@ s= n*m
 print(s)
 
 ```
+
+## 1. Concept
+### 1.1 Introduction to Patent Pete
+Patent research can be a critical and time-consuming process for inventors, researchers, and patent professionals. It involves not only identifying relevant patents but also understanding the intricate connections and similarities between them. Patent Pete is designed to address these challenges by leveraging advanced technology to make patent research more accessible, efficient, and insightful. 
+
+Patent Pete automates the search and analysis process for patent discovery, making it ideal for inventors, research and development teams, patent professionals, and academics. It helps identify relevant patents, avoid infringement, guide innovation, conduct prior art searches, and explore technological trends. Patent Pete is an essential tool for anyone involved in patent research or development. 
+
+### 1.2 Concept Overview
+
+## 2. Development
+### 2.1 Basics
+In order to realise our previous plans, we took various steps in the course of our project. Firstly, we devised a series of sample patents and generated corresponding abstracts. The aim was to obtain a wide variety of abstracts to enable a comprehensive analysis. These abstracts were carefully formulated and saved as PDFs.
+
+In the planning phase, we focussed on developing efficient LLM prompts to generate keywords and classifications based on the sample abstracts. For this purpose, we created various sample abstracts and recorded them in an Excel spreadsheet. By defining and evaluating different prompts, we were able to select the one that provided the most search results to enable a comprehensive search.
+
+During the development of the project, concerns were raised by ZOI about the ability of LLM to correctly generate classifications based on the abstracts. For this reason, we decided to generate five classifications, both as International Patent Classification (IPC) and Cooperative Patent Classification (CPC) as well as in US Patent and Trademark Office (USPTO) classification.
+
+After manually comparing the classifications with the official registers, we found that the LLM coped well with the IPC/CPC classifications in particular. However, we encountered difficulties when it came to the USPTO subclasses. The LLM did not seem to be able to correctly recognise the subtleties of the subclasses and assign them accordingly.
+
+To optimise the extraction of the abstracts from the patents, we decided to save the results in a JSON file. This enabled efficient utilisation of the information and also served as a mini-database replacement. We then developed an LLM prompt to compare the saved abstracts with a sample abstract and output the match percentage. Although this approach was promising, we realised that it was slow due to the large amount of data and exceeded OpenAI's token limit.
+
+After realising that the previous method of comparing the abstracts to the LLM led to performance issues, we looked closely at alternative solutions. One promising option was the use of vector databases. We carried out extensive research to find the most suitable solution for our project.
+
+Our first approach was to access the DocumentDB via AWS. Unfortunately, this attempt proved unsuccessful as we encountered unexplained access restrictions that also affected the DocumentDB. This meant that we had to look for another solution to fulfil our requirements.
+
+In the end, we decided on MongoDB ATLAS as an alternative. This service also utilises the AWS infrastructure, which allowed for seamless integration into our existing setup. We set up a vector database in MongoDB ATLAS and developed an API to access this database.
+
+The use of MongoDB ATLAS proved to be extremely successful. The API enabled us to insert, retrieve and delete new content from the vector database and, most importantly, to efficiently compare the stored abstracts to obtain the desired similarity results. In addition, we were able to successfully solve performance issues that we previously had with the LLM. The results from the vector database were more accurate and reliable than the previously used LLM method.
+
+By implementing the vector database, further performance optimisations were achieved, as the processing of the extracted abstracts was also improved. The key benefit was that we no longer had to rely on creating and reading the JSON file. Instead, we were able to write the results directly to the vector database. This led to a significant increase in performance as the data could be accessed faster and more efficiently.
+
+Although we decided to use the vector database as the main method, we still retained the evaluation via the LLM as an additional quality feature. We re-evaluated the best 10 results from the vector database using the LLM method to ensure that the quality of the results continues to meet our standards.
+
+### 2.x Implement new Data Structure (webscrapping)
+
+### 2.x Google Patents
+
+### 2.x User Interface
+
+## 3. Evaluation
+### 3.1 Bugs
+
+### 3.2 Evaulation
+When choosing between LlamaIndex and TruLens, we decided in favour of TruLens. This framework offers a wide range of methods that seemed optimal for our use case in order to evaluate and improve the performance of our application. The following methods were considered:
+
+**Model Selection:** With this method, TruLens selects the most powerful and efficient model for our application. By comparing different models, we can identify those that deliver the best results and best fulfil our requirements.
+
+**Detect and Mitigate Hallucination:** The RAG Triad is used to ensure that our LLM only reacts to the information that comes from the uploaded abstract. This is to ensure that the model does not tend to generate false or misleading information.
+
+**Improve Retrieval Quality:** The aim of this method is to improve the quality of information retrieval for our RAG. Through measurement and analysis, we identify opportunities to improve information retrieval and ensure that our results are accurate and relevant.
+
+**Verify the Summarisation Quality:** This checks that the abstracts generated by the LLM contain the key points of the uploaded abstract. The idea behind this was to ensure the quality of the key words and, if applicable, the classifications.
+
+**Embeddings Distance:** This method measures the similarity or dissimilarity of texts by representing them as points in a mathematical space. The most common measurement methods for this are: Cosine distance, Manhattan distance and Euclidean distance. The aim was to evaluate and assess the quality of the results of the similarity search that were output by the vector database at the end.
+
+Due to time constraints, only the retrieval quality method was used. Five sample patents were generated and run through the system with their respective abstracts in order to obtain meaningful results at the end.
+
+Although only one evaluation method was implemented, it still provides valuable insights into the performance of the system and its results can already be used as a starting point for future developments and improvements.
+
+![Figure X.X](img/rag_results.png)
+
+### 3.3 Imrpovements
+
+### 3.4 Issues
+
+#### Extraxt Abstracts from PDFs
+When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in **Figure X.1**. 
+
+![Figure X.1](img/marked_pdf_correct.png)
+
+But a particularly common problem was that about one in ten PDFs was not formatted correctly in a machine-readable way. This resulted in the text being split in unexpected ways, especially when the abstract was split on a page. For example, the cursor jumped to the left column of the page after the first line of the abstract (**see Figure X.2**; see example at https://patentimages.storage.googleapis.com/a6/11/c7/5583de7c8fb29d/US9060688.pdf), which led to a jumble of the read string. To solve this problem, the LLM was used again to reconstruct the text and remove interfering or incorrect words. The text was then copied manually from the PDF and compared with the reconstructed text using the Levenshtein method. Agreements of regularly over 95% confirmed the accuracy of the LLM reconstruction.
+
+![Figure X.2](img/marked_pdf_incorrect.png)
+
+In some cases, around one in twenty PDFs, languages with unusual characters such as Cyrillic or Japanese/Chinese were also encountered. This posed a challenge as our existing framework methods were not able to interpret these characters correctly.
+
+To solve this problem, it would theoretically have been possible to use appropriate codecs to enable the display of these characters. However, we decided to de-prioritise this problem for the time being. On the one hand, this was due to its comparatively low frequency, which meant that it only occurred in a negligible percentage of PDFs. Secondly, it had no direct impact on the main functionality of our app.
+
+In order to reduce processing time and optimise the performance of our system, we decided to only scan the first page of each PDF. This decision was based on the fact that the abstract is typically found on the first page. By only analysing this first page, we were able to reduce the workload and increase efficiency.
+
+However, we found that in about one in fifty PDFs, the abstract was not positioned on the first page as expected. Instead, it was randomly located on later pages, such as the fifth or even thirteenth page. This posed a challenge, as our assumption that the abstract should always be on the first page proved to be insufficient.
+
+However, since this problem was rare and our time was limited, we decided to put it on the back burner for the time being and focus on more pressing issues. Our priority was to ensure the main functionality of our system and to make sure that it worked flawlessly and efficiently. Unfortunately, in the end there was not enough time to solve this specific problem.
+
+Furthermore, about every fiftieth PDF was also not machine-readable. Again, no solution due to lack of prioritisation and time.
+
+
