@@ -57,7 +57,26 @@ Although we decided to use the vector database as the main method, we still reta
 
 ### 2.x Google Patents
 
+After working for a while with the JSON file we received from the Google Patents API (SerpAPI), we realized during the implementation of the LLM-based similarity check that this JSON file unfortunately has character limit for the abstracts, while the claims and the description of the patents do not appear at all. This is probably due to the fact that SerpAPI outputs exactly this JSON file, which is the basis for the hit page of a Google Patents search query. Only the beginnings of the abstracts are stored in this file, which are also displayed in the preview.
+
+We have therefore decided to implement a web scraping function that uses the patent IDs available in the JSON of SerpAPI to call up the individual pages of the respective patents one after the other and scrape their content. This means that we have the complete abstract, description and claims of each patent.
+
+Another problem that could be solved with this is the long runtime in the step before we load the patents into the vector database. The original plan was to download and read in the patent PDFs so that the similarity search in the patent database would be based on as much information as possible. Thanks to the extensive web scraping of the patents, we were able to simply use this data for embedding in the vector database and thus avoid the time-consuming reading of the PDFs.
+
 ### 2.x User Interface
+
+At the beginning, we decided to create our user interface with the streamlit framework. After some research and a recommendation from our lecturer, we switched to Gradio, as this framework is designed more for AI-based apps.
+
+The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.
+
+The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking. Temporary, we faced the problem, that the result was correctly formatted.
+
+In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, these only serve as a mockup in our final application, as some of the parameters would have been technically feasible.
+
+During development, we have built in a detailed output to be able to call up the respective steps of the program. This was to indicate, for example, whether a retrieval with Google Patents or a connection to the vector database had taken place. However, this greatly disfigured the UI and we decided to put the details in a pop-up window. Ultimately, we came to the realization that this information was trivial for the user and removed it completely.
+
+As a bonus, we wanted to integrate a button with which the results can be formatted and downloaded in a pdf. However, we were confronted with some technical problems, particularly the transfer of the results to the pdf, so that it did not make it into the final version due to time constraints. As an alternative, we have implemented a copy button in the output window so that the results can at least be copied.
+
 
 ## 3. Evaluation
 ### 3.1 Bugs
@@ -85,7 +104,7 @@ Although only one evaluation method was implemented, it still provides valuable 
 
 ### 3.4 Issues
 
-#### Extraxt Abstracts from PDFs
+#### Extract Abstracts from PDFs
 When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in **Figure X.1**. 
 
 ![Figure X.1](img/marked_pdf_correct.png)
