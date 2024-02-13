@@ -104,8 +104,13 @@ As a bonus, we wanted to integrate a button with which the results can be format
 
 ## 3. Evaluation
 ### 3.1 Bugs
+When developing the application, we focused on analyzing English-language abstracts and patents. In principle, OpenAi has no problems automatically translating and analyzing texts with Latin fonts in our application. German and French patents could therefore be translated relatively easily. Nevertheless, it can be assumed that there may be translation problems with some patents, especially those in Slavic or other. 
 
-### 3.2 Evaulation
+In addition, after several test runs with different patents, we found that texts with other fonts, including Chinese and Cyrillic, could not be extracted correctly and therefore no abstract was available, which led to collapses during the process run. Especially the arabic font can confuse the LLM, since it also contains a few english words in latin font. In this case it only took the english words to generate keywords and classifications, so that in the end the quality of these has been too bad, to get a proper output of similar patents.
+
+We tried to minimize these bugs by implementing an examination, which checks, if there has been extracted an abstract or text. On this way, it was possible to pretend to get no abstract. Nevertheless, the problem of the translation or text structure could still come up, when the abstract is extracted and analyzed. 
+
+### 3.2 Evaluation
 When choosing between LlamaIndex and TruLens, we decided in favour of TruLens. This framework offers a wide range of methods that seemed optimal for our use case in order to evaluate and improve the performance of our application. The following methods were considered:
 
 **Model Selection:** With this method, TruLens selects the most powerful and efficient model for our application. By comparing different models, we can identify those that deliver the best results and best fulfil our requirements.
