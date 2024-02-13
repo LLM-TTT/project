@@ -154,7 +154,6 @@ During development, we have built in a detailed output to be able to call up the
 
 As a bonus, we wanted to integrate a button with which the results can be formatted and downloaded in a pdf. However, we were confronted with some technical problems, particularly the transfer of the results to the pdf, so that it did not make it into the final version due to time constraints. As an alternative, we have implemented a copy button in the output window so that the results can at least be copied.
 
-
 ## 3. Evaluation
 ### 3.1 Bugs
 When developing the application, we focused on analyzing English-language abstracts and patents. In principle, OpenAi has no problems automatically translating and analyzing texts with Latin fonts in our application. German and French patents could therefore be translated relatively easily. Nevertheless, it can be assumed that there may be translation problems with some patents, especially those in Slavic or other. 
@@ -198,7 +197,7 @@ In contrast, the patent comparison method produced unfavourable results. The low
 
 These results highlight the importance of carefully analysing and interpreting the evaluation results. Although the automated evaluation methods can provide insights, it is important to critically scrutinise them and perform manual checks where necessary to validate the quality of the results and ensure that the system meets the requirements and expectations.
 
-### 3.3 Imrpovements
+### 3.3 Improvements
 
 We concluded that the application still needs a few improvements. First and foremost is the performance. Basically, if you look at the output of the results via the application in relation to the general patent search, you can see a drastic improvement in the duration of the search. While a classic patent search can take several hours or even days, the application outputs the results within 2 minutes. Nevertheless, some performance improvements could be made to provide a better user experience.
 
