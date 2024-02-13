@@ -1,5 +1,7 @@
 ---
-title: "LLM PatentPete Documentation Group 2" 
+title: "LLM PatentPete Documentation Group 2"
+execute:
+  echo: false 
 format:
   html:
     code-fold: false
@@ -63,7 +65,7 @@ The user interface was originally only supposed to consist of an input and outpu
 
 The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking.
 
-```{html}
+```{python}
   # Formatting final scoring results for user output
   final_scoring_formatted = "Ergebnis:\n\n"
   counter=1
@@ -73,13 +75,13 @@ The output field should contain the result of the research, including the necess
 
   return final_scoring_formatted
 ```
-```{html}
+```{python}
             endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
 
 ```
 
 In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, these only serve as a mockup in our final application, as some of the parameters would have been technically feasible.
-```{html}
+```{python}
 with gr.Column() as main:
             gr.Markdown("<p><h2 style='color:#2563EB'>Input</h2></p>")
 
