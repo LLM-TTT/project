@@ -27,9 +27,60 @@ Patent Pete automates the search and analysis process for patent discovery, maki
 ### 2.1 Basics
 In order to realise our previous plans, we took various steps in the course of our project. Firstly, we devised a series of sample patents and generated corresponding abstracts. The aim was to obtain a wide variety of abstracts to enable a comprehensive analysis. These abstracts were carefully formulated and saved as PDFs.
 
+```python
+# Loading PDF file from user input and extracting first page containing the abstract
+def input_analysis(file, progress=gr.Progress()):
+    if file is not None:
+        #Reading PDF file
+        progress(0.2, desc="Processing file")
+        pdf_reader = PyPDF2.PdfReader(file)
+        # Extracting content
+        content = pdf_reader.pages[0].extract_text()
+        if content == "":
+            raise gr.Error("The file seems to be invalid. Please check your file or try another Pdf!")
+        progress(0.3, desc="Analyzing file")
+    return content
+```
+
+
+
 In the planning phase, we focussed on developing efficient LLM prompts to generate keywords and classifications based on the sample abstracts. For this purpose, we created various sample abstracts and recorded them in an Excel spreadsheet. By defining and evaluating different prompts, we were able to select the one that provided the most search results to enable a comprehensive search.
 
+```python
+# LLM Prompt generating Key Words on base of the PDF Input from User
+def output_keywords(content, n, progress=gr.Progress()):
+    progress(0, desc="Generating Key Words...")
+    keyword_prompt = f"""
+    The following abstract descripes a concept for a novel invention:\
+    ```{content}```\
+    Name {n} key words based on this abstract, that I can use for the search in a patent database. \
+    Optimize the key words to get back more results. Result as python string.
+    """
+
+    response_keywords = get_completion(keyword_prompt)
+
+    return response_keywords
+
+```
+
 During the development of the project, concerns were raised by ZOI about the ability of LLM to correctly generate classifications based on the abstracts. For this reason, we decided to generate five classifications, both as International Patent Classification (IPC) and Cooperative Patent Classification (CPC) as well as in US Patent and Trademark Office (USPTO) classification.
+```python
+# LLM Prompt generating Classifications on base of the PDF Input from User
+def output_classes(content, n, progress=gr.Progress()):
+  progress(0, desc="Generating Classifications...") #Progress Bar from Gradio to visualize the current progress
+  classes_prompt = f"""
+      The following abstract descripes a concept for a novel invention:\
+      ```{content}```\
+      Name {n} CPC classifications based on this abstract, that I can use for the search in a patent database. \
+      Please give me a python string for the codes of the {n} most relevant \
+      CPC classifications to a possible patent. 
+      """
+    
+  response_classes = get_completion(classes_prompt)
+    
+  return response_classes
+
+```
 
 After manually comparing the classifications with the official registers, we found that the LLM coped well with the IPC/CPC classifications in particular. However, we encountered difficulties when it came to the USPTO subclasses. The LLM did not seem to be able to correctly recognise the subtleties of the subclasses and assign them accordingly.
 
@@ -66,37 +117,37 @@ The user interface was originally only supposed to consist of an input and outpu
 The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking.
 
 ```python
-  # Formatting final scoring results for user output
-  final_scoring_formatted = "Ergebnis:\n\n"
-  counter=1
-  for patent_id in final_scoring_patent_ids:
-      final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + "https://patentimages.storage.googleapis.com/" + patent_data[patent_id]["pdf"] + "\n\n"
-      counter+=1
+# Formatting final scoring results for user output
+final_scoring_formatted = "Ergebnis:\n\n"
+counter=1
+for patent_id in final_scoring_patent_ids:
+    final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + "https://patentimages.storage.googleapis.com/" + patent_data[patent_id]["pdf"] + "\n\n"
+    counter+=1
 
-  return final_scoring_formatted
+return final_scoring_formatted
 ```
 ```python
-            endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
+endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
 
 ```
-
 In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, these only serve as a mockup in our final application, as some of the parameters would have been technically feasible.
 ```python
+# gradio interface for our configurations
 with gr.Column() as main:
-            gr.Markdown("<p><h2 style='color:#2563EB'>Input</h2></p>")
+    gr.Markdown("<p><h2 style='color:#2563EB'>Input</h2></p>")
 
-            files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+    files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
 
-            gr.Markdown("<u>Configuration Options</u>")
+    gr.Markdown("<u>Configuration Options</u>")
 
-            gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
+    gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
 
-            slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
-            slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+    slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
+    slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
 
-            gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
+    gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
 
-            button = gr.Button("Submit")
+    button = gr.Button("Submit")
 ```
 
 During development, we have built in a detailed output to be able to call up the respective steps of the program. This was to indicate, for example, whether a retrieval with Google Patents or a connection to the vector database had taken place. However, this greatly disfigured the UI and we decided to put the details in a pop-up window. Ultimately, we came to the realization that this information was trivial for the user and removed it completely.
@@ -148,6 +199,14 @@ In contrast, the patent comparison method produced unfavourable results. The low
 These results highlight the importance of carefully analysing and interpreting the evaluation results. Although the automated evaluation methods can provide insights, it is important to critically scrutinise them and perform manual checks where necessary to validate the quality of the results and ensure that the system meets the requirements and expectations.
 
 ### 3.3 Imrpovements
+
+We concluded that the application still needs a few improvements. First and foremost is the performance. Basically, if you look at the output of the results via the application in relation to the general patent search, you can see a drastic improvement in the duration of the search. While a classic patent search can take several hours or even days, the application outputs the results within 2 minutes. Nevertheless, some performance improvements could be made to provide a better user experience.
+
+For example, the prompts could be improved, especially the prompt for the classifications, which, as explained above, did not perform well in the evaluation. Giving some examples or a more detailed explanation could result in better performance. It would also be possible to combine the prompts for the keywords and the classifications into one prompt. Another  improvement for the performance would be to collect the patents via other API providers or databases.
+Improvements can also be made in the content analysis of patents. An extended analysis of the patents based on the metadata (year of publication, period of validity, place of publication, etc.) or more configurations for the patent research could make the analysis more detailed and thus make it easier to check whether there is a match.
+
+We also would intend to use another framework for our UI, since a good tool to encode a basic Interface for applications with AI, but it's not good for customize the website and creating a user-friendly interface. 
+
 
 ### 3.4 Issues
 
