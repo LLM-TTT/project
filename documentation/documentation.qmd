@@ -1,0 +1,233 @@
+---
+title: "LLM PatentPete Documentation Group 2"
+execute:
+  echo: false 
+format:
+  html:
+    code-fold: false
+jupyter: python3
+---
+
+# Documentation
+
+Just a demo, hello world, whatever etc.
+@demo
+
+
+
+## 1. Concept
+### 1.1 Introduction to Patent Pete
+Patent research can be a critical and time-consuming process for inventors, researchers, and patent professionals. It involves not only identifying relevant patents but also understanding the intricate connections and similarities between them. Patent Pete is designed to address these challenges by leveraging advanced technology to make patent research more accessible, efficient, and insightful. 
+
+Patent Pete automates the search and analysis process for patent discovery, making it ideal for inventors, research and development teams, patent professionals, and academics. It helps identify relevant patents, avoid infringement, guide innovation, conduct prior art searches, and explore technological trends. Patent Pete is an essential tool for anyone involved in patent research or development. 
+
+### 1.2 Concept Overview
+
+## 2. Development
+### 2.1 Basics
+In order to realise our previous plans, we took various steps in the course of our project. Firstly, we devised a series of sample patents and generated corresponding abstracts. The aim was to obtain a wide variety of abstracts to enable a comprehensive analysis. These abstracts were carefully formulated and saved as PDFs.
+
+```python
+# Loading PDF file from user input and extracting first page containing the abstract
+def input_analysis(file, progress=gr.Progress()):
+    if file is not None:
+        #Reading PDF file
+        progress(0.2, desc="Processing file")
+        pdf_reader = PyPDF2.PdfReader(file)
+        # Extracting content
+        content = pdf_reader.pages[0].extract_text()
+        if content == "":
+            raise gr.Error("The file seems to be invalid. Please check your file or try another Pdf!")
+        progress(0.3, desc="Analyzing file")
+    return content
+```
+
+
+
+In the planning phase, we focussed on developing efficient LLM prompts to generate keywords and classifications based on the sample abstracts. For this purpose, we created various sample abstracts and recorded them in an Excel spreadsheet. By defining and evaluating different prompts, we were able to select the one that provided the most search results to enable a comprehensive search.
+
+```python
+# LLM Prompt generating Key Words on base of the PDF Input from User
+def output_keywords(content, n, progress=gr.Progress()):
+    progress(0, desc="Generating Key Words...")
+    keyword_prompt = f"""
+    The following abstract descripes a concept for a novel invention:\
+    ```{content}```\
+    Name {n} key words based on this abstract, that I can use for the search in a patent database. \
+    Optimize the key words to get back more results. Result as python string.
+    """
+
+    response_keywords = get_completion(keyword_prompt)
+
+    return response_keywords
+
+```
+
+During the development of the project, concerns were raised by ZOI about the ability of LLM to correctly generate classifications based on the abstracts. For this reason, we decided to generate five classifications, both as International Patent Classification (IPC) and Cooperative Patent Classification (CPC) as well as in US Patent and Trademark Office (USPTO) classification.
+```python
+# LLM Prompt generating Classifications on base of the PDF Input from User
+def output_classes(content, n, progress=gr.Progress()):
+  progress(0, desc="Generating Classifications...") #Progress Bar from Gradio to visualize the current progress
+  classes_prompt = f"""
+      The following abstract descripes a concept for a novel invention:\
+      ```{content}```\
+      Name {n} CPC classifications based on this abstract, that I can use for the search in a patent database. \
+      Please give me a python string for the codes of the {n} most relevant \
+      CPC classifications to a possible patent. 
+      """
+    
+  response_classes = get_completion(classes_prompt)
+    
+  return response_classes
+
+```
+
+After manually comparing the classifications with the official registers, we found that the LLM coped well with the IPC/CPC classifications in particular. However, we encountered difficulties when it came to the USPTO subclasses. The LLM did not seem to be able to correctly recognise the subtleties of the subclasses and assign them accordingly.
+
+To optimise the extraction of the abstracts from the patents, we decided to save the results in a JSON file. This enabled efficient utilisation of the information and also served as a mini-database replacement. We then developed an LLM prompt to compare the saved abstracts with a sample abstract and output the match percentage. Although this approach was promising, we realised that it was slow due to the large amount of data and exceeded OpenAI's token limit.
+
+After realising that the previous method of comparing the abstracts to the LLM led to performance issues, we looked closely at alternative solutions. One promising option was the use of vector databases. We carried out extensive research to find the most suitable solution for our project.
+
+Our first approach was to access the DocumentDB via AWS. Unfortunately, this attempt proved unsuccessful as we encountered unexplained access restrictions that also affected the DocumentDB. This meant that we had to look for another solution to fulfil our requirements.
+
+In the end, we decided on MongoDB ATLAS as an alternative. This service also utilises the AWS infrastructure, which allowed for seamless integration into our existing setup. We set up a vector database in MongoDB ATLAS and developed an API to access this database.
+
+The use of MongoDB ATLAS proved to be extremely successful. The API enabled us to insert, retrieve and delete new content from the vector database and, most importantly, to efficiently compare the stored abstracts to obtain the desired similarity results. In addition, we were able to successfully solve performance issues that we previously had with the LLM. The results from the vector database were more accurate and reliable than the previously used LLM method.
+
+By implementing the vector database, further performance optimisations were achieved, as the processing of the extracted abstracts was also improved. The key benefit was that we no longer had to rely on creating and reading the JSON file. Instead, we were able to write the results directly to the vector database. This led to a significant increase in performance as the data could be accessed faster and more efficiently.
+
+Although we decided to use the vector database as the main method, we still retained the evaluation via the LLM as an additional quality feature. We re-evaluated the best 10 results from the vector database using the LLM method to ensure that the quality of the results continues to meet our standards.
+
+### 2.x Implement new Data Structure (webscrapping)
+
+### 2.x Google Patents
+
+After working for a while with the JSON file we received from the Google Patents API (SerpAPI), we realized during the implementation of the LLM-based similarity check that this JSON file unfortunately has character limit for the abstracts, while the claims and the description of the patents do not appear at all. This is probably due to the fact that SerpAPI outputs exactly this JSON file, which is the basis for the hit page of a Google Patents search query. Only the beginnings of the abstracts are stored in this file, which are also displayed in the preview.
+
+We have therefore decided to implement a web scraping function that uses the patent IDs available in the JSON of SerpAPI to call up the individual pages of the respective patents one after the other and scrape their content. This means that we have the complete abstract, description and claims of each patent.
+
+Another problem that could be solved with this is the long runtime in the step before we load the patents into the vector database. The original plan was to download and read in the patent PDFs so that the similarity search in the patent database would be based on as much information as possible. Thanks to the extensive web scraping of the patents, we were able to simply use this data for embedding in the vector database and thus avoid the time-consuming reading of the PDFs.
+
+### 2.x User Interface
+
+At the beginning, we decided to create our user interface with the streamlit framework. After some research and a recommendation from our lecturer, we switched to Gradio, as this framework is designed more for AI-based apps.
+
+The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.
+
+The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking.
+
+```python
+# Formatting final scoring results for user output
+final_scoring_formatted = "Ergebnis:\n\n"
+counter=1
+for patent_id in final_scoring_patent_ids:
+    final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + "https://patentimages.storage.googleapis.com/" + patent_data[patent_id]["pdf"] + "\n\n"
+    counter+=1
+
+return final_scoring_formatted
+```
+```python
+endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
+
+```
+In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, these only serve as a mockup in our final application, as some of the parameters would have been technically feasible.
+```python
+# gradio interface for our configurations
+with gr.Column() as main:
+    gr.Markdown("<p><h2 style='color:#2563EB'>Input</h2></p>")
+
+    files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+
+    gr.Markdown("<u>Configuration Options</u>")
+
+    gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
+
+    slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
+    slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+
+    gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
+
+    button = gr.Button("Submit")
+```
+
+During development, we have built in a detailed output to be able to call up the respective steps of the program. This was to indicate, for example, whether a retrieval with Google Patents or a connection to the vector database had taken place. However, this greatly disfigured the UI and we decided to put the details in a pop-up window. Ultimately, we came to the realization that this information was trivial for the user and removed it completely.
+
+As a bonus, we wanted to integrate a button with which the results can be formatted and downloaded in a pdf. However, we were confronted with some technical problems, particularly the transfer of the results to the pdf, so that it did not make it into the final version due to time constraints. As an alternative, we have implemented a copy button in the output window so that the results can at least be copied.
+
+## 3. Evaluation
+### 3.1 Bugs
+When developing the application, we focused on analyzing English-language abstracts and patents. In principle, OpenAi has no problems automatically translating and analyzing texts with Latin fonts in our application. German and French patents could therefore be translated relatively easily. Nevertheless, it can be assumed that there may be translation problems with some patents, especially those in Slavic or other. 
+
+In addition, after several test runs with different patents, we found that texts with other fonts, including Chinese and Cyrillic, could not be extracted correctly and therefore no abstract was available, which led to collapses during the process run. Especially the arabic font can confuse the LLM, since it also contains a few english words in latin font. In this case it only took the english words to generate keywords and classifications, so that in the end the quality of these has been too bad, to get a proper output of similar patents.
+
+We tried to minimize these bugs by implementing an examination, which checks, if there has been extracted an abstract or text. On this way, it was possible to pretend to get no abstract. Nevertheless, the problem of the translation or text structure could still come up, when the abstract is extracted and analyzed. 
+
+### 3.2 Evaluation
+When choosing between LlamaIndex and TruLens, we decided in favour of TruLens. This framework offers a wide range of methods that seemed optimal for our use case in order to evaluate and improve the performance of our application. The following methods were considered:
+
+**Model Selection:** With this method, TruLens selects the most powerful and efficient model for our application. By comparing different models, we can identify those that deliver the best results and best fulfil our requirements.
+
+**Detect and Mitigate Hallucination:** The RAG Triad is used to ensure that our LLM only reacts to the information that comes from the uploaded abstract. This is to ensure that the model does not tend to generate false or misleading information.
+
+**Improve Retrieval Quality:** The aim of this method is to improve the quality of information retrieval for our RAG. Through measurement and analysis, we identify opportunities to improve information retrieval and ensure that our results are accurate and relevant. The aim of this method is to see any hallucinations.
+
+**Verify the Summarisation Quality:** This checks that the abstracts generated by the LLM contain the key points of the uploaded abstract. The idea behind this was to ensure the quality of the key words and, if applicable, the classifications.
+
+**Embeddings Distance:** This method measures the similarity or dissimilarity of texts by representing them as points in a mathematical space. The most common measurement methods for this are: Cosine distance, Manhattan distance and Euclidean distance. The aim was to evaluate and assess the quality of the results of the similarity search that were output by the vector database at the end.
+
+Due to time constraints, only the retrieval quality method was used. Five sample patents were generated and run through the system with their respective abstracts in order to obtain meaningful results at the end.
+
+Although only one evaluation method was implemented, it still provides valuable insights into the performance of the system and its results can already be used as a starting point for future developments and improvements.
+
+![Figure X.X](img/rag_results.png)
+
+Using the retrieval quality method, we evaluated three points in our app:
+
+::: {}
+1. Generation of classifications based on the abstract uploaded by the user
+2. Generation of key words based on the abstract uploaded by the user
+3. The LLM evaluation of five randomly generated abstracts based on the abstract uploaded by the user
+:::
+
+The evluation showed different results. Regarding the generation of classifications, as can be seen in Figure X.X, there was a low score in terms of groundness, suggesting that the evaluation method assumes that the LLM had difficulties in providing sound classifications and may be hallucinating. However, as mentioned at the beginning of this documentation (see chapter Basics), the group had already checked the classifications manually in advance against the official register and found them to be correct. This indicates that the quality of the classifications is indeed acceptable despite the low rating.
+
+The results of the key word generation were satisfactory. In the detailed view in Figure X.X, it can be seen that the RAG does not consistently score 100% for Context Relevance. This could be due to the fact that the LLM has problems prioritising the most important key words in view of the abundance of abstracts. Overall, however, the result is satisfactory.
+
+In contrast, the patent comparison method produced unfavourable results. The low scores suggest that the LLM may not have adequately captured the context of the original abstract and therefore does not provide accurate answers. This suggests that although the LLM evaluation can be considered helpful, it should be used with caution as it may not have the desired reliability. However, it should also be noted, as can be seen in Figure X.X, that there was only one outlier that negatively affected the values. 
+
+These results highlight the importance of carefully analysing and interpreting the evaluation results. Although the automated evaluation methods can provide insights, it is important to critically scrutinise them and perform manual checks where necessary to validate the quality of the results and ensure that the system meets the requirements and expectations.
+
+### 3.3 Improvements
+
+We concluded that the application still needs a few improvements. First and foremost is the performance. Basically, if you look at the output of the results via the application in relation to the general patent search, you can see a drastic improvement in the duration of the search. While a classic patent search can take several hours or even days, the application outputs the results within 2 minutes. Nevertheless, some performance improvements could be made to provide a better user experience.
+
+For example, the prompts could be improved, especially the prompt for the classifications, which, as explained above, did not perform well in the evaluation. Giving some examples or a more detailed explanation could result in better performance. It would also be possible to combine the prompts for the keywords and the classifications into one prompt. Another  improvement for the performance would be to collect the patents via other API providers or databases.
+Improvements can also be made in the content analysis of patents. An extended analysis of the patents based on the metadata (year of publication, period of validity, place of publication, etc.) or more configurations for the patent research could make the analysis more detailed and thus make it easier to check whether there is a match.
+
+We also would intend to use another framework for our UI, since a good tool to encode a basic Interface for applications with AI, but it's not good for customize the website and creating a user-friendly interface. 
+
+
+### 3.4 Issues
+
+#### Extract Abstracts from PDFs
+When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in **Figure X.1**. 
+
+![Figure X.1](img/marked_pdf_correct.png)
+
+But a particularly common problem was that about one in ten PDFs was not formatted correctly in a machine-readable way. This resulted in the text being split in unexpected ways, especially when the abstract was split on a page. For example, the cursor jumped to the left column of the page after the first line of the abstract (**see Figure X.2**; see example at https://patentimages.storage.googleapis.com/a6/11/c7/5583de7c8fb29d/US9060688.pdf), which led to a jumble of the read string. To solve this problem, the LLM was used again to reconstruct the text and remove interfering or incorrect words. The text was then copied manually from the PDF and compared with the reconstructed text using the Levenshtein method. Agreements of regularly over 95% confirmed the accuracy of the LLM reconstruction.
+
+![Figure X.2](img/marked_pdf_incorrect.png)
+
+In some cases, around one in twenty PDFs, languages with unusual characters such as Cyrillic or Japanese/Chinese were also encountered. This posed a challenge as our existing framework methods were not able to interpret these characters correctly.
+
+To solve this problem, it would theoretically have been possible to use appropriate codecs to enable the display of these characters. However, we decided to de-prioritise this problem for the time being. On the one hand, this was due to its comparatively low frequency, which meant that it only occurred in a negligible percentage of PDFs. Secondly, it had no direct impact on the main functionality of our app.
+
+In order to reduce processing time and optimise the performance of our system, we decided to only scan the first page of each PDF. This decision was based on the fact that the abstract is typically found on the first page. By only analysing this first page, we were able to reduce the workload and increase efficiency.
+
+However, we found that in about one in fifty PDFs, the abstract was not positioned on the first page as expected. Instead, it was randomly located on later pages, such as the fifth or even thirteenth page. This posed a challenge, as our assumption that the abstract should always be on the first page proved to be insufficient.
+
+However, since this problem was rare and our time was limited, we decided to put it on the back burner for the time being and focus on more pressing issues. Our priority was to ensure the main functionality of our system and to make sure that it worked flawlessly and efficiently. Unfortunately, in the end there was not enough time to solve this specific problem.
+
+Furthermore, about every fiftieth PDF was also not machine-readable. Again, no solution due to lack of prioritisation and time.
+
+
