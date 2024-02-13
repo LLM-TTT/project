@@ -162,8 +162,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Our first approach was to access the DocumentDB via AWS. Unfortunately, this attempt proved unsuccessful as we encountered unexplained access restrictions that also affected the DocumentDB. This meant that we had to look for another solution to fulfil our requirements.</p>
 <p>In the end, we decided on MongoDB ATLAS as an alternative. This service also utilises the AWS infrastructure, which allowed for seamless integration into our existing setup. We set up a vector database in MongoDB ATLAS and developed an API to access this database.</p>
 <p>The use of MongoDB ATLAS proved to be extremely successful. The API enabled us to insert, retrieve and delete new content from the vector database and, most importantly, to efficiently compare the stored abstracts to obtain the desired similarity results. In addition, we were able to successfully solve performance issues that we previously had with the LLM. The results from the vector database were more accurate and reliable than the previously used LLM method.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>database <span class="op">=</span> get_database_connection()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Clearing db before adding new data, to avoid any distortion of results</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>clear_db(database)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ATLAS_VECTOR_SEARCH_INDEX_NAME <span class="op">=</span> <span class="st">"vector_index"</span> <span class="co">#intitalize vector similarity search      </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># insert the documents in MongoDB Atlas with their embedding</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>vector_search <span class="op">=</span> MongoDBAtlasVectorSearch.from_documents(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    documents<span class="op">=</span>patent_list,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    embedding<span class="op">=</span>OpenAIEmbeddings(disallowed_special<span class="op">=</span>()), <span class="co">#use openAI embeddings method</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    collection<span class="op">=</span>database,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    index_name<span class="op">=</span>ATLAS_VECTOR_SEARCH_INDEX_NAME,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># waiting for the db to save</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Performing a similarity search with Score between the embedding of the query and the embeddings of the documents</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>progress(<span class="fl">0.9</span>, desc<span class="op">=</span><span class="st">"Compare the patents"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="bu">str</span>(content)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> vector_search.similarity_search_with_score(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>query,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    k<span class="op">=</span><span class="dv">10</span>, <span class="co">#Output for the top 10 results</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>By implementing the vector database, further performance optimisations were achieved, as the processing of the extracted abstracts was also improved. The key benefit was that we no longer had to rely on creating and reading the JSON file. Instead, we were able to write the results directly to the vector database. This led to a significant increase in performance as the data could be accessed faster and more efficiently.</p>
 <p>Although we decided to use the vector database as the main method, we still retained the evaluation via the LLM as an additional quality feature. We re-evaluated the best 10 results from the vector database using the LLM method to ensure that the quality of the results continues to meet our standards.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatting vector search result for further usage</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>vector_scoring <span class="op">=</span> {}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> result <span class="kw">in</span> results:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    vector_scoring[result[<span class="dv">0</span>].metadata[<span class="st">'patent_id'</span>]] <span class="op">=</span> result[<span class="dv">1</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Building LLM similarity scoring prompt</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>comparison_prompt <span class="op">=</span> <span class="ss">f"""The following texts are abstracts from patent specifications. Your task is to compare the "Testing Abstract" to all the others. </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">It is important that you focus on comparing the concepts that the abstracts describe, not the way they are written. </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">Rank the remaining abstracts on how well they match with the Testing Abstract by giving them a rating from 0 to 10 points. </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea.</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value.</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ss">I want to convert your output string to an actual dictionary, so make sure the formatting is right.</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ss">Testing Abstract: "</span><span class="sc">{</span>content<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding patent abstracts to the prompt</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> patent_id <span class="kw">in</span> vector_scoring.keys():</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if there is an abstract for the patent</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> patent_id <span class="kw">in</span> patent_data <span class="kw">and</span> patent_data[patent_id][<span class="st">"abstract"</span>]:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        comparison_prompt <span class="op">+=</span> <span class="ss">f'</span><span class="sc">{</span>patent_id<span class="sc">}</span><span class="ss">: "</span><span class="sc">{</span>patent_data[patent_id][<span class="st">"abstract"</span>]<span class="sc">}</span><span class="ss">"</span><span class="ch">\n</span><span class="ss">'</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> get_completion(comparison_prompt)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatting LLM output</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>llm_scoring_raw <span class="op">=</span> <span class="bu">eval</span>(response.replace(<span class="st">"comparison = "</span>,<span class="st">""</span>))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating final scoring results (combining vector scoring with llm scoring)</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transform_ratings(ratings, new_min<span class="op">=</span><span class="dv">0</span>, new_max<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the smallest and largest value in the original dictionary</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    old_min, old_max <span class="op">=</span> <span class="bu">min</span>(ratings.values()), <span class="bu">max</span>(ratings.values())</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    transformed_ratings <span class="op">=</span> {}</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> ratings.items():</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply the transformation with dynamic old and new ranges</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        transformed_value <span class="op">=</span> ((value <span class="op">-</span> old_min) <span class="op">/</span> (old_max <span class="op">-</span> old_min)) <span class="op">*</span> (new_max <span class="op">-</span> new_min) <span class="op">+</span> new_min</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        transformed_ratings[key] <span class="op">=</span> transformed_value</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> transformed_ratings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="x-implement-new-data-structure-webscrapping" class="level3">
 <h3 class="anchored" data-anchor-id="x-implement-new-data-structure-webscrapping">2.x Implement new Data Structure (webscrapping)</h3>
@@ -171,54 +232,182 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="x-google-patents" class="level3">
 <h3 class="anchored" data-anchor-id="x-google-patents">2.x Google Patents</h3>
 <p>After working for a while with the JSON file we received from the Google Patents API (SerpAPI), we realized during the implementation of the LLM-based similarity check that this JSON file unfortunately has character limit for the abstracts, while the claims and the description of the patents do not appear at all. This is probably due to the fact that SerpAPI outputs exactly this JSON file, which is the basis for the hit page of a Google Patents search query. Only the beginnings of the abstracts are stored in this file, which are also displayed in the preview.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initializing base vars for the following loop</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>progress(<span class="fl">0.5</span>, desc<span class="op">=</span><span class="st">"Researching patents"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>patent_api_key <span class="op">=</span> os.environ[<span class="st">'GOOGLE_PATENT_API_KEY'</span>] <span class="co">#load secret key for the google patent api</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>patent_base_url <span class="op">=</span> <span class="st">"https://patentimages.storage.googleapis.com/"</span> <span class="co">#just to complete the url</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>patent_data <span class="op">=</span> {}</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop for multiple Google Patents API calls with Key Words</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> keywords_list:</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    openai_response <span class="op">=</span> i <span class="co">#Search String for Google Patents</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    url_base <span class="op">=</span> <span class="st">"https://serpapi.com/search.html?engine=google_patents"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> openai_response.replace(<span class="st">" "</span>, <span class="st">"+"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> url_base <span class="op">+</span> <span class="st">"&amp;q="</span> <span class="op">+</span> query <span class="op">+</span> <span class="st">"&amp;language=ENGLISH&amp;api_key="</span> <span class="op">+</span> patent_api_key</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># API call Google Patents</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if API call was successful</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> response.json() <span class="co">#write json-answer in var</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> cluster <span class="kw">in</span> data[<span class="st">"results"</span>][<span class="st">"cluster"</span>]:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> result <span class="kw">in</span> cluster[<span class="st">"result"</span>]:</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                <span class="bu">id</span> <span class="op">=</span> result[<span class="st">"patent"</span>][<span class="st">"publication_number"</span>]</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">id</span> <span class="kw">not</span> <span class="kw">in</span> patent_data.keys():</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                    patent_data[<span class="bu">id</span>] <span class="op">=</span> {</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"pdf"</span>: result[<span class="st">"patent"</span>][<span class="st">"pdf"</span>],</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                    }</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error with API request: Status code </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Parsing API answer .json and adding the patent ID to the patent_data dict, avoiding duplicates</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cluster <span class="kw">in</span> data[<span class="st">"results"</span>][<span class="st">"cluster"</span>]:</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> result <span class="kw">in</span> cluster[<span class="st">"result"</span>]:</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        patent_id <span class="op">=</span> result[<span class="st">"patent"</span>][<span class="st">"publication_number"</span>]</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> patent_id <span class="kw">not</span> <span class="kw">in</span> patent_data.keys():</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            patent_data[patent_id] <span class="op">=</span> {</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                <span class="st">"pdf"</span>: result[<span class="st">"patent"</span>][<span class="st">"pdf"</span>],</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>            }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We have therefore decided to implement a web scraping function that uses the patent IDs available in the JSON of SerpAPI to call up the individual pages of the respective patents one after the other and scrape their content. This means that we have the complete abstract, description and claims of each patent.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scraping complete patent data (title, abstract, description, claims)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>progress(<span class="fl">0.6</span>, desc<span class="op">=</span><span class="st">"Collecting patent data"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> patent_id <span class="kw">in</span> patent_data.keys():</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generating Google Patent links for each ID</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="st">"https://patents.google.com/patent/"</span> <span class="op">+</span> patent_id <span class="op">+</span> <span class="st">"/en"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    html_content <span class="op">=</span> response.content</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> bs(html_content, <span class="st">'html.parser'</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scraping Title</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    title_span <span class="op">=</span> soup.find(<span class="st">'span'</span>, itemprop<span class="op">=</span><span class="st">'title'</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> title_span <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> title_span.get_text()</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removing weird ending of title</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        to_remove <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> title.replace(to_remove, <span class="st">""</span>).strip()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scraping Abstract</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    abstract_div <span class="op">=</span> soup.find(<span class="st">'div'</span>, class_<span class="op">=</span><span class="st">'abstract'</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> abstract_div <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        abstract <span class="op">=</span> abstract_div.get_text()</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        abstract <span class="op">=</span> <span class="va">False</span> </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scraping Description</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    description_section <span class="op">=</span> soup.find(<span class="st">'section'</span>, itemprop<span class="op">=</span><span class="st">'description'</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> description_section:</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removing H2 from section</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        h2_tag <span class="op">=</span> description_section.find(<span class="st">'h2'</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> h2_tag:</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>            h2_tag.decompose()</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removing all 'notranslate' class items</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> notranslate_tag <span class="kw">in</span> description_section.find_all(class_<span class="op">=</span><span class="st">'notranslate'</span>):</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            notranslate_tag.decompose()</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removing all &lt;aside&gt; elements</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> aside_tag <span class="kw">in</span> description_section.find_all(<span class="st">'aside'</span>):</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            aside_tag.decompose()</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extracting and joining the text</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="st">""</span>.join(description_section.stripped_strings)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> description <span class="op">==</span> <span class="st">""</span>:</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>            description <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>        description <span class="op">=</span> <span class="va">False</span>   </span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scraping Claims</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    description_section <span class="op">=</span> soup.find(<span class="st">'section'</span>, itemprop<span class="op">=</span><span class="st">'claims'</span>)</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> description_section:</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removing H2 from section</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>        h2_tag <span class="op">=</span> description_section.find(<span class="st">'h2'</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> h2_tag:</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>            h2_tag.decompose()</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removing all 'notranslate' class items</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> notranslate_tag <span class="kw">in</span> description_section.find_all(class_<span class="op">=</span><span class="st">'notranslate'</span>):</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>            notranslate_tag.decompose()</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removing all &lt;aside&gt; elements</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> aside_tag <span class="kw">in</span> description_section.find_all(<span class="st">'aside'</span>):</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>            aside_tag.decompose()</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extracting and joining the text</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        claims <span class="op">=</span> <span class="st">""</span>.join(description_section.stripped_strings)</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> claims <span class="op">==</span> <span class="st">""</span>:</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>            claims <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>        claims <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adding scraped content do patent_data dict</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    patent_data[patent_id].update({</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>: title,</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>        <span class="st">"abstract"</span>: abstract,</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>        <span class="st">"description"</span>: description,</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>        <span class="st">"claims"</span>: claims</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another problem that could be solved with this is the long runtime in the step before we load the patents into the vector database. The original plan was to download and read in the patent PDFs so that the similarity search in the patent database would be based on as much information as possible. Thanks to the extensive web scraping of the patents, we were able to simply use this data for embedding in the vector database and thus avoid the time-consuming reading of the PDFs.</p>
 </section>
 <section id="x-user-interface" class="level3">
 <h3 class="anchored" data-anchor-id="x-user-interface">2.x User Interface</h3>
 <p>At the beginning, we decided to create our user interface with the streamlit framework. After some research and a recommendation from our lecturer, we switched to Gradio, as this framework is designed more for AI-based apps.</p>
 <p>The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading PDF file from user input and extracting first page containing the abstract</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> input_analysis(<span class="bu">file</span>, progress<span class="op">=</span>gr.Progress()):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">file</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Reading PDF file</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        progress(<span class="fl">0.2</span>, desc<span class="op">=</span><span class="st">"Processing file"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        pdf_reader <span class="op">=</span> PyPDF2.PdfReader(<span class="bu">file</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extracting content</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        content <span class="op">=</span> pdf_reader.pages[<span class="dv">0</span>].extract_text()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> content <span class="op">==</span> <span class="st">""</span>:</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> gr.Error(<span class="st">"The file seems to be invalid. Please check your file or try another Pdf!"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        progress(<span class="fl">0.3</span>, desc<span class="op">=</span><span class="st">"Analyzing file"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>files<span class="op">=</span> gr.File(file_types<span class="op">=</span>[<span class="st">'.pdf'</span>], label<span class="op">=</span><span class="st">"Upload your pdf here."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatting final scoring results for user output</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>final_scoring_formatted <span class="op">=</span> <span class="st">"Ergebnis:</span><span class="ch">\n\n</span><span class="st">"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>counter<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> patent_id <span class="kw">in</span> final_scoring_patent_ids:</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    final_scoring_formatted <span class="op">+=</span> <span class="st">"#"</span> <span class="op">+</span> <span class="bu">str</span>(counter) <span class="op">+</span> <span class="st">": "</span> <span class="op">+</span> patent_data[patent_id][<span class="st">"title"</span>] <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"https://patentimages.storage.googleapis.com/"</span> <span class="op">+</span> patent_data[patent_id][<span class="st">"pdf"</span>] <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    counter<span class="op">+=</span><span class="dv">1</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> final_scoring_formatted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>endresult <span class="op">=</span> gr.Textbox(label<span class="op">=</span><span class="st">"End Result"</span>, value<span class="op">=</span><span class="st">"None"</span>, show_copy_button<span class="op">=</span><span class="va">True</span>) <span class="co">#New Value "Top 5 PDFs ...."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatting final scoring results for user output</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>final_scoring_formatted <span class="op">=</span> <span class="st">"Ergebnis:</span><span class="ch">\n\n</span><span class="st">"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>counter<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> patent_id <span class="kw">in</span> final_scoring_patent_ids:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    final_scoring_formatted <span class="op">+=</span> <span class="st">"#"</span> <span class="op">+</span> <span class="bu">str</span>(counter) <span class="op">+</span> <span class="st">": "</span> <span class="op">+</span> patent_data[patent_id][<span class="st">"title"</span>] <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"https://patentimages.storage.googleapis.com/"</span> <span class="op">+</span> patent_data[patent_id][<span class="st">"pdf"</span>] <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    counter<span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> final_scoring_formatted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>endresult <span class="op">=</span> gr.Textbox(label<span class="op">=</span><span class="st">"End Result"</span>, value<span class="op">=</span><span class="st">"None"</span>, show_copy_button<span class="op">=</span><span class="va">True</span>) <span class="co">#New Value "Top 5 PDFs ...."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, these only serve as a mockup in our final application, as some of the parameters would have been technically feasible.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gradio interface for our configurations</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> gr.Column() <span class="im">as</span> main:</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    gr.Markdown(<span class="st">"&lt;p&gt;&lt;h2 style='color:#2563EB'&gt;Input&lt;/h2&gt;&lt;/p&gt;"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    files<span class="op">=</span> gr.File(file_types<span class="op">=</span>[<span class="st">'.pdf'</span>], label<span class="op">=</span><span class="st">"Upload your pdf here."</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    gr.Markdown(<span class="st">"&lt;u&gt;Configuration Options&lt;/u&gt;"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    gr.Radio([<span class="st">"International Patent Classification (IPC)"</span>, <span class="st">"United States Patent and Trademark Office (USPTO)"</span>, <span class="st">"Cooperative Patent Classification (CPC)"</span>, <span class="st">"Deutsche Klassifizierung (DEKLA)"</span>], label<span class="op">=</span><span class="st">"Type of Classification"</span>, value<span class="op">=</span><span class="st">"Cooperative Patent Classification (CPC)"</span>),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    slide_keywords <span class="op">=</span> gr.Slider(<span class="dv">1</span>, <span class="dv">5</span>, step<span class="op">=</span><span class="dv">1</span>, value<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Number of Key Words"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    slide_classes <span class="op">=</span> gr.Slider(<span class="dv">1</span>, <span class="dv">5</span>, step<span class="op">=</span><span class="dv">1</span>, value<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Number of Classifications"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    gr.CheckboxGroup([<span class="st">"Google Patents"</span>, <span class="st">"Espacenet"</span>, <span class="st">"European Patent Office (EPO)"</span>, <span class="st">"DEPATISnet"</span>], label<span class="op">=</span><span class="st">"Databases"</span>, info<span class="op">=</span><span class="st">"Which databases should be searched?"</span>, value<span class="op">=</span><span class="st">"Google Patents"</span>),</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> gr.Button(<span class="st">"Submit"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gradio interface for our configurations</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> gr.Column() <span class="im">as</span> main:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    gr.Markdown(<span class="st">"&lt;p&gt;&lt;h2 style='color:#2563EB'&gt;Input&lt;/h2&gt;&lt;/p&gt;"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    files<span class="op">=</span> gr.File(file_types<span class="op">=</span>[<span class="st">'.pdf'</span>], label<span class="op">=</span><span class="st">"Upload your pdf here."</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    gr.Markdown(<span class="st">"&lt;u&gt;Configuration Options&lt;/u&gt;"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    gr.Radio([<span class="st">"International Patent Classification (IPC)"</span>, <span class="st">"United States Patent and Trademark Office (USPTO)"</span>, <span class="st">"Cooperative Patent Classification (CPC)"</span>, <span class="st">"Deutsche Klassifizierung (DEKLA)"</span>], label<span class="op">=</span><span class="st">"Type of Classification"</span>, value<span class="op">=</span><span class="st">"Cooperative Patent Classification (CPC)"</span>),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    slide_keywords <span class="op">=</span> gr.Slider(<span class="dv">1</span>, <span class="dv">5</span>, step<span class="op">=</span><span class="dv">1</span>, value<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Number of Key Words"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    slide_classes <span class="op">=</span> gr.Slider(<span class="dv">1</span>, <span class="dv">5</span>, step<span class="op">=</span><span class="dv">1</span>, value<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Number of Classifications"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    gr.CheckboxGroup([<span class="st">"Google Patents"</span>, <span class="st">"Espacenet"</span>, <span class="st">"European Patent Office (EPO)"</span>, <span class="st">"DEPATISnet"</span>], label<span class="op">=</span><span class="st">"Databases"</span>, info<span class="op">=</span><span class="st">"Which databases should be searched?"</span>, value<span class="op">=</span><span class="st">"Google Patents"</span>),</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> gr.Button(<span class="st">"Submit"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>During development, we have built in a detailed output to be able to call up the respective steps of the program. This was to indicate, for example, whether a retrieval with Google Patents or a connection to the vector database had taken place. However, this greatly disfigured the UI and we decided to put the details in a pop-up window. Ultimately, we came to the realization that this information was trivial for the user and removed it completely.</p>
 <p>As a bonus, we wanted to integrate a button with which the results can be formatted and downloaded in a pdf. However, we were confronted with some technical problems, particularly the transfer of the results to the pdf, so that it did not make it into the final version due to time constraints. As an alternative, we have implemented a copy button in the output window so that the results can at least be copied.</p>
 </section>
 </section>
 <section id="evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="evaluation">3. Evaluation</h2>
-<section id="bugs" class="level3">
-<h3 class="anchored" data-anchor-id="bugs">3.1 Bugs</h3>
-<p>When developing the application, we focused on analyzing English-language abstracts and patents. In principle, OpenAi has no problems automatically translating and analyzing texts with Latin fonts in our application. German and French patents could therefore be translated relatively easily. Nevertheless, it can be assumed that there may be translation problems with some patents, especially those in Slavic or other.</p>
-<p>In addition, after several test runs with different patents, we found that texts with other fonts, including Chinese and Cyrillic, could not be extracted correctly and therefore no abstract was available, which led to collapses during the process run. Especially the arabic font can confuse the LLM, since it also contains a few english words in latin font. In this case it only took the english words to generate keywords and classifications, so that in the end the quality of these has been too bad, to get a proper output of similar patents.</p>
-<p>We tried to minimize these bugs by implementing an examination, which checks, if there has been extracted an abstract or text. On this way, it was possible to pretend to get no abstract. Nevertheless, the problem of the translation or text structure could still come up, when the abstract is extracted and analyzed.</p>
-</section>
 <section id="evaluation-1" class="level3">
-<h3 class="anchored" data-anchor-id="evaluation-1">3.2 Evaluation</h3>
+<h3 class="anchored" data-anchor-id="evaluation-1">3.1 Evaluation</h3>
 <p>When choosing between LlamaIndex and TruLens, we decided in favour of TruLens. This framework offers a wide range of methods that seemed optimal for our use case in order to evaluate and improve the performance of our application. The following methods were considered:</p>
 <p><strong>Model Selection:</strong> With this method, TruLens selects the most powerful and efficient model for our application. By comparing different models, we can identify those that deliver the best results and best fulfil our requirements.</p>
 <p><strong>Detect and Mitigate Hallucination:</strong> The RAG Triad is used to ensure that our LLM only reacts to the information that comes from the uploaded abstract. This is to ensure that the model does not tend to generate false or misleading information.</p>
@@ -247,13 +436,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These results highlight the importance of carefully analysing and interpreting the evaluation results. Although the automated evaluation methods can provide insights, it is important to critically scrutinise them and perform manual checks where necessary to validate the quality of the results and ensure that the system meets the requirements and expectations.</p>
 </section>
 <section id="improvements" class="level3">
-<h3 class="anchored" data-anchor-id="improvements">3.3 Improvements</h3>
+<h3 class="anchored" data-anchor-id="improvements">3.2 Improvements</h3>
 <p>We concluded that the application still needs a few improvements. First and foremost is the performance. Basically, if you look at the output of the results via the application in relation to the general patent search, you can see a drastic improvement in the duration of the search. While a classic patent search can take several hours or even days, the application outputs the results within 2 minutes. Nevertheless, some performance improvements could be made to provide a better user experience.</p>
 <p>For example, the prompts could be improved, especially the prompt for the classifications, which, as explained above, did not perform well in the evaluation. Giving some examples or a more detailed explanation could result in better performance. It would also be possible to combine the prompts for the keywords and the classifications into one prompt. Another improvement for the performance would be to collect the patents via other API providers or databases. Improvements can also be made in the content analysis of patents. An extended analysis of the patents based on the metadata (year of publication, period of validity, place of publication, etc.) or more configurations for the patent research could make the analysis more detailed and thus make it easier to check whether there is a match.</p>
 <p>We also would intend to use another framework for our UI, since a good tool to encode a basic Interface for applications with AI, but it’s not good for customize the website and creating a user-friendly interface.</p>
 </section>
 <section id="issues" class="level3">
-<h3 class="anchored" data-anchor-id="issues">3.4 Issues</h3>
+<h3 class="anchored" data-anchor-id="issues">3.3 Issues</h3>
+<section id="abstracts-in-other-languages-or-fonts" class="level4">
+<h4 class="anchored" data-anchor-id="abstracts-in-other-languages-or-fonts">Abstracts in other languages or fonts</h4>
+<p>When developing the application, we focused on analyzing English-language abstracts and patents. In principle, OpenAi has no problems automatically translating and analyzing texts with Latin fonts in our application. German and French patents could therefore be translated relatively easily. Nevertheless, it can be assumed that there may be translation problems with some patents, especially those in Slavic or other.</p>
+<p>In addition, after several test runs with different patents, we found that texts with other fonts, including Chinese and Cyrillic, could not be extracted correctly and therefore no abstract was available, which led to collapses during the process run. Especially the arabic font can confuse the LLM, since it also contains a few english words in latin font. In this case it only took the english words to generate keywords and classifications, so that in the end the quality of these has been too bad, to get a proper output of similar patents.</p>
+<p>We tried to minimize these bugs by implementing an examination, which checks, if there has been extracted an abstract or text. On this way, it was possible to pretend to get no abstract. Nevertheless, the problem of the translation or text structure could still come up, when the abstract is extracted and analyzed.</p>
+</section>
 <section id="extract-abstracts-from-pdfs" class="level4">
 <h4 class="anchored" data-anchor-id="extract-abstracts-from-pdfs">Extract Abstracts from PDFs</h4>
 <p>When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in <strong>Figure X.1</strong>.</p>

@@ -94,9 +94,76 @@ In the end, we decided on MongoDB ATLAS as an alternative. This service also uti
 
 The use of MongoDB ATLAS proved to be extremely successful. The API enabled us to insert, retrieve and delete new content from the vector database and, most importantly, to efficiently compare the stored abstracts to obtain the desired similarity results. In addition, we were able to successfully solve performance issues that we previously had with the LLM. The results from the vector database were more accurate and reliable than the previously used LLM method.
 
+```python
+database = get_database_connection()
+# Clearing db before adding new data, to avoid any distortion of results
+clear_db(database)
+ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index" #intitalize vector similarity search      
+
+# insert the documents in MongoDB Atlas with their embedding
+vector_search = MongoDBAtlasVectorSearch.from_documents(
+    documents=patent_list,
+    embedding=OpenAIEmbeddings(disallowed_special=()), #use openAI embeddings method
+    collection=database,
+    index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
+)
+
+# waiting for the db to save
+time.sleep(5)
+
+# Performing a similarity search with Score between the embedding of the query and the embeddings of the documents
+progress(0.9, desc="Compare the patents")
+query = str(content)
+
+results = vector_search.similarity_search_with_score(
+    query=query,
+    k=10, #Output for the top 10 results
+)
+```
+
 By implementing the vector database, further performance optimisations were achieved, as the processing of the extracted abstracts was also improved. The key benefit was that we no longer had to rely on creating and reading the JSON file. Instead, we were able to write the results directly to the vector database. This led to a significant increase in performance as the data could be accessed faster and more efficiently.
 
 Although we decided to use the vector database as the main method, we still retained the evaluation via the LLM as an additional quality feature. We re-evaluated the best 10 results from the vector database using the LLM method to ensure that the quality of the results continues to meet our standards.
+
+```python
+# Formatting vector search result for further usage
+vector_scoring = {}
+for result in results:
+    vector_scoring[result[0].metadata['patent_id']] = result[1]
+
+# Building LLM similarity scoring prompt
+comparison_prompt = f"""The following texts are abstracts from patent specifications. Your task is to compare the "Testing Abstract" to all the others. 
+It is important that you focus on comparing the concepts that the abstracts describe, not the way they are written. 
+Rank the remaining abstracts on how well they match with the Testing Abstract by giving them a rating from 0 to 10 points. 
+0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea.
+Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value.
+I want to convert your output string to an actual dictionary, so make sure the formatting is right.
+
+Testing Abstract: "{content}"
+"""
+
+# Adding patent abstracts to the prompt
+for patent_id in vector_scoring.keys():
+    # Check if there is an abstract for the patent
+    if patent_id in patent_data and patent_data[patent_id]["abstract"]:
+        comparison_prompt += f'{patent_id}: "{patent_data[patent_id]["abstract"]}"\n'
+
+response = get_completion(comparison_prompt)
+
+# Formatting LLM output
+llm_scoring_raw = eval(response.replace("comparison = ",""))
+
+# Calculating final scoring results (combining vector scoring with llm scoring)
+def transform_ratings(ratings, new_min=0, new_max=10):
+    # Determine the smallest and largest value in the original dictionary
+    old_min, old_max = min(ratings.values()), max(ratings.values())
+    transformed_ratings = {}
+    for key, value in ratings.items():
+        # Apply the transformation with dynamic old and new ranges
+        transformed_value = ((value - old_min) / (old_max - old_min)) * (new_max - new_min) + new_min
+        transformed_ratings[key] = transformed_value
+    return transformed_ratings
+```
 
 ### 2.x Implement new Data Structure (webscrapping)
 
@@ -104,7 +171,134 @@ Although we decided to use the vector database as the main method, we still reta
 
 After working for a while with the JSON file we received from the Google Patents API (SerpAPI), we realized during the implementation of the LLM-based similarity check that this JSON file unfortunately has character limit for the abstracts, while the claims and the description of the patents do not appear at all. This is probably due to the fact that SerpAPI outputs exactly this JSON file, which is the basis for the hit page of a Google Patents search query. Only the beginnings of the abstracts are stored in this file, which are also displayed in the preview.
 
+```python
+# initializing base vars for the following loop
+progress(0.5, desc="Researching patents")
+patent_api_key = os.environ['GOOGLE_PATENT_API_KEY'] #load secret key for the google patent api
+count = 0
+patent_base_url = "https://patentimages.storage.googleapis.com/" #just to complete the url
+patent_data = {}
+
+# Loop for multiple Google Patents API calls with Key Words
+for i in keywords_list:
+    openai_response = i #Search String for Google Patents
+    url_base = "https://serpapi.com/search.html?engine=google_patents"
+    query = openai_response.replace(" ", "+")
+    url = url_base + "&q=" + query + "&language=ENGLISH&api_key=" + patent_api_key
+
+    # API call Google Patents
+    response = requests.get(url)
+
+    # Check if API call was successful
+    if response.status_code == 200:
+        data = response.json() #write json-answer in var
+        for cluster in data["results"]["cluster"]:
+            for result in cluster["result"]:
+                id = result["patent"]["publication_number"]
+                if id not in patent_data.keys():
+                    patent_data[id] = {
+                        "pdf": result["patent"]["pdf"],
+                    }
+    else:
+        print(f"Error with API request: Status code {response.status_code}")
+
+# Parsing API answer .json and adding the patent ID to the patent_data dict, avoiding duplicates
+for cluster in data["results"]["cluster"]:
+    for result in cluster["result"]:
+        patent_id = result["patent"]["publication_number"]
+        if patent_id not in patent_data.keys():
+            patent_data[patent_id] = {
+                "pdf": result["patent"]["pdf"],
+            }
+```
+
 We have therefore decided to implement a web scraping function that uses the patent IDs available in the JSON of SerpAPI to call up the individual pages of the respective patents one after the other and scrape their content. This means that we have the complete abstract, description and claims of each patent.
+
+```python
+# Scraping complete patent data (title, abstract, description, claims)
+progress(0.6, desc="Collecting patent data")
+for patent_id in patent_data.keys():
+
+    # generating Google Patent links for each ID
+    url = "https://patents.google.com/patent/" + patent_id + "/en"
+
+    response = requests.get(url)
+    html_content = response.content
+    soup = bs(html_content, 'html.parser')
+
+    # Scraping Title
+    title_span = soup.find('span', itemprop='title')
+    if title_span is not None:
+        title = title_span.get_text()
+
+        # Removing weird ending of title
+        to_remove = "\n"
+        title = title.replace(to_remove, "").strip()
+    else:
+        title = False
+
+    # Scraping Abstract
+    abstract_div = soup.find('div', class_='abstract')
+    if abstract_div is not None:
+        abstract = abstract_div.get_text()
+    else:
+        abstract = False 
+
+    # Scraping Description
+    description_section = soup.find('section', itemprop='description')
+    if description_section:
+
+        # Removing H2 from section
+        h2_tag = description_section.find('h2')
+        if h2_tag:
+            h2_tag.decompose()
+            
+        # Removing all 'notranslate' class items
+        for notranslate_tag in description_section.find_all(class_='notranslate'):
+            notranslate_tag.decompose()
+            
+        # Removing all <aside> elements
+        for aside_tag in description_section.find_all('aside'):
+            aside_tag.decompose()
+
+        # Extracting and joining the text
+        description = "".join(description_section.stripped_strings)
+        if description == "":
+            description = False
+    else:
+        description = False   
+
+    # Scraping Claims
+    description_section = soup.find('section', itemprop='claims')
+    if description_section:
+        # Removing H2 from section
+        h2_tag = description_section.find('h2')
+        if h2_tag:
+            h2_tag.decompose()
+            
+        # Removing all 'notranslate' class items
+        for notranslate_tag in description_section.find_all(class_='notranslate'):
+            notranslate_tag.decompose()
+            
+        # Removing all <aside> elements
+        for aside_tag in description_section.find_all('aside'):
+            aside_tag.decompose()
+
+        # Extracting and joining the text
+        claims = "".join(description_section.stripped_strings)
+        if claims == "":
+            claims = False
+    else:
+        claims = False
+    
+    # Adding scraped content do patent_data dict
+    patent_data[patent_id].update({
+        "title": title,
+        "abstract": abstract,
+        "description": description,
+        "claims": claims
+    })
+```
 
 Another problem that could be solved with this is the long runtime in the step before we load the patents into the vector database. The original plan was to download and read in the patent PDFs so that the similarity search in the patent database would be based on as much information as possible. Thanks to the extensive web scraping of the patents, we were able to simply use this data for embedding in the vector database and thus avoid the time-consuming reading of the PDFs.
 
@@ -113,6 +307,26 @@ Another problem that could be solved with this is the long runtime in the step b
 At the beginning, we decided to create our user interface with the streamlit framework. After some research and a recommendation from our lecturer, we switched to Gradio, as this framework is designed more for AI-based apps.
 
 The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.
+
+```python
+# Loading PDF file from user input and extracting first page containing the abstract
+def input_analysis(file, progress=gr.Progress()):
+    if file is not None:
+        #Reading PDF file
+        progress(0.2, desc="Processing file")
+        pdf_reader = PyPDF2.PdfReader(file)
+        # Extracting content
+        content = pdf_reader.pages[0].extract_text()
+        if content == "":
+            raise gr.Error("The file seems to be invalid. Please check your file or try another Pdf!")
+        progress(0.3, desc="Analyzing file")
+    return content
+```
+
+```python
+files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
+
+```
 
 The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related pdf. Realizing, that the Score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the pdf link and number of the position of the ranking.
 
@@ -155,14 +369,7 @@ During development, we have built in a detailed output to be able to call up the
 As a bonus, we wanted to integrate a button with which the results can be formatted and downloaded in a pdf. However, we were confronted with some technical problems, particularly the transfer of the results to the pdf, so that it did not make it into the final version due to time constraints. As an alternative, we have implemented a copy button in the output window so that the results can at least be copied.
 
 ## 3. Evaluation
-### 3.1 Bugs
-When developing the application, we focused on analyzing English-language abstracts and patents. In principle, OpenAi has no problems automatically translating and analyzing texts with Latin fonts in our application. German and French patents could therefore be translated relatively easily. Nevertheless, it can be assumed that there may be translation problems with some patents, especially those in Slavic or other. 
-
-In addition, after several test runs with different patents, we found that texts with other fonts, including Chinese and Cyrillic, could not be extracted correctly and therefore no abstract was available, which led to collapses during the process run. Especially the arabic font can confuse the LLM, since it also contains a few english words in latin font. In this case it only took the english words to generate keywords and classifications, so that in the end the quality of these has been too bad, to get a proper output of similar patents.
-
-We tried to minimize these bugs by implementing an examination, which checks, if there has been extracted an abstract or text. On this way, it was possible to pretend to get no abstract. Nevertheless, the problem of the translation or text structure could still come up, when the abstract is extracted and analyzed. 
-
-### 3.2 Evaluation
+### 3.1 Evaluation
 When choosing between LlamaIndex and TruLens, we decided in favour of TruLens. This framework offers a wide range of methods that seemed optimal for our use case in order to evaluate and improve the performance of our application. The following methods were considered:
 
 **Model Selection:** With this method, TruLens selects the most powerful and efficient model for our application. By comparing different models, we can identify those that deliver the best results and best fulfil our requirements.
@@ -197,7 +404,7 @@ In contrast, the patent comparison method produced unfavourable results. The low
 
 These results highlight the importance of carefully analysing and interpreting the evaluation results. Although the automated evaluation methods can provide insights, it is important to critically scrutinise them and perform manual checks where necessary to validate the quality of the results and ensure that the system meets the requirements and expectations.
 
-### 3.3 Improvements
+### 3.2 Improvements
 
 We concluded that the application still needs a few improvements. First and foremost is the performance. Basically, if you look at the output of the results via the application in relation to the general patent search, you can see a drastic improvement in the duration of the search. While a classic patent search can take several hours or even days, the application outputs the results within 2 minutes. Nevertheless, some performance improvements could be made to provide a better user experience.
 
@@ -207,7 +414,16 @@ Improvements can also be made in the content analysis of patents. An extended an
 We also would intend to use another framework for our UI, since a good tool to encode a basic Interface for applications with AI, but it's not good for customize the website and creating a user-friendly interface. 
 
 
-### 3.4 Issues
+### 3.3 Issues
+
+#### Abstracts in other languages or fonts
+
+When developing the application, we focused on analyzing English-language abstracts and patents. In principle, OpenAi has no problems automatically translating and analyzing texts with Latin fonts in our application. German and French patents could therefore be translated relatively easily. Nevertheless, it can be assumed that there may be translation problems with some patents, especially those in Slavic or other. 
+
+In addition, after several test runs with different patents, we found that texts with other fonts, including Chinese and Cyrillic, could not be extracted correctly and therefore no abstract was available, which led to collapses during the process run. Especially the arabic font can confuse the LLM, since it also contains a few english words in latin font. In this case it only took the english words to generate keywords and classifications, so that in the end the quality of these has been too bad, to get a proper output of similar patents.
+
+We tried to minimize these bugs by implementing an examination, which checks, if there has been extracted an abstract or text. On this way, it was possible to pretend to get no abstract. Nevertheless, the problem of the translation or text structure could still come up, when the abstract is extracted and analyzed. 
+
 
 #### Extract Abstracts from PDFs
 When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in **Figure X.1**. 
