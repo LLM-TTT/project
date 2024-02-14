@@ -2,7 +2,7 @@
 execute:
     echo: false 
 format:
-    html:
+    pdf:
         toc: true
         toc-expand: 3
         toc-location: left
@@ -140,6 +140,34 @@ As a bonus, we wanted to integrate a button with which the results can be format
 
 ## 3. Development
 ### 3.1 Basics
+To begin with, we made the basic settings for our LLM via LangChain. Two things were particularly important to us: setting the model to GPT-4 and instructing the LLM not to respond to any unnecessary information. To achieve this goal, two places in the code had to be modified: set temperature to 0 and an additional second instruction for the variable "messages":
+
+:::{}
+1. The first message:
+* **"role": "user"**: This message is represented by the user.
+* **"content": prompt**: This is the content of the user input provided by the user. The variable prompt contains the text to be completed.
+
+2. The second message: 
+* **"role": "system"**: This message is represented by the system or a computer.
+* **"content": "Act as a computer system and only say the output without any explanations."**: This is the content of the message instructing the model to behave like a computer system and only generate the output without adding any explanations.
+:::
+
+\AddToHookNext{env/Highlighting/begin}{\small}
+```python
+openai.api_key = os.environ['OPENAI_API_KEY']
+llm_model = "gpt-4"
+
+def get_completion(prompt, model=llm_model):
+    messages = [{"role": "system", "content": "Act as a computer system and only say \
+        the output without any explenations."}, {"role": "user", "content": prompt}]
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=0,
+    )
+    return response.choices[0].message["content"]
+```
+
 To realize our previous plans, we took various steps during our project. Firstly, we devised a series of sample patents and generated corresponding abstracts. The aim was to obtain a wide variety of abstracts to enable a comprehensive analysis. These abstracts were carefully formulated and saved as PDFs. 
 
 \AddToHookNext{env/Highlighting/begin}{\small}
@@ -337,8 +365,11 @@ comparison_prompt = f"""The following texts are abstracts from patent specificat
 Your task is to compare the "Testing Abstract" to all the others. It is important 
 that you focus on comparing the concepts that the abstracts describe, not the way 
 they are written. Rank the remaining abstracts on how well they match with the 
-Testing Abstract by giving them a rating from 0 to 10 points. 0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea. Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value. I want to convert 
-your output string to an actual dictionary, so make sure the formatting is right.
+Testing Abstract by giving them a rating from 0 to 10 points. 0 meaning they have absolutely 
+nothing in common and 10 meaning they basically describe the exact same idea. Your output 
+should be a python dictionary with the title "comparison", each element hast the Abstract 
+number as key and the rating as value. I want to convert your output string to an actual 
+dictionary, so make sure the formatting is right.
 
 Testing Abstract: "{content}"
 """
@@ -532,9 +563,36 @@ When extracting the abstracts from the results of the Google Patent API, we enco
 
 But a particularly common problem was that about one in ten PDFs was not formatted correctly in a machine-readable way: In some cases, it may be difficult for text extraction tools to recognize and select the text properly because of the structure of the PDF itself. This can happen if the PDF is poorly formatted or if the text is embedded in a way that makes it difficult to separate from other elements on the page. 
 
-This can be seen in @fig-incorrect if you simply try to select the corresponding text block of the abstract with the mouse courser in order to copy it, for example. The cursor jumpes to the left column of the page after the first line of the abstract, which led to a jumble of the read string. [Here is an example of an incorrect formatted patent abstract.](https://patentimages.storage.googleapis.com/a6/11/c7/5583de7c8fb29d/US9060688.pdf) To solve this problem, the LLM was used again to reconstruct the text and remove interfering or incorrect words. The text was then copied manually from the PDF and compared with the reconstructed text using the Levenshtein method. Agreements of regularly over 95% confirmed the accuracy of the LLM reconstruction.
+This can be seen in @fig-incorrect if you simply try to select the corresponding text block of the abstract with the mouse courser in order to copy it, for example. The cursor jumpes to the left column of the page after the first line of the abstract, which led to a jumble of the read string. [Here is an example of an incorrect formatted patent abstract.](https://patentimages.storage.googleapis.com/a6/11/c7/5583de7c8fb29d/US9060688.pdf) 
 
 ![Incorrect formatted PDF](img/marked_pdf_incorrect.png){#fig-incorrect}
+
+To solve this problem, the LLM was used again to reconstruct the text and remove interfering or incorrect words. The text was then copied manually from the PDF and compared with the reconstructed text using the Levenshtein method. Agreements of regularly over 95% confirmed the accuracy of the LLM reconstruction. See the following code snippet:
+
+\AddToHookNext{env/Highlighting/begin}{\small}
+```python
+prompt1 = f"""
+The following abstract is mixed up with random words.\
+Clean the words and reconstruct the text as best you can.\
+Print the abstract without any additional explanation.\
+\
+```{failed_abstract}```
+"""
+
+reconstructet_abstract = get_completion(prompt1)
+
+from Levenshtein import distance
+
+text1 = "STRING" #place here copied string from pdf
+text2 = reconstructet_abstract
+
+levenshtein_distance = distance(text1, text2)
+percentage_similarity = 100 - (levenshtein_distance / max(len(text1), len(text2))) * 100
+
+rounded = round(percentage_similarity,2)
+
+print(f"Prozentuale Ähnlichkeit der beiden Texte liegt bei: {rounded}%")
+```
 
 ### 5.3 Abstracts Not Always Found on the First Page of Patents 
 In order to reduce processing time and optimise the performance of our system, we decided to only scan the first page of each PDF. This decision was based on the fact that the abstract is typically found on the first page. By only analysing this first page, we were able to reduce the workload and increase efficiency.
