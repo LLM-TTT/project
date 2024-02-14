@@ -198,11 +198,7 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
         # Scraping Title
         title_span = soup.find('span', itemprop='title')
         if title_span is not None:
-            title = title_span.get_text()
-
-            # Removing weird ending of title
-            to_remove = "\n"
-            title = title.replace(to_remove, "").strip()
+            title = title_span.get_text().replace("\n", "").strip()
         else:
             title = False
 
@@ -280,7 +276,7 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
     clear_db(database)
     ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index" #intitalize vector similarity search      
 
-    # insert the documents in MongoDB Atlas with their embedding
+    # insert the patent data in MongoDB Atlas with their embedding
     vector_search = MongoDBAtlasVectorSearch.from_documents(
         documents=patent_list,
         embedding=OpenAIEmbeddings(disallowed_special=()), #use openAI embeddings method

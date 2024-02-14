@@ -1,18 +1,12 @@
 ---
-title: "LLM PatentPete Documentation Group 2"
-author: "Timucin Cicek, Matthias Meinke, Tim Messerschmidt, Tristan Ruhm"
 execute:
-  echo: false 
+    echo: false 
 format:
-  html:
-    toc: true
-    toc-expand: 3
-    toc-location: left
-    code-fold: false
-output:
-  quarto::pdf_document:
-    includes:
-      in_header: preamble.tex
+    html:
+        toc: true
+        toc-expand: 3
+        toc-location: left
+        code-fold: false
 jupyter: python3
 ---
 
@@ -22,7 +16,7 @@ jupyter: python3
 ::: {.callout-important}
 To be able to start the application without errors, you need to update your .env please, with the following attributes:
 
-\AddToHookNext{env/Highlighting/begin}{\small}
+\AddToHookNext{env/Highlighting/begin}{\scriptsize}
 ```python
 OPENAI_API_KEY = 'OWN SECRET KEY' 
 
@@ -79,26 +73,11 @@ The goal of Patent Pete is not to replace traditional patent research methods co
 ## 2. User Interface
 At the beginning, we decided to create our user interface with the streamlit framework. After some research and a recommendation from our lecturer, we switched to Gradio, as this framework is designed more for AI-based apps.  
 
-The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use. 
+The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.
  
 \AddToHookNext{env/Highlighting/begin}{\small}
-```python
-# Loading PDF file from user input and extracting first page containing the abstract
-def input_analysis(file, progress=gr.Progress()):
-    if file is not None:
-        #Reading PDF file
-        progress(0.2, desc="Processing file")
-        pdf_reader = PyPDF2.PdfReader(file)
-        # Extracting content
-        content = pdf_reader.pages[0].extract_text()
-        if content == "":
-            raise gr.Error("The file seems to be invalid. Please check your file or \
-                try another Pdf!")
-        progress(0.3, desc="Analyzing file")
-    return content
-```
-\AddToHookNext{env/Highlighting/begin}{\small}
-```python
+```python 
+# Upload field for the pdf file
 files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
 ```
 
@@ -120,7 +99,7 @@ return final_scoring_formatted
 ```
 \AddToHookNext{env/Highlighting/begin}{\small}
 ```python
-#New Value "Top 5 PDFs ...."
+# Output field for the end result
 endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) 
 ```
 
@@ -143,7 +122,8 @@ with gr.Column() as main:
     value="Cooperative Patent Classification (CPC)"),
 
     slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
-    slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
+    slide_classes = gr.Slider(1, 5, step=1, value=2, 
+    label="Number of Classifications")
 
     gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", 
     "DEPATISnet"], 
@@ -178,7 +158,6 @@ def input_analysis(file, progress=gr.Progress()):
         progress(0.3, desc="Analyzing file")
     return content
 ```
-
 
 ### 3.2 Generating Key Words and Classifications 
 In the planning phase, we focussed on developing efficient LLM prompts to generate keywords and classifications based on the sample abstracts. For this purpose, we created various sample abstracts and recorded them in an Excel spreadsheet. By defining and evaluating different prompts, we were able to select the one that provided the most search results to enable a comprehensive search.
@@ -312,12 +291,13 @@ The use of MongoDB ATLAS proved to be extremely successful. The API enabled us t
 
 \AddToHookNext{env/Highlighting/begin}{\small}
 ```python
+# Loading the patent data in the data base and similarity search 
 database = get_database_connection()
 # Clearing db before adding new data, to avoid any distortion of results
 clear_db(database)
 ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index" #intitalize vector similarity search      
 
-# insert the documents in MongoDB Atlas with their embedding
+# insert the patent data in MongoDB Atlas with their embedding
 vector_search = MongoDBAtlasVectorSearch.from_documents(
     documents=patent_list,
     embedding=OpenAIEmbeddings(disallowed_special=()), #use openAI embeddings method
@@ -345,6 +325,8 @@ Although we decided to use the vector database as the main method, we still reta
 
 \AddToHookNext{env/Highlighting/begin}{\small}
 ```python
+# Similarity check via LLM
+
 # Formatting vector search result for further usage
 vector_scoring = {}
 for result in results:
@@ -385,7 +367,7 @@ def transform_ratings(ratings, new_min=0, new_max=10):
     return transformed_ratings
 ```
 
-### 3.6 webscraping
+### 3.6 Webscraping
 Although the contents of the API provide initial information on relevant patents, they are not yet detailed enough to make a well-founded statement as to whether a patent is considered to be relevant or not. Important information such as the claims of the patents or the patent text were not included in the search results, and the abstract was often incomplete as it was cut off after a certain point. 
 
 Initially, we tried to extract this information from the PDFs of the individual patents. However, we found that this solution not only took an incredibly long time, as a large amount of data had to be loaded, but also delivered rather inaccurate results. The contents of the patent specifications could often not be accurately extracted and were also not always written in English, but rather in Chinese or Korean, which presented a major challenge. 
@@ -396,6 +378,8 @@ While the scraping of the search results page was blocked by Google after a few 
 
 \AddToHookNext{env/Highlighting/begin}{\small}
 ```python
+# Webscraping process 
+
 # Scraping complete patent data (title, abstract, description, claims)
 progress(0.6, desc="Collecting patent data")
 for patent_id in patent_data.keys():
@@ -411,10 +395,7 @@ for patent_id in patent_data.keys():
     title_span = soup.find('span', itemprop='title')
     if title_span is not None:
         title = title_span.get_text()
-
-        # Removing weird ending of title
-        to_remove = "\n"
-        title = title.replace(to_remove, "").strip()
+        title = title.replace("\n", "").strip()
     else:
         title = False
 
@@ -561,7 +542,7 @@ In order to reduce processing time and optimise the performance of our system, w
 However, we found that in about one in fifty PDFs, the abstract was not positioned on the first page as expected. Instead, it was randomly located on later pages, such as the fifth or even thirteenth page. This posed a challenge, as our assumption that the abstract should always be on the first page proved to be insufficient.
 However, since this problem was rare and our time was limited, we decided to put it on the back burner for the time being and focus on more pressing issues. Our priority was to ensure the main functionality of our system and to make sure that it worked flawlessly and efficiently. Unfortunately, in the end there was not enough time to solve this specific problem.
 
-### 5.4 Not Maschine-Readable 
+### 5.4 Not Machine-Readable 
 Furthermore, about every fiftieth PDF was also not machine-readable. There are several reasons why some PDFs may not be selectable, meaning that the text cannot be easily copied or extracted from the document:  
 
 **Scanned documents:** When a PDF is created from scanned images rather than digital text, the text in the document is essentially an image and is not selectable. This is because the text is not recognized by the computer as text, but as pixels forming an image.  
