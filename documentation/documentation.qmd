@@ -22,12 +22,16 @@ jupyter: python3
 ::: {.callout-important}
 To be able to start the application without errors, you need to update your .env please, with the following attributes:
 
-`OPENAI_API_KEY = 'OWN SECRET KEY'` 
+\AddToHookNext{env/Highlighting/begin}{\small}
+```python
+OPENAI_API_KEY = 'OWN SECRET KEY' 
 
 GOOGLE_PATENT_API_KEY = 
 '7661f86900cb42b2782c2af5c95142574b959dd5546c98491652475ea91e278e'
 
-DATABASE_URI = 'mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority'
+DATABASE_URI = 
+'mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority'
+```
 :::
 
 ## 1. Concept
@@ -75,8 +79,9 @@ The goal of Patent Pete is not to replace traditional patent research methods co
 ## 2. User Interface
 At the beginning, we decided to create our user interface with the streamlit framework. After some research and a recommendation from our lecturer, we switched to Gradio, as this framework is designed more for AI-based apps.  
 
-The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use.  
-
+The user interface was originally only supposed to consist of an input and output field. The input field was a text field in which the patent idea could be entered or the abstract copied in. After receiving feedback from our project partner, we decided to implement an upload field instead to make the input more user-friendly and enable greater accessibility during use. 
+ 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # Loading PDF file from user input and extracting first page containing the abstract
 def input_analysis(file, progress=gr.Progress()):
@@ -92,13 +97,14 @@ def input_analysis(file, progress=gr.Progress()):
         progress(0.3, desc="Analyzing file")
     return content
 ```
-
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
 ```
 
 The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related PDF. Realizing, that the score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the PDF link and number of the position of the ranking.
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # Formatting final scoring results for user output
 final_scoring_formatted = "Ergebnis:\n\n"
@@ -112,6 +118,7 @@ for patent_id in final_scoring_patent_ids:
 
 return final_scoring_formatted
 ```
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 #New Value "Top 5 PDFs ...."
 endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) 
@@ -119,6 +126,7 @@ endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True)
 
 In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, the options to choose another patent database or another type of classification only serves as a mockup in our final application. We just wanted to show which more possibilities the application could have.  
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # gradio interface for our configurations
 with gr.Column() as main:
@@ -154,6 +162,7 @@ As a bonus, we wanted to integrate a button with which the results can be format
 ### 3.1 Basics
 To realize our previous plans, we took various steps during our project. Firstly, we devised a series of sample patents and generated corresponding abstracts. The aim was to obtain a wide variety of abstracts to enable a comprehensive analysis. These abstracts were carefully formulated and saved as PDFs. 
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # Loading PDF file from user input and extracting first page containing the abstract
 def input_analysis(file, progress=gr.Progress()):
@@ -174,6 +183,7 @@ def input_analysis(file, progress=gr.Progress()):
 ### 3.2 Generating Key Words and Classifications 
 In the planning phase, we focussed on developing efficient LLM prompts to generate keywords and classifications based on the sample abstracts. For this purpose, we created various sample abstracts and recorded them in an Excel spreadsheet. By defining and evaluating different prompts, we were able to select the one that provided the most search results to enable a comprehensive search.
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # LLM Prompt generating Key Words on base of the PDF Input from User
 def output_keywords(content, n, progress=gr.Progress()):
@@ -192,6 +202,8 @@ def output_keywords(content, n, progress=gr.Progress()):
 ```
 
 During the development of the project, concerns were raised by ZOI about the ability of LLM to correctly generate classifications based on the abstracts. For this reason, we decided to generate five classifications, both as International Patent Classification (IPC) and Cooperative Patent Classification (CPC) as well as in US Patent and Trademark Office (USPTO) classification.
+
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # LLM Prompt generating Classifications on base of the PDF Input from User
 def output_classes(content, n, progress=gr.Progress()):
@@ -236,6 +248,7 @@ When selecting a suitable patent database, we looked at various databases in adv
 
 Google Patents seemed to us to be the ideal place to start. On the one hand, this database allowed us to partially circumvent the above-mentioned problems of the various authorities and summarize them under a uniform logic. Although Google Patents does not have an official API, we used a third-party provider, SerpAPI, to perform searches. SerpAPI does provide useful data in JSON format, but its free plan limits queries to 100 per month and accommodates up to 1,000 patents with 10 results per query.
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # initializing base vars for the following loop
 progress(0.5, desc="Researching patents")
@@ -297,6 +310,7 @@ In the end, we decided on MongoDB ATLAS as an alternative. This service also uti
 
 The use of MongoDB ATLAS proved to be extremely successful. The API enabled us to insert, retrieve and delete new content from the vector database and, most importantly, to efficiently compare the stored abstracts to obtain the desired similarity results. In addition, we were able to successfully solve performance issues that we previously had with the LLM. The results from the vector database were more accurate and reliable than the previously used LLM method.
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 database = get_database_connection()
 # Clearing db before adding new data, to avoid any distortion of results
@@ -329,6 +343,7 @@ By implementing the vector database, further performance optimizations were achi
 
 Although we decided to use the vector database as the main method, we still retained the evaluation via the LLM as an additional quality feature. We re-evaluated the best 10 results from the vector database using the LLM method to ensure that the quality of the results continues to meet our standards.
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # Formatting vector search result for further usage
 vector_scoring = {}
@@ -337,14 +352,11 @@ for result in results:
 
 # Building LLM similarity scoring prompt
 comparison_prompt = f"""The following texts are abstracts from patent specifications. 
-Your task is to compare the "Testing Abstract" to all the others. It is important that 
-you focus on comparing the concepts that the abstracts describe, not the way they are 
-written. Rank the remaining abstracts on how well they match with the Testing Abstract 
-by giving them a rating from 0 to 10 points. 0 meaning they have absolutely nothing in 
-common and 10 meaning they basically describe the exact same idea. Your output should 
-be a python dictionary with the title "comparison", each element hast the Abstract 
-number as key and the rating as value. I want to convert your output string to an actual 
-dictionary, so make sure the formatting is right.
+Your task is to compare the "Testing Abstract" to all the others. It is important 
+that you focus on comparing the concepts that the abstracts describe, not the way 
+they are written. Rank the remaining abstracts on how well they match with the 
+Testing Abstract by giving them a rating from 0 to 10 points. 0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea. Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value. I want to convert 
+your output string to an actual dictionary, so make sure the formatting is right.
 
 Testing Abstract: "{content}"
 """
@@ -382,6 +394,7 @@ We therefore decided to retrieve the detailed patent data directly from Google P
 
 While the scraping of the search results page was blocked by Google after a few requests, we had no problems accessing the individual patent pages directly. This allowed us to integrate this solution into our final application. 
 
+\AddToHookNext{env/Highlighting/begin}{\small}
 ```python
 # Scraping complete patent data (title, abstract, description, claims)
 progress(0.6, desc="Collecting patent data")

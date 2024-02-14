@@ -55,7 +55,6 @@ class Seafoam(Base):
             font_mono=font_mono,
         )
 
-
 seafoam = Seafoam()
 
 # Loading OpenAI API Key and Google Patent API Key
@@ -276,7 +275,6 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
         metadata = {"patent_id": patent_id}
         patent_list.append(Document(page_content=page_content, metadata=metadata))
 
-    
     database = get_database_connection()
     # Clearing db before adding new data, to avoid any distortion of results
     clear_db(database)
@@ -386,7 +384,6 @@ def patent_analysis(content, response_keywords, response_classes, progress=gr.Pr
 
 with gr.Blocks(theme=seafoam) as demo:
     with gr.Row() as head:
-        #gr.Image(sources='./PatentPete_friendly_blue_minim.jpeg', label="Patent Pete Logo")
         gr.Markdown("<h1 style='color:#2563EB;'>Patent Pete</h1><br> ")
     gr.Markdown("<p style='font-size:16px;'>Hi, I'm Pete your assistance for patent researchs. I help you with finding out, if your patent already exists. Let's start with uploading your idea!</p>")
     with gr.Row():
