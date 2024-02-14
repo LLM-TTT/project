@@ -4,16 +4,25 @@ execute:
   echo: false 
 format:
   html:
+    toc: true
+    toc-expand: 3
+    toc-location: left
     code-fold: false
 jupyter: python3
 ---
 
 # Documentation
 
-Just a demo, hello world, whatever etc.
-@demo
+## Disclaimer
+::: {.callout-important}
+To be able to start the application without errors, you need to update your .env please, with the following attributes:
 
+`OPENAI_API_KEY = 'OWN SECRET KEY'` 
 
+GOOGLE_PATENT_API_KEY = '7661f86900cb42b2782c2af5c95142574b959dd5546c98491652475ea91e278e'
+
+DATABASE_URI = 'mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority'
+:::
 
 ## 1. Concept
 ### 1.1 Introduction to Patent Pete
@@ -24,14 +33,37 @@ Patent Pete automates the search and analysis process for patent discovery, maki
 ### 1.2 Concept Overview
 Patent Pete is based on a Retrievable Augmented Generation (RAG) model. It integrates OpenAI's large language model capabilities with advanced search and similarity comparison techniques. This application simplifies patent research by allowing users to enter a patent document. It then conducts a thorough search for related patents and provides the user the links to them for further research. 
 
-### 1.3 How It Works
+### 1.3 Concept of Patent Classifications
+Patent classifications are used to organize patents into categories to make them easier to search, compare and understand. They enable patent offices, inventors, companies and researchers to find relevant patents and obtain information about the state of the art in specific fields. Here are some reasons why patent classifications are important:
+
+**Organization and structuring:** With thousands of patents filed every year, patent classifications help to create order and divide patents into logical categories.
+
+**Searching and monitoring:** Classification allows inventors and companies to monitor patents in areas relevant to their work and identify new developments.
+
+**Avoid duplicates:** Classifications help patent examiners to identify similar inventions and avoid duplication of work.
+
+**International harmonization:** Patent classification systems allow different countries to harmonize their patent data internationally, facilitating collaboration and information exchange.
+
+There are various patent classification systems that have been developed by different countries and organizations. The best known are:
+
+::: {}
+* The International Patent Classification (IPC): This was developed by the World Intellectual Property Organization (WIPO) and is used by most countries in the world. The IPC categorizes inventions into thematic groups and subclasses according to technical characteristics. It is very simple to use and easy to see how it works, as shown in @fig-ipc.
+
+* Common Patent Classification (CPC): A common classification system developed by the patent offices of the United States (USPTO) and Europe (EPO). The CPC is based on the IPC, but has been adapted to the needs of the USA and Europe.
+
+* US Patent Classification (USPC): The classification system used in the United States that categorizes patents into different classes.
+:::
+
+![IPC Classification Hierarchy](img/IPC-class-hierarchy.jpeg){#fig-ipc}
+
+### 1.4 How It Works
 The user submits a patent document to Patent Pete to begin the process. Patent Pete employs a language model to analyze the abstract and generate relevant keywords and patent classifications. These elements form the basis for a targeted search in the Google Patents database, ensuring the relevance of the results for the user's initial query. 
 
-After retrieving potential matches, Patent Pete continues the search. It enhances search results by embedding them into a vector database. This enables a similarity search that pinpoints the top 20 results based on their relevance and likeness to the submitted abstract. The top contenders undergo a second similarity comparison by the LLM, ensuring thorough evaluation of each patent's nuances and specificities. 
+After retrieving potential matches, Patent Pete continues the search. It enhances search results by embedding them into a vector database. This enables a similarity search that pinpoints the top 10 results based on their relevance and likeness to the submitted abstract. The top contenders undergo a second similarity comparison by the LLM, ensuring thorough evaluation of each patent's nuances and specificities. 
 
 Patent Pete presents the user with the five best matching patents. These patents are the most relevant and similar to the user's initial submission, making the research process efficient and effective. 
 
-### 1.4 Goals
+### 1.5 Goals
 The goal of Patent Pete is not to replace traditional patent research methods completely but to provide users with a more accessible and efficient starting point for their patent exploration journey and saving them a lot of time. By automating the initial stages of research and analysis, Patent Pete aims to streamline the process, allowing users to quickly identify relevant patents and focus their efforts on deeper investigation where human expertise and judgment are irreplaceable. 
 
 ## 2. User Interface
@@ -49,7 +81,8 @@ def input_analysis(file, progress=gr.Progress()):
         # Extracting content
         content = pdf_reader.pages[0].extract_text()
         if content == "":
-            raise gr.Error("The file seems to be invalid. Please check your file or try another Pdf!")
+            raise gr.Error("The file seems to be invalid. Please check your file or \
+                try another Pdf!")
         progress(0.3, desc="Analyzing file")
     return content
 ```
@@ -66,13 +99,17 @@ The output field should contain the result of the research, including the necess
 final_scoring_formatted = "Ergebnis:\n\n"
 counter=1
 for patent_id in final_scoring_patent_ids:
-    final_scoring_formatted += "#" + str(counter) + ": " + patent_data[patent_id]["title"] + "\n" + "https://patentimages.storage.googleapis.com/" + patent_data[patent_id]["pdf"] + "\n\n"
+    final_scoring_formatted += "#" + str(counter) + ": " 
+    + patent_data[patent_id]["title"] 
+    + "\n" + "https://patentimages.storage.googleapis.com/" 
+    + patent_data[patent_id]["pdf"] + "\n\n"
     counter+=1
 
 return final_scoring_formatted
 ```
 ```python
-endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) #New Value "Top 5 PDFs ...."
+#New Value "Top 5 PDFs ...."
+endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) 
 
 ```
 
@@ -87,12 +124,20 @@ with gr.Column() as main:
 
     gr.Markdown("<u>Configuration Options</u>")
 
-    gr.Radio(["International Patent Classification (IPC)", "United States Patent and Trademark Office (USPTO)", "Cooperative Patent Classification (CPC)", "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", value="Cooperative Patent Classification (CPC)"),
+    gr.Radio(["International Patent Classification (IPC)", 
+    "United States Patent and Trademark Office (USPTO)", 
+    "Cooperative Patent Classification (CPC)", 
+    "Deutsche Klassifizierung (DEKLA)"], label="Type of Classification", 
+    value="Cooperative Patent Classification (CPC)"),
 
     slide_keywords = gr.Slider(1, 5, step=1, value=2, label="Number of Key Words")
     slide_classes = gr.Slider(1, 5, step=1, value=2, label="Number of Classifications")
 
-    gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", "DEPATISnet"], label="Databases", info="Which databases should be searched?", value="Google Patents"),
+    gr.CheckboxGroup(["Google Patents", "Espacenet", "European Patent Office (EPO)", 
+    "DEPATISnet"], 
+    label="Databases", 
+    info="Which databases should be searched?", 
+    value="Google Patents"),
 
     button = gr.Button("Submit")
 ```
@@ -115,7 +160,8 @@ def input_analysis(file, progress=gr.Progress()):
         # Extracting content
         content = pdf_reader.pages[0].extract_text()
         if content == "":
-            raise gr.Error("The file seems to be invalid. Please check your file or try another Pdf!")
+            raise gr.Error("The file seems to be invalid. Please check your \
+                file or try another Pdf!")
         progress(0.3, desc="Analyzing file")
     return content
 ```
@@ -131,8 +177,9 @@ def output_keywords(content, n, progress=gr.Progress()):
     keyword_prompt = f"""
     The following abstract descripes a concept for a novel invention:\
     ```{content}```\
-    Name {n} key words based on this abstract, that I can use for the search in a patent database. \
-    Optimize the key words to get back more results. Result as python string.
+    Name {n} key words based on this abstract, that I can use for the search in a \
+    patent database. Optimize the key words to get back more results. Result \
+    as python string.
     """
 
     response_keywords = get_completion(keyword_prompt)
@@ -145,11 +192,13 @@ During the development of the project, concerns were raised by ZOI about the abi
 ```python
 # LLM Prompt generating Classifications on base of the PDF Input from User
 def output_classes(content, n, progress=gr.Progress()):
-  progress(0, desc="Generating Classifications...") #Progress Bar from Gradio to visualize the current progress
+    #Progress Bar from Gradio to visualize the current progress
+  progress(0, desc="Generating Classifications...") 
   classes_prompt = f"""
       The following abstract descripes a concept for a novel invention:\
       ```{content}```\
-      Name {n} CPC classifications based on this abstract, that I can use for the search in a patent database. \
+      Name {n} CPC classifications based on this abstract, that I can use for  
+      the search in a patent database. \
       Please give me a python string for the codes of the {n} most relevant \
       CPC classifications to a possible patent. 
       """
@@ -188,9 +237,11 @@ Google Patents seemed to us to be the ideal place to start. On the one hand, thi
 ```python
 # initializing base vars for the following loop
 progress(0.5, desc="Researching patents")
-patent_api_key = os.environ['GOOGLE_PATENT_API_KEY'] #load secret key for the google patent api
+#load secret key for the google patent api
+patent_api_key = os.environ['GOOGLE_PATENT_API_KEY'] 
 count = 0
-patent_base_url = "https://patentimages.storage.googleapis.com/" #just to complete the url
+#just to complete the url
+patent_base_url = "https://patentimages.storage.googleapis.com/" 
 patent_data = {}
 
 # Loop for multiple Google Patents API calls with Key Words
@@ -216,7 +267,8 @@ for i in keywords_list:
     else:
         print(f"Error with API request: Status code {response.status_code}")
 
-# Parsing API answer .json and adding the patent ID to the patent_data dict, avoiding duplicates
+# Parsing API answer .json and adding the patent ID to the 
+# patent_data dict, avoiding duplicates
 for cluster in data["results"]["cluster"]:
     for result in cluster["result"]:
         patent_id = result["patent"]["publication_number"]
@@ -260,7 +312,8 @@ vector_search = MongoDBAtlasVectorSearch.from_documents(
 # waiting for the db to save
 time.sleep(5)
 
-# Performing a similarity search with Score between the embedding of the query and the embeddings of the documents
+# Performing a similarity search with Score between the embedding of the query 
+# and the embeddings of the documents
 progress(0.9, desc="Compare the patents")
 query = str(content)
 
@@ -281,12 +334,15 @@ for result in results:
     vector_scoring[result[0].metadata['patent_id']] = result[1]
 
 # Building LLM similarity scoring prompt
-comparison_prompt = f"""The following texts are abstracts from patent specifications. Your task is to compare the "Testing Abstract" to all the others. 
-It is important that you focus on comparing the concepts that the abstracts describe, not the way they are written. 
-Rank the remaining abstracts on how well they match with the Testing Abstract by giving them a rating from 0 to 10 points. 
-0 meaning they have absolutely nothing in common and 10 meaning they basically describe the exact same idea.
-Your output should be a python dictionary with the title "comparison", each element hast the Abstract number as key and the rating as value.
-I want to convert your output string to an actual dictionary, so make sure the formatting is right.
+comparison_prompt = f"""The following texts are abstracts from patent specifications. 
+Your task is to compare the "Testing Abstract" to all the others. It is important that 
+you focus on comparing the concepts that the abstracts describe, not the way they are 
+written. Rank the remaining abstracts on how well they match with the Testing Abstract 
+by giving them a rating from 0 to 10 points. 0 meaning they have absolutely nothing in 
+common and 10 meaning they basically describe the exact same idea. Your output should 
+be a python dictionary with the title "comparison", each element hast the Abstract 
+number as key and the rating as value. I want to convert your output string to an actual 
+dictionary, so make sure the formatting is right.
 
 Testing Abstract: "{content}"
 """
@@ -309,7 +365,8 @@ def transform_ratings(ratings, new_min=0, new_max=10):
     transformed_ratings = {}
     for key, value in ratings.items():
         # Apply the transformation with dynamic old and new ranges
-        transformed_value = ((value - old_min) / (old_max - old_min)) * (new_max - new_min) + new_min
+        transformed_value = ((value - old_min) / (old_max - old_min)) 
+        * (new_max - new_min) + new_min
         transformed_ratings[key] = transformed_value
     return transformed_ratings
 ```
@@ -432,25 +489,33 @@ When choosing between LlamaIndex and TruLens, we decided in favour of TruLens. T
 
 **Embeddings Distance:** This method measures the similarity or dissimilarity of texts by representing them as points in a mathematical space. The most common measurement methods for this are: Cosine distance, Manhattan distance and Euclidean distance. The aim was to evaluate and assess the quality of the results of the similarity search that were output by the vector database at the end.
 
-Due to time constraints, only the retrieval quality method was used. Five sample patents were generated and run through the system with their respective abstracts in order to obtain meaningful results at the end.
+Due to time constraints, only the retrieval quality method was used as seen in @fig-results. Five sample patents were generated and run through the system with their respective abstracts in order to obtain meaningful results at the end.
 
 Although only one evaluation method was implemented, it still provides valuable insights into the performance of the system and its results can already be used as a starting point for future developments and improvements.
 
-![Figure X.X](img/rag_results.png)
+![RAG Results](img/rag_results.png){#fig-results}
 
 Using the retrieval quality method, we evaluated three points in our app:
 
 ::: {}
 1. Generation of classifications based on the abstract uploaded by the user
+
 2. Generation of key words based on the abstract uploaded by the user
+
 3. The LLM evaluation of five randomly generated abstracts based on the abstract uploaded by the user
 :::
 
-The evluation showed different results. Regarding the generation of classifications, as can be seen in Figure X.X, there was a low score in terms of groundness, suggesting that the evaluation method assumes that the LLM had difficulties in providing sound classifications and may be hallucinating. However, as mentioned at the beginning of this documentation (see chapter Basics), the group had already checked the classifications manually in advance against the official register and found them to be correct. This indicates that the quality of the classifications is indeed acceptable despite the low rating.
+The evluation showed different results. Regarding the generation of classifications, as can be seen in @fig-classifications, there was a low score in terms of groundness, suggesting that the evaluation method assumes that the LLM had difficulties in providing sound classifications and may be hallucinating. However, as mentioned at the beginning of this documentation (see chapter Basics), the group had already checked the classifications manually in advance against the official register and found them to be correct. This indicates that the quality of the classifications is indeed acceptable despite the low rating.
 
-The results of the key word generation were satisfactory. In the detailed view in Figure X.X, it can be seen that the RAG does not consistently score 100% for Context Relevance. This could be due to the fact that the LLM has problems prioritising the most important key words in view of the abundance of abstracts. Overall, however, the result is satisfactory.
+![RAG Details Classifications](img/patent-pete-hallucination-classification.png){#fig-classifications}
 
-In contrast, the patent comparison method produced unfavourable results. The low scores suggest that the LLM may not have adequately captured the context of the original abstract and therefore does not provide accurate answers. This suggests that although the LLM evaluation can be considered helpful, it should be used with caution as it may not have the desired reliability. However, it should also be noted, as can be seen in Figure X.X, that there was only one outlier that negatively affected the values. 
+The results of the key word generation were satisfactory. In the detailed view in @fig-keywords, it can be seen that the RAG does not consistently score 100% for Context Relevance. This could be due to the fact that the LLM has problems prioritising the most important key words in view of the abundance of abstracts. Overall, however, the result is satisfactory.
+
+![RAG Details Key Words](img/patent-pete-hallucination-keywords.png){#fig-keywords}
+
+In contrast, the patent comparison method produced unfavourable results. The low scores suggest that the LLM may not have adequately captured the context of the original abstract and therefore does not provide accurate answers. This suggests that although the LLM evaluation can be considered helpful, it should be used with caution as it may not have the desired reliability. However, it should also be noted, as can be seen in @fig-comparison, that there was only one outlier that negatively affected the values. 
+
+![RAG Details Comparison](img/patent-pete-hallucination-comparison.png){#fig-comparison}
 
 These results highlight the importance of carefully analysing and interpreting the evaluation results. Although the automated evaluation methods can provide insights, it is important to critically scrutinise them and perform manual checks where necessary to validate the quality of the results and ensure that the system meets the requirements and expectations.
 
@@ -465,15 +530,15 @@ We tried to minimize these issues by implementing an examination, which checks, 
 
 
 ### 5.2 Extract Abstracts from PDFs
-When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in **Figure X.1**. 
+When extracting the abstracts from the results of the Google Patent API, we encountered various problems that we had to solve during the project. Normally PDFs are formatted the way you can see in @fig-correct. 
 
-![Figure X.1](img/marked_pdf_correct.png)
+![Correct formatted PDF](img/marked_pdf_correct.png){#fig-correct}
 
 But a particularly common problem was that about one in ten PDFs was not formatted correctly in a machine-readable way: In some cases, it may be difficult for text extraction tools to recognize and select the text properly because of the structure of the PDF itself. This can happen if the PDF is poorly formatted or if the text is embedded in a way that makes it difficult to separate from other elements on the page. 
 
-This can be seen if you simply try to select the corresponding text block of the abstract with the mouse courser in order to copy it, for example. The cursor jumped to the left column of the page after the first line of the abstract (**see Figure X.2**; see example at https://patentimages.storage.googleapis.com/a6/11/c7/5583de7c8fb29d/US9060688.pdf), which led to a jumble of the read string. To solve this problem, the LLM was used again to reconstruct the text and remove interfering or incorrect words. The text was then copied manually from the PDF and compared with the reconstructed text using the Levenshtein method. Agreements of regularly over 95% confirmed the accuracy of the LLM reconstruction.
+This can be seen in @fig-incorrect if you simply try to select the corresponding text block of the abstract with the mouse courser in order to copy it, for example. The cursor jumpes to the left column of the page after the first line of the abstract, which led to a jumble of the read string. [Here is an example of an incorrect formatted patent abstract.](https://patentimages.storage.googleapis.com/a6/11/c7/5583de7c8fb29d/US9060688.pdf) To solve this problem, the LLM was used again to reconstruct the text and remove interfering or incorrect words. The text was then copied manually from the PDF and compared with the reconstructed text using the Levenshtein method. Agreements of regularly over 95% confirmed the accuracy of the LLM reconstruction.
 
-![Figure X.2](img/marked_pdf_incorrect.png)
+![Incorrect formatted PDF](img/marked_pdf_incorrect.png){#fig-incorrect}
 
 ### 5.3 Abstracts Not Always Found on the First Page of Patents 
 In order to reduce processing time and optimise the performance of our system, we decided to only scan the first page of each PDF. This decision was based on the fact that the abstract is typically found on the first page. By only analysing this first page, we were able to reduce the workload and increase efficiency.
