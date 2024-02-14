@@ -1,5 +1,6 @@
 ---
 title: "LLM PatentPete Documentation Group 2"
+author: "Timucin Cicek, Matthias Meinke, Tim Messerschmidt, Tristan Ruhm"
 execute:
   echo: false 
 format:
@@ -8,6 +9,10 @@ format:
     toc-expand: 3
     toc-location: left
     code-fold: false
+output:
+  quarto::pdf_document:
+    includes:
+      in_header: preamble.tex
 jupyter: python3
 ---
 
@@ -19,7 +24,8 @@ To be able to start the application without errors, you need to update your .env
 
 `OPENAI_API_KEY = 'OWN SECRET KEY'` 
 
-GOOGLE_PATENT_API_KEY = '7661f86900cb42b2782c2af5c95142574b959dd5546c98491652475ea91e278e'
+GOOGLE_PATENT_API_KEY = 
+'7661f86900cb42b2782c2af5c95142574b959dd5546c98491652475ea91e278e'
 
 DATABASE_URI = 'mongodb+srv://timmey:faB8MFdyyb7zWvVr@llm-ttt.8kqrnka.mongodb.net/?retryWrites=true&w=majority'
 :::
@@ -89,10 +95,9 @@ def input_analysis(file, progress=gr.Progress()):
 
 ```python
 files= gr.File(file_types=['.pdf'], label="Upload your pdf here.")
-
 ```
 
-The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related PDF. Realizing, that the score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the PDF link and number of the position of the ranking. Temporary, we faced the problem, that the result was correctly formatted.   
+The output field should contain the result of the research, including the necessary information about the patents, the user needs. First, we decided to give out the matching score of each patent with the input and the link to related PDF. Realizing, that the score would be irrelevant for the user or even confuse them, we changed the results. Now the result contains the title, the PDF link and number of the position of the ranking.
 
 ```python
 # Formatting final scoring results for user output
@@ -110,7 +115,6 @@ return final_scoring_formatted
 ```python
 #New Value "Top 5 PDFs ...."
 endresult = gr.Textbox(label="End Result", value="None", show_copy_button=True) 
-
 ```
 
 In addition, we added a field for possible configurations for the patent search below the upload field. These should make it possible to select search elements such as classification type, number of keywords/classifications or the database to be used as desired. However, the options to choose another patent database or another type of classification only serves as a mockup in our final application. We just wanted to show which more possibilities the application could have.  
@@ -185,7 +189,6 @@ def output_keywords(content, n, progress=gr.Progress()):
     response_keywords = get_completion(keyword_prompt)
 
     return response_keywords
-
 ```
 
 During the development of the project, concerns were raised by ZOI about the ability of LLM to correctly generate classifications based on the abstracts. For this reason, we decided to generate five classifications, both as International Patent Classification (IPC) and Cooperative Patent Classification (CPC) as well as in US Patent and Trademark Office (USPTO) classification.
@@ -206,7 +209,6 @@ def output_classes(content, n, progress=gr.Progress()):
   response_classes = get_completion(classes_prompt)
     
   return response_classes
-
 ```
 
 After manually comparing the classifications with the official registers, we found that the LLM coped well with the IPC/CPC classifications in particular. However, we encountered difficulties when it came to the USPTO subclasses. The LLM did not seem to be able to correctly recognize the subtleties of the subclasses and assign them accordingly.
