@@ -2,7 +2,7 @@
 execute:
     echo: false 
 format:
-    pdf:
+    html:
         toc: true
         toc-expand: 3
         toc-location: left
@@ -58,7 +58,7 @@ There are various patent classification systems that have been developed by diff
 * US Patent Classification (USPC): The classification system used in the United States that categorizes patents into different classes.
 :::
 
-![IPC Classification Hierarchy](img/IPC-class-hierarchy.jpeg){#fig-ipc}
+![IPC Classification Hierarchy (Source: DOI:10.1007/s12020-022-03063-2)](img/IPC-class-hierarchy.jpeg){#fig-ipc}
 
 ### 1.4 How It Works
 The user submits a patent document to Patent Pete to begin the process. Patent Pete employs a language model to analyze the abstract and generate relevant keywords and patent classifications. These elements form the basis for a targeted search in the Google Patents database, ensuring the relevance of the results for the user's initial query. 
